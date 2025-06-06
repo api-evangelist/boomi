@@ -25,7 +25,7 @@ type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-01-08'
-modified: '2025-01-13'
+modified: '2025-06-06'
 position: Consuming
 description: >-
   Boomi is a leading integration platform that allows organizations to connect
@@ -42,3 +42,10 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
+common:
+  - name: LinkedIn
+    url: https://www.linkedin.com/company/boomi-inc/
+    type: LinkedIn
+  - name: GitHub
+    url: https://github.com/OfficialBoomi
+    type: GitHub
