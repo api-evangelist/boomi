@@ -24,6 +24,45 @@ tags:
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
+common:
+  - url: https://www.linkedin.com/company/boomi-inc/
+    name: LinkedIn
+    type: LinkedIn
+  - url: https://github.com/OfficialBoomi
+    name: GitHub
+    type: GitHub
+  - name: 'Boomi Integration Platform as a Service: Connect Everything'
+    description: 'null'
+    url: https://boomi.com/
+    type: Website
+  - name: Boomi Enterprise Platform Pricing & Editions | Boomi
+    description: 'null'
+    url: https://boomi.com/pricing/
+    type: Pricing
+  - name: 'Security & Privacy Compliance: We Keep Customer Data Safe'
+    description: 'null'
+    url: https://boomi.com/compliance/
+    type: Compliance
+  - name: Boomi Free Trial | Boomi
+    description: 'null'
+    url: https://boomi.com/form/trial/
+    type: Trial
+  - name: Custom Demo Request | Boomi
+    description: 'null'
+    url: https://boomi.com/custom-demo-request/
+    type: RequestDemo
+  - name: Discover Business Outcomes, Accelerated
+    description: 'null'
+    url: https://discover.boomi.com/
+    type: Marketplace
+  - name: Customer Stories | Boomi
+    description: 'null'
+    url: https://boomi.com/customers/
+    type: CaseStudies
+  - name: Events & Webinars | Boomi
+    description: 'null'
+    url: https://boomi.com/company/events/?event_style=upcoming
+    type: Events
 created: '2025-01-08'
 modified: '2025-06-06'
 position: Consuming
@@ -42,10 +81,3 @@ maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
 specificationVersion: '0.19'
-common:
-  - name: LinkedIn
-    url: https://www.linkedin.com/company/boomi-inc/
-    type: LinkedIn
-  - name: GitHub
-    url: https://github.com/OfficialBoomi
-    type: GitHub
