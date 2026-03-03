@@ -113,6 +113,8 @@ common:
 created: '2025-01-08'
 modified: '2025-06-06'
 position: Consuming
+segments:
+  - Workflows
 description: >-
   Boomi is a leading integration platform that allows organizations to connect
   applications, data, and people across cloud and on-premise environments. By
