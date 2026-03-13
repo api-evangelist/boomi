@@ -14,6 +14,140 @@ apis:
       Boomi API Management supports the full lifecycle of APIs in any
       environment. Configure APIs and expose real-time integrations
       effortlessly.
+  - aid: boomi:platform-rest-api
+    name: Boomi Platform REST API
+    tags:
+      - Integration
+      - Platform
+      - REST
+    humanURL: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+    properties:
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+        type: Documentation
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview
+        type: APIReference
+      - url: https://developer.boomi.com/docs/category/platform-rest-api-reference
+        type: APIReference
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+        type: OpenAPI
+    description: >-
+      The Boomi Platform REST API provides programmatic access to the Boomi
+      Enterprise Platform functionality. It allows for control of many objects
+      associated with your account including account administration, cloud
+      management, component management, deployment, environment management,
+      execution statistics, integration packs, process execution, and runtime
+      management.
+  - aid: boomi:platform-partner-api
+    name: Boomi Platform Partner API
+    tags:
+      - Partners
+      - Platform
+      - REST
+    humanURL: https://developer.boomi.com/api/platformpartnerapi
+    properties:
+      - url: https://developer.boomi.com/api/platformpartnerapi
+        type: Documentation
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+        type: OpenAPI
+    description: >-
+      The Boomi Platform Partner API provides partners with programmatic access
+      to the secondary accounts that they manage. It builds upon the standard
+      Boomi Enterprise Platform API with additional capabilities including
+      account CREATE and DELETE operations and account provisioning.
+  - aid: boomi:api-management-api
+    name: Boomi API Management API
+    tags:
+      - API Management
+      - REST
+      - SOAP
+      - GraphQL
+    humanURL: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+    properties:
+      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+        type: Documentation
+      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
+        type: GettingStarted
+    description: >-
+      The Boomi API Management API provides programmatic access to API
+      Management service functionality through REST, SOAP, and GraphQL
+      implementations. It supports API objects and object-based operations, API
+      actions, and audit log query types. The API enforces a rate limit of 10
+      requests per second.
+  - aid: boomi:datahub-api
+    name: Boomi DataHub API
+    tags:
+      - Master Data
+      - Data Hub
+      - REST
+    humanURL: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+    properties:
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+        type: Documentation
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
+        type: APIReference
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
+        type: APIReference
+    description: >-
+      The Boomi DataHub REST APIs enable programmatic access to the master data
+      management system through the DataHub Platform API and Repository API. The
+      Platform API enables platform-level operations on master data domains,
+      while the Repository API supports data repository operations with JWT
+      authentication.
+  - aid: boomi:event-streams-api
+    name: Boomi Event Streams REST API
+    tags:
+      - Events
+      - Streaming
+      - REST
+      - Messaging
+    humanURL: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
+    properties:
+      - url: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
+        type: Documentation
+    description: >-
+      The Boomi Event Streams REST API enables HTTP-based applications to
+      produce messages to topics. It supports multiple message modes including
+      multiple messages in predefined JSON format and single messages in their
+      original format without transformation. The API accommodates messages up
+      to 5MB and uses Bearer token authentication.
+  - aid: boomi:flow-api
+    name: Boomi Flow API
+    tags:
+      - Workflows
+      - Automation
+      - Low-Code
+      - REST
+    humanURL: https://manywho.github.io/docs-api/
+    properties:
+      - url: https://manywho.github.io/docs-api/
+        type: Documentation
+      - url: https://github.com/manywho/docs-api
+        type: GitHubRepository
+    description: >-
+      The Boomi Flow API provides REST endpoints for programmatic access to
+      Boomi Flow functionality. Built on an API-first architecture, many
+      operations performed within Boomi Flow can be accessed through this API.
+      The API supports authorization using tenant-specific API keys.
+  - aid: boomi:connector-deployment-api
+    name: Boomi Connector Deployment API
+    tags:
+      - Connectors
+      - SDK
+      - Deployment
+      - REST
+    humanURL: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+    properties:
+      - url: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+        type: Documentation
+      - url: https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview
+        type: GettingStarted
+      - url: https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
+        type: GettingStarted
+    description: >-
+      The Boomi Connector Deployment API provides programmatic access to deploy
+      connectors created using the Boomi Connector SDK. It enables integration
+      with CI/CD pipelines for automated connector deployment to the Boomi
+      Enterprise Platform.
 name: Boomi
 tags:
   - Integrations
@@ -110,8 +244,64 @@ common:
     name: 'Security & Privacy Compliance: We Keep Customer Data Safe'
     type: Trust
     description: Compliance
+  - url: https://developer.boomi.com/
+    name: Boomi Developer Documentation
+    type: DeveloperPortal
+    description: 'null'
+  - url: https://community.boomi.com/s/
+    name: Boomi User Community
+    type: Community
+    description: 'null'
+  - url: https://community.boomi.com/s/forums
+    name: Boomi Community Forums
+    type: Forums
+    description: 'null'
+  - url: https://status.boomi.com/
+    name: Boomi Status
+    type: StatusPage
+    description: 'null'
+  - url: https://help.boomi.com/docs/category/release-notes
+    name: Release Notes | Boomi Documentation
+    type: ReleaseNotes
+    description: 'null'
+  - url: https://boomi.com/company/
+    name: About Boomi
+    type: About
+    description: 'null'
+  - url: https://boomi.com/company/contact/
+    name: Contact Boomi
+    type: Contact
+    description: 'null'
+  - url: https://twitter.com/boomi
+    name: Boomi on X
+    type: X
+    description: 'null'
+  - url: https://platform.boomi.com/
+    name: Boomi Enterprise Platform Sign In
+    type: SignIn
+    description: 'null'
+  - url: https://boomi.com/connectors/
+    name: Boomi Application Connectors
+    type: Connectors
+    description: 'null'
+  - url: https://boomi.com/platform/master-data-hub/
+    name: Boomi Data Hub | Enterprise Data Management
+    type: DataHub
+    description: 'null'
+  - url: https://boomi.com/platform/api-products/
+    name: API Products | Boomi
+    type: Products
+    description: 'null'
+  - url: https://www.postman.com/boomi-lp/boomi/overview
+    name: Boomi Postman Workspace
+    type: PostmanWorkspace
+    description: 'null'
+  - url: https://boomi.com/company/careers/
+    name: Careers | Boomi
+    type: Careers
+    description: 'null'
 created: '2025-01-08'
-modified: '2025-06-06'
+modified: '2026-03-03'
 position: Consuming
 segments:
   - Workflows
@@ -128,5 +318,5 @@ description: >-
   support their evolving business needs.
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
