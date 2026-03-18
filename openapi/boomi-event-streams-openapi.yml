@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Boomi Event Streams REST API
+  description: >-
+    The Boomi Event Streams REST API enables HTTP-based applications to produce
+    messages to event topics. It supports two operational modes: multiple
+    messages in a predefined JSON format, and single messages in their original
+    format without transformation. The API accommodates messages up to 5 MB and
+    enforces a rate limit of 60,000 requests per IP per 5-minute window. Each
+    topic has a unique REST API URL available in the Event Streams UI.
+    Authentication uses an Environment Token as a Bearer token.
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+externalDocs:
+  description: Boomi Event Streams REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
+servers:
+  - url: https://{topicEndpoint}
+    description: >-
+      Topic-specific endpoint URL. Each event topic has a unique REST API URL
+      obtained from the Event Streams UI in the Boomi platform.
+    variables:
+      topicEndpoint:
+        description: The unique hostname for this event topic's REST endpoint.
+        default: your-topic-endpoint.boomi.com
+tags:
+  - name: Messages
+    description: >-
+      Endpoints for producing messages to Boomi Event Streams topics via
+      HTTP REST calls.
+security:
+  - bearerAuth: []
+paths:
+  /:
+    post:
+      operationId: publishMessages
+      summary: Publish messages to a topic
+      description: >-
+        Publishes one or more messages to the event topic. Supports two
+        operational modes: multiple messages mode (predefined JSON format with
+        payload and properties fields) and single message mode (original format
+        in plain text, JSON, or XML). Messages may be up to 5 MB each and the
+        total HTTP request must not exceed 10 MB. Rate limited to 60,000
+        requests per IP per 5-minute window.
+      tags:
+        - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/MultiMessageRequest'
+                - $ref: '#/components/schemas/SingleMessageRequest'
+          text/plain:
+            schema:
+              type: string
+              description: Single message payload in plain text format.
+          application/xml:
+            schema:
+              type: string
+              description: Single message payload in XML format.
+      responses:
+        '200':
+          description: Messages accepted and published successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '413':
+          description: Payload too large. Maximum message size is 5 MB.
+        '429':
+          description: >-
+            Rate limit exceeded. Maximum 60,000 requests per IP per
+            5-minute window.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Environment Token obtained from the Boomi Event Streams UI. Include as
+        Authorization: Bearer {environment_token}.
+  responses:
+    Unauthorized:
+      description: Authentication token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request payload is invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    MultiMessageRequest:
+      type: object
+      description: >-
+        Request body for publishing multiple messages in the predefined JSON
+        format. Each message contains a payload and optional properties.
+      required: [messages]
+      properties:
+        messages:
+          type: array
+          description: Array of messages to publish to the topic.
+          items:
+            $ref: '#/components/schemas/MessageItem'
+    MessageItem:
+      type: object
+      description: A single message in multi-message mode.
+      required: [payload]
+      properties:
+        payload:
+          type: string
+          description: >-
+            The message content. May be plain text, JSON, or XML encoded
+            as a string.
+        properties:
+          type: object
+          description: >-
+            Optional custom metadata key-value pairs associated with
+            this message.
+          additionalProperties:
+            type: string
+    SingleMessageRequest:
+      type: object
+      description: >-
+        Request body for publishing a single message in its original format.
+        Properties are sent via request headers prefixed with x-msg-props-.
+      additionalProperties: true
+    PublishResponse:
+      type: object
+      description: Response returned after successfully publishing messages.
+      properties:
+        status:
+          type: string
+          description: Status of the publish operation.
+          example: success
+        messageIds:
+          type: string
+          description: >-
+            Comma-separated list of message IDs assigned to the
+            published messages.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.

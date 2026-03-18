@@ -1,0 +1,592 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub API
+  description: >-
+    The Boomi DataHub REST API provides programmatic access to master data
+    management operations. It consists of two layers: the Platform API for
+    managing repositories, models, sources, and domains; and the Repository
+    API for querying and manipulating golden records and staged entities.
+    The Platform API uses Basic Authentication while the Repository API
+    supports JWT authentication. Requests are subject to usage limits based
+    on licensed connectors (1,000 times the number of connectors per 24 hours).
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+servers:
+  - url: https://mdh.boomi.com/mdh
+    description: Boomi DataHub Platform API
+tags:
+  - name: Repositories
+    description: Manage DataHub repositories that contain master data domains.
+  - name: Models
+    description: >-
+      Manage data models that define the schema and rules for master data
+      domains.
+  - name: Sources
+    description: >-
+      Manage data sources that contribute records to the master data
+      hub for matching and merging.
+  - name: Golden Records
+    description: >-
+      Query and manage the authoritative master records that result from
+      matching and merging source records.
+  - name: Quarantine
+    description: >-
+      Manage quarantined records that could not be automatically processed
+      due to data quality issues.
+security:
+  - basicAuth: []
+  - bearerAuth: []
+paths:
+  /repositories:
+    get:
+      operationId: listRepositories
+      summary: List repositories
+      description: >-
+        Returns a list of all DataHub repositories associated with the
+        authenticated account.
+      tags:
+        - Repositories
+      responses:
+        '200':
+          description: A list of DataHub repositories.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  repositories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Repository'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRepository
+      summary: Create a repository
+      description: Creates a new DataHub repository for managing master data.
+      tags:
+        - Repositories
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryInput'
+      responses:
+        '200':
+          description: The created repository.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /repositories/{repositoryId}:
+    get:
+      operationId: getRepository
+      summary: Get a repository
+      description: Retrieves details of a specific DataHub repository by its ID.
+      tags:
+        - Repositories
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      responses:
+        '200':
+          description: The repository details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Repository'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRepository
+      summary: Delete a repository
+      description: Permanently deletes a DataHub repository and all its data.
+      tags:
+        - Repositories
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /repositories/{repositoryId}/models:
+    get:
+      operationId: listModels
+      summary: List models
+      description: Returns all data models defined within a specific repository.
+      tags:
+        - Models
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      responses:
+        '200':
+          description: A list of data models.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Model'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createModel
+      summary: Create a model
+      description: >-
+        Creates a new data model within the repository that defines the
+        schema for a master data domain.
+      tags:
+        - Models
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelInput'
+      responses:
+        '200':
+          description: The created data model.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /repositories/{repositoryId}/models/{modelId}:
+    get:
+      operationId: getModel
+      summary: Get a model
+      description: Retrieves the details and schema of a specific data model.
+      tags:
+        - Models
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+        - $ref: '#/components/parameters/ModelId'
+      responses:
+        '200':
+          description: The data model details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteModel
+      summary: Delete a model
+      description: Permanently deletes a data model from the repository.
+      tags:
+        - Models
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+        - $ref: '#/components/parameters/ModelId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /repositories/{repositoryId}/models/{modelId}/publish:
+    post:
+      operationId: publishModel
+      summary: Publish a model
+      description: >-
+        Publishes a data model, making it available for domain deployment and
+        data ingestion.
+      tags:
+        - Models
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+        - $ref: '#/components/parameters/ModelId'
+      responses:
+        '200':
+          description: The published model.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /repositories/{repositoryId}/sources:
+    get:
+      operationId: listSources
+      summary: List sources
+      description: Returns all data sources configured within a specific repository.
+      tags:
+        - Sources
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      responses:
+        '200':
+          description: A list of data sources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sources:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Source'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createSource
+      summary: Create a source
+      description: >-
+        Creates a new data source within the repository representing a system
+        that contributes records to the master data hub.
+      tags:
+        - Sources
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceInput'
+      responses:
+        '200':
+          description: The created data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /repositories/{repositoryId}/universes/{universeId}/records:
+    get:
+      operationId: listGoldenRecords
+      summary: List golden records
+      description: >-
+        Returns a paginated list of golden records from the specified master
+        data domain (universe).
+      tags:
+        - Golden Records
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+        - $ref: '#/components/parameters/UniverseId'
+        - name: pageSize
+          in: query
+          description: Number of records per page.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 100
+        - name: pageToken
+          in: query
+          description: Pagination token from a previous response.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A paginated list of golden records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GoldenRecord'
+                  nextPageToken:
+                    type: string
+                    description: Token for retrieving the next page of results.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /repositories/{repositoryId}/universes/{universeId}/quarantine:
+    get:
+      operationId: listQuarantineEntries
+      summary: List quarantine entries
+      description: >-
+        Returns records held in quarantine that could not be automatically
+        processed due to data quality or matching issues.
+      tags:
+        - Quarantine
+      parameters:
+        - $ref: '#/components/parameters/RepositoryId'
+        - $ref: '#/components/parameters/UniverseId'
+      responses:
+        '200':
+          description: A list of quarantined records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QuarantineEntry'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Basic Authentication for the DataHub Platform API. Users with two-factor
+        authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+  parameters:
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
+    ModelId:
+      name: modelId
+      in: path
+      required: true
+      description: Unique identifier of the data model.
+      schema:
+        type: string
+    UniverseId:
+      name: universeId
+      in: path
+      required: true
+      description: Unique identifier of the master data domain (universe).
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Repository:
+      type: object
+      description: A DataHub repository that organizes master data domains and models.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the repository.
+        name:
+          type: string
+          description: Display name of the repository.
+        description:
+          type: string
+          description: Human-readable description of the repository's purpose.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the repository was created.
+    RepositoryInput:
+      type: object
+      description: Input for creating a DataHub repository.
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: Display name for the repository.
+        description:
+          type: string
+          description: Optional description of the repository.
+    Model:
+      type: object
+      description: A data model defining the schema and matching rules for a master data domain.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the model.
+        name:
+          type: string
+          description: Display name of the model.
+        version:
+          type: integer
+          description: Current version number of the model.
+        publishedVersion:
+          type: integer
+          description: Version number of the last published model.
+        status:
+          type: string
+          description: Publication status of the model.
+          enum: [DRAFT, PUBLISHED]
+        fields:
+          type: array
+          description: Field definitions for this model's schema.
+          items:
+            $ref: '#/components/schemas/ModelField'
+    ModelInput:
+      type: object
+      description: Input for creating or updating a data model.
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: Display name for the model.
+        fields:
+          type: array
+          description: Field definitions for the model schema.
+          items:
+            $ref: '#/components/schemas/ModelField'
+    ModelField:
+      type: object
+      description: A field definition within a data model schema.
+      required: [name, type]
+      properties:
+        name:
+          type: string
+          description: Field name used as the identifier.
+        type:
+          type: string
+          description: Data type of the field.
+          enum: [STRING, INTEGER, FLOAT, BOOLEAN, DATE, DATETIME, REFERENCE]
+        required:
+          type: boolean
+          description: Whether this field is required.
+        unique:
+          type: boolean
+          description: Whether this field must be unique across records.
+    Source:
+      type: object
+      description: A data source that contributes records to the master data hub.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the source.
+        name:
+          type: string
+          description: Display name of the source.
+        description:
+          type: string
+          description: Human-readable description of the source system.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the source was created.
+    SourceInput:
+      type: object
+      description: Input for creating a data source.
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: Display name for the source.
+        description:
+          type: string
+          description: Optional description of the source system.
+    GoldenRecord:
+      type: object
+      description: >-
+        The authoritative master record that results from matching and merging
+        source records across contributing systems.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the golden record.
+        fields:
+          type: object
+          description: Field values of the golden record, keyed by field name.
+          additionalProperties: true
+        sources:
+          type: array
+          description: Source records that contribute to this golden record.
+          items:
+            type: object
+            properties:
+              sourceId:
+                type: string
+                description: ID of the contributing source system.
+              recordId:
+                type: string
+                description: ID of the record in the source system.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the golden record was created.
+        updatedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the golden record was last updated.
+    QuarantineEntry:
+      type: object
+      description: A record held in quarantine due to data quality or matching issues.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the quarantine entry.
+        sourceId:
+          type: string
+          description: ID of the source that submitted this record.
+        reason:
+          type: string
+          description: Reason the record was quarantined.
+        fields:
+          type: object
+          description: Field values of the quarantined record.
+          additionalProperties: true
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the record entered quarantine.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.

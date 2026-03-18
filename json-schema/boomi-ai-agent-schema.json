@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.boomi.com/schemas/ai-agent.json",
+  "title": "Boomi AI Agent",
+  "description": "Represents a Boomi AI agent managed through Boomi Agentstudio — an entity that uses large language models to autonomously handle tasks, orchestrate integrations, and respond to user requests. Agents are configured with tools, guardrails, and LLM provider settings via the Agent Control Tower.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the AI agent."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the AI agent.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the agent's purpose and capabilities."
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Boomi account ID that owns this agent."
+    },
+    "providerId": {
+      "type": "string",
+      "description": "ID of the external AI provider if this agent is from a third-party system."
+    },
+    "providerType": {
+      "type": "string",
+      "description": "The AI provider powering this agent.",
+      "enum": ["BOOMI", "AMAZON_BEDROCK", "CUSTOM"]
+    },
+    "state": {
+      "type": "string",
+      "description": "Current operational state of the agent.",
+      "enum": ["ACTIVE", "INACTIVE", "DEPLOYING", "ERROR"]
+    },
+    "tools": {
+      "type": "array",
+      "description": "Tools (API endpoints, integrations) available to this agent.",
+      "items": {
+        "$ref": "#/$defs/AgentTool"
+      }
+    },
+    "guardrails": {
+      "type": "array",
+      "description": "Guardrail configurations controlling the agent's behavior boundaries.",
+      "items": {
+        "$ref": "#/$defs/Guardrail"
+      }
+    },
+    "llmConfig": {
+      "$ref": "#/$defs/LLMConfig"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the agent was created."
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the agent was last modified."
+    }
+  },
+  "$defs": {
+    "AgentTool": {
+      "type": "object",
+      "title": "Agent Tool",
+      "description": "A tool available to a Boomi AI agent — an API endpoint or integration that the agent can invoke to take action.",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the tool."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the tool shown to the agent."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description that helps the agent understand when and how to use this tool."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of tool.",
+          "enum": ["API_ENDPOINT", "BOOMI_PROCESS", "MCP_SERVER", "FUNCTION"]
+        },
+        "endpoint": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the API endpoint or MCP server this tool points to."
+        },
+        "authentication": {
+          "$ref": "#/$defs/ToolAuthentication"
+        },
+        "inputSchema": {
+          "type": "object",
+          "description": "JSON Schema describing the expected input parameters for this tool.",
+          "additionalProperties": true
+        },
+        "outputSchema": {
+          "type": "object",
+          "description": "JSON Schema describing the expected output of this tool.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "ToolAuthentication": {
+      "type": "object",
+      "title": "Tool Authentication",
+      "description": "Authentication configuration for connecting an agent tool to an external service.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Authentication mechanism.",
+          "enum": ["BEARER_TOKEN", "API_KEY", "OAUTH2", "BASIC", "NONE"]
+        },
+        "tokenSource": {
+          "type": "string",
+          "description": "Where the token or credential is sourced from.",
+          "enum": ["ENVIRONMENT_VARIABLE", "BOOMI_CONNECTION", "DELEGATED_USER"]
+        },
+        "connectionId": {
+          "type": "string",
+          "description": "ID of the Boomi connection providing credentials, if applicable."
+        }
+      }
+    },
+    "Guardrail": {
+      "type": "object",
+      "title": "Guardrail",
+      "description": "A safety constraint applied to an AI agent to control its behavior and output.",
+      "required": ["id", "type"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the guardrail."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of guardrail constraint.",
+          "enum": ["CONTENT_FILTER", "TOPIC_RESTRICTION", "RATE_LIMIT", "PII_FILTER", "HALLUCINATION_DETECTION"]
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the guardrail."
+        },
+        "config": {
+          "type": "object",
+          "description": "Guardrail-specific configuration parameters.",
+          "additionalProperties": true
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether this guardrail is currently active."
+        }
+      }
+    },
+    "LLMConfig": {
+      "type": "object",
+      "title": "LLM Configuration",
+      "description": "Configuration for the large language model powering an AI agent.",
+      "required": ["provider"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "description": "The LLM provider.",
+          "enum": ["AMAZON_BEDROCK", "OPENAI", "ANTHROPIC", "CUSTOM"]
+        },
+        "modelId": {
+          "type": "string",
+          "description": "Identifier of the specific model to use (e.g., anthropic.claude-3-sonnet)."
+        },
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Sampling temperature controlling response randomness (0 = deterministic, 1 = creative)."
+        },
+        "maxTokens": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of tokens to generate in a response."
+        },
+        "systemPrompt": {
+          "type": "string",
+          "description": "System-level instructions that define the agent's persona and behavior."
+        },
+        "credentials": {
+          "$ref": "#/$defs/ToolAuthentication"
+        }
+      }
+    },
+    "AgentTask": {
+      "type": "object",
+      "title": "Agent Task",
+      "description": "A task submitted to a Boomi AI agent for execution.",
+      "required": ["id", "agentId", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the task."
+        },
+        "agentId": {
+          "type": "string",
+          "description": "ID of the agent assigned to execute this task."
+        },
+        "input": {
+          "type": "string",
+          "description": "Natural language or structured input describing the task."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current execution status of the task.",
+          "enum": ["PENDING", "RUNNING", "COMPLETED", "FAILED", "CANCELLED"]
+        },
+        "output": {
+          "type": "string",
+          "description": "The agent's response or result after completing the task."
+        },
+        "toolCalls": {
+          "type": "array",
+          "description": "Record of tool invocations made by the agent during task execution.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "toolId": {
+                "type": "string",
+                "description": "ID of the tool that was called."
+              },
+              "input": {
+                "type": "object",
+                "description": "Input parameters passed to the tool.",
+                "additionalProperties": true
+              },
+              "output": {
+                "type": "object",
+                "description": "Output returned by the tool.",
+                "additionalProperties": true
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When the tool was invoked."
+              }
+            }
+          }
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the task was submitted."
+        },
+        "completedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the task completed."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,168 @@
+asyncapi: 2.6.0
+info:
+  title: Boomi Event Streams
+  description: >-
+    Boomi Event Streams provides a publish-subscribe messaging system within
+    the Boomi Enterprise Platform. Topics act as channels where producers
+    publish messages and consumers receive them via Boomi recipes or HTTP REST.
+    Event Streams integrate natively with the Boomi integration platform as
+    triggers and actions, enabling loosely-coupled, event-driven integration
+    workflows. Messages may be up to 5 MB and the API enforces a rate limit of
+    60,000 requests per IP per 5-minute window.
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  license:
+    name: Boomi Terms of Service
+    url: https://boomi.com/legal/service/
+externalDocs:
+  description: Boomi Event Streams Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
+servers:
+  production:
+    url: '{topicEndpoint}'
+    protocol: https
+    description: >-
+      Topic-specific REST endpoint. Each Boomi Event Streams topic has a
+      unique URL available from the Event Streams UI in the Boomi platform.
+    variables:
+      topicEndpoint:
+        description: The unique hostname for this event topic's REST endpoint.
+        default: your-topic.event-streams.boomi.com
+    security:
+      - bearerAuth: []
+channels:
+  /:
+    description: >-
+      The root path of the topic-specific endpoint. POST to this channel to
+      publish messages. Each topic has its own unique base URL.
+    publish:
+      operationId: publishMessage
+      summary: Publish a message to the topic
+      description: >-
+        Publish one or more messages to this event topic. Supports two modes:
+        multi-message JSON format (payload + properties per message) and
+        single-message mode (original format with properties in headers).
+        Maximum message size is 5 MB and total request size is 10 MB.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/MultiMessage'
+          - $ref: '#/components/messages/SingleMessage'
+    subscribe:
+      operationId: receiveMessage
+      summary: Receive messages from the topic
+      description: >-
+        Messages received by Boomi recipes subscribed to this topic. Each
+        delivered message contains the payload and any properties set by the
+        producer. Messages can be consumed via Boomi integration triggers
+        configured to listen on the topic.
+      message:
+        $ref: '#/components/messages/DeliveredMessage'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Environment Token obtained from the Boomi Event Streams UI. Include as
+        Authorization: Bearer {environment_token}.
+  messages:
+    MultiMessage:
+      name: MultiMessage
+      title: Multi-Message Publish
+      summary: Publish multiple messages in structured JSON format.
+      description: >-
+        Publishes one or more messages in the predefined multi-message JSON
+        format. Each message in the array has a payload field and an optional
+        properties map for custom metadata.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/MultiMessagePayload'
+    SingleMessage:
+      name: SingleMessage
+      title: Single Message Publish
+      summary: Publish a single message in its original format.
+      description: >-
+        Publishes a single message without transformation. The content type
+        can be application/json, text/plain, or application/xml. Message
+        properties are passed via request headers prefixed with x-msg-props-.
+      contentType: application/json
+      headers:
+        type: object
+        description: >-
+          Headers prefixed with x-msg-props- are treated as message
+          properties. For example, x-msg-props-priority: high.
+        additionalProperties:
+          type: string
+      payload:
+        $ref: '#/components/schemas/SingleMessagePayload'
+    DeliveredMessage:
+      name: DeliveredMessage
+      title: Delivered Message
+      summary: A message delivered to a Boomi recipe subscriber.
+      description: >-
+        A message delivered to a Boomi integration process that is configured
+        to listen on this event topic. Contains the original payload and
+        any properties set by the producer.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/DeliveredMessagePayload'
+  schemas:
+    MultiMessagePayload:
+      type: object
+      description: Request body for the multi-message publish mode.
+      required: [messages]
+      properties:
+        messages:
+          type: array
+          description: >-
+            Array of messages to publish. Each must include a payload;
+            properties are optional custom metadata.
+          items:
+            type: object
+            required: [payload]
+            properties:
+              payload:
+                type: string
+                description: Message content as a string (text, JSON, or XML).
+              properties:
+                type: object
+                description: Optional key-value metadata for this message.
+                additionalProperties:
+                  type: string
+    SingleMessagePayload:
+      description: >-
+        A single message payload in its original format. Content type
+        determines parsing — application/json, text/plain, or application/xml.
+      oneOf:
+        - type: object
+          description: JSON message payload.
+          additionalProperties: true
+        - type: string
+          description: Plain text or XML message payload.
+    DeliveredMessagePayload:
+      type: object
+      description: The structure of a message as received by a Boomi recipe.
+      properties:
+        payload:
+          description: The original message content.
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties: true
+        properties:
+          type: object
+          description: Message metadata set by the producer.
+          additionalProperties:
+            type: string
+        messageId:
+          type: string
+          description: Unique identifier assigned to this message by Event Streams.
+        topicId:
+          type: string
+          description: ID of the topic this message was published to.
+        timestamp:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the message was published.

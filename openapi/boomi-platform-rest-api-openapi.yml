@@ -1,0 +1,994 @@
+openapi: 3.1.0
+info:
+  title: Boomi Platform REST API
+  description: >-
+    The Boomi Platform REST API provides programmatic access to the Boomi
+    Enterprise Platform. It allows control of objects associated with your
+    account including account administration, cloud management, component
+    management, deployment, environment management, execution statistics,
+    integration packs, process execution, and runtime management. The API
+    follows an object/verb hierarchy and uses Basic Authentication with the
+    account ID embedded in the URL path.
+  version: '1.0.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+externalDocs:
+  description: Boomi Platform REST API Documentation
+  url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+servers:
+  - url: https://api.boomi.com/api/rest/v1/{accountId}
+    description: Boomi Platform REST API
+    variables:
+      accountId:
+        description: The Boomi account ID for the authenticated account.
+        default: your-account-id
+tags:
+  - name: Processes
+    description: Manage integration processes (recipes) within the Boomi platform.
+  - name: Environments
+    description: >-
+      Manage runtime environments where Boomi Atoms and Molecules are
+      deployed to run integration processes.
+  - name: Deployments
+    description: >-
+      Manage deployed packages and the deployment of integration components
+      to environments.
+  - name: Atoms
+    description: >-
+      Manage Boomi Atoms — the lightweight runtime engines that execute
+      integration processes.
+  - name: Execution
+    description: >-
+      Execute integration processes and retrieve execution statistics and
+      job results.
+  - name: Components
+    description: Manage packaged components and integration pack attachments.
+  - name: Accounts
+    description: Manage account-level settings and administration.
+security:
+  - basicAuth: []
+paths:
+  /Process:
+    post:
+      operationId: createProcess
+      summary: Create a process
+      description: >-
+        Creates a new integration process in the Boomi platform. The process
+        definition is provided in the request body as XML or JSON.
+      tags:
+        - Processes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessInput'
+      responses:
+        '200':
+          description: The created process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Process/{id}:
+    get:
+      operationId: getProcess
+      summary: Get a process
+      description: Retrieves the details of a specific integration process by its ID.
+      tags:
+        - Processes
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateProcess
+      summary: Update a process
+      description: Updates an existing integration process by its ID.
+      tags:
+        - Processes
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessInput'
+      responses:
+        '200':
+          description: The updated process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProcess
+      summary: Delete a process
+      description: Permanently deletes an integration process from the Boomi platform.
+      tags:
+        - Processes
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Process/query:
+    post:
+      operationId: queryProcesses
+      summary: Query processes
+      description: >-
+        Returns a list of integration processes matching the specified query
+        filter criteria. Supports filtering by folder ID, process name, and
+        other properties.
+      tags:
+        - Processes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching process objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ExecutionRequest:
+    post:
+      operationId: executeProcess
+      summary: Execute a process
+      description: >-
+        Triggers the execution of an integration process on a specified Atom.
+        Returns an execution request ID that can be used to track the job.
+      tags:
+        - Execution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExecutionRequest'
+      responses:
+        '200':
+          description: The execution request with a job ID for tracking.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionRequestResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ExecutionRecord/query:
+    post:
+      operationId: queryExecutionRecords
+      summary: Query execution records
+      description: >-
+        Returns a list of process execution records matching the specified
+        filter criteria. Useful for retrieving job history and execution
+        statistics.
+      tags:
+        - Execution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching execution records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionRecordQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Environment:
+    post:
+      operationId: createEnvironment
+      summary: Create an environment
+      description: >-
+        Creates a new runtime environment in the Boomi platform for deploying
+        and running integration processes.
+      tags:
+        - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '200':
+          description: The created environment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Environment/{id}:
+    get:
+      operationId: getEnvironment
+      summary: Get an environment
+      description: Retrieves the details of a specific runtime environment by its ID.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The environment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteEnvironment
+      summary: Delete an environment
+      description: Permanently deletes a runtime environment from the Boomi platform.
+      tags:
+        - Environments
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Environment/query:
+    post:
+      operationId: queryEnvironments
+      summary: Query environments
+      description: >-
+        Returns a list of runtime environments matching the specified query
+        filter criteria.
+      tags:
+        - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching environment objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /DeployedPackage:
+    post:
+      operationId: createDeployedPackage
+      summary: Deploy a package
+      description: >-
+        Deploys a packaged component to an environment. Creates a new deployed
+        package record associating the package with the target environment.
+      tags:
+        - Deployments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeployedPackageInput'
+      responses:
+        '200':
+          description: The deployed package record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployedPackage'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /DeployedPackage/{id}:
+    get:
+      operationId: getDeployedPackage
+      summary: Get a deployed package
+      description: Retrieves the details of a specific deployed package by its ID.
+      tags:
+        - Deployments
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The deployed package object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployedPackage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDeployedPackage
+      summary: Undeploy a package
+      description: Removes a deployed package from its environment, undeploying the component.
+      tags:
+        - Deployments
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Undeployment successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /DeployedPackage/query:
+    post:
+      operationId: queryDeployedPackages
+      summary: Query deployed packages
+      description: >-
+        Returns a list of deployed packages matching the specified filter
+        criteria. Useful for auditing current deployments across environments.
+      tags:
+        - Deployments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching deployed package objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployedPackageQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Atom/{id}:
+    get:
+      operationId: getAtom
+      summary: Get an Atom
+      description: >-
+        Retrieves the details of a specific Boomi Atom (runtime engine)
+        by its ID.
+      tags:
+        - Atoms
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The Atom object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atom'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateAtom
+      summary: Update an Atom
+      description: Updates the name or purge schedule of an existing Boomi Atom.
+      tags:
+        - Atoms
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtomInput'
+      responses:
+        '200':
+          description: The updated Atom object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atom'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAtom
+      summary: Delete an Atom
+      description: >-
+        Removes an Atom from the Boomi platform. The Atom must be offline
+        before it can be deleted.
+      tags:
+        - Atoms
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Atom/query:
+    post:
+      operationId: queryAtoms
+      summary: Query Atoms
+      description: >-
+        Returns a list of Atoms matching the specified filter criteria,
+        including online/offline status and environment associations.
+      tags:
+        - Atoms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching Atom objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /PackagedComponent:
+    post:
+      operationId: createPackagedComponent
+      summary: Create a packaged component
+      description: >-
+        Creates a packaged version of a Boomi component (process, connector,
+        etc.) that can be deployed to environments.
+      tags:
+        - Components
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackagedComponentInput'
+      responses:
+        '200':
+          description: The created packaged component.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagedComponent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /PackagedComponent/{id}:
+    get:
+      operationId: getPackagedComponent
+      summary: Get a packaged component
+      description: Retrieves the details of a specific packaged component by its ID.
+      tags:
+        - Components
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The packaged component object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagedComponent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ProcessSchedules/{id}:
+    get:
+      operationId: getProcessSchedules
+      summary: Get process schedules
+      description: Retrieves the scheduling configuration for a specific integration process.
+      tags:
+        - Processes
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The process schedule configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessSchedules'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateProcessSchedules
+      summary: Update process schedules
+      description: Updates the scheduling configuration for a specific integration process.
+      tags:
+        - Processes
+      parameters:
+        - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessSchedules'
+      responses:
+        '200':
+          description: The updated process schedule configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessSchedules'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Basic Authentication using username (email) and API token. The account
+        ID must also be included in the URL path.
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Process:
+      type: object
+      description: A Boomi integration process that defines automated data flows between systems.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the process (component ID).
+        name:
+          type: string
+          description: Display name of the integration process.
+        type:
+          type: string
+          description: Component type, always 'process' for integration processes.
+        folderId:
+          type: string
+          description: ID of the folder containing this process.
+        deleted:
+          type: boolean
+          description: Whether this process has been deleted.
+        currentVersion:
+          type: string
+          description: Current version identifier of the process.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the process was created.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the process was last modified.
+    ProcessInput:
+      type: object
+      description: Input for creating or updating an integration process.
+      properties:
+        name:
+          type: string
+          description: Display name for the process.
+        folderId:
+          type: string
+          description: ID of the folder to place the process in.
+    ProcessSchedules:
+      type: object
+      description: Schedule configuration for an integration process.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the process schedule.
+        atomId:
+          type: string
+          description: ID of the Atom on which this schedule runs.
+        processId:
+          type: string
+          description: ID of the process this schedule applies to.
+        schedule:
+          type: object
+          description: Scheduling parameters including frequency and timing.
+          additionalProperties: true
+    ExecutionRequest:
+      type: object
+      description: Request to execute an integration process on a specific Atom.
+      required: [atomId, processId]
+      properties:
+        atomId:
+          type: string
+          description: ID of the Atom on which to run the process.
+        processId:
+          type: string
+          description: ID of the process to execute.
+        processProperties:
+          type: array
+          description: Optional runtime properties to pass to the process.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Property name.
+              value:
+                type: string
+                description: Property value.
+    ExecutionRequestResult:
+      type: object
+      description: Result of an execution request submission.
+      properties:
+        requestId:
+          type: string
+          description: Unique identifier for tracking this execution request.
+        status:
+          type: string
+          description: Current status of the execution request.
+    ExecutionRecord:
+      type: object
+      description: A record of an integration process execution (job run).
+      properties:
+        executionId:
+          type: string
+          description: Unique identifier of the execution.
+        processId:
+          type: string
+          description: ID of the process that was executed.
+        atomId:
+          type: string
+          description: ID of the Atom that ran the process.
+        status:
+          type: string
+          description: Final status of the execution.
+          enum: [COMPLETE, ERROR, INPROCESS, ABORTED, DISCARDED]
+        executionTime:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started.
+        duration:
+          type: integer
+          description: Execution duration in milliseconds.
+        message:
+          type: string
+          description: Status message or error details.
+    Environment:
+      type: object
+      description: A Boomi runtime environment where Atoms are assigned and processes are deployed.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the environment.
+        name:
+          type: string
+          description: Display name of the environment.
+        classification:
+          type: string
+          description: Environment classification.
+          enum: [PRODUCTION, TEST]
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the environment was created.
+    EnvironmentInput:
+      type: object
+      description: Input for creating a runtime environment.
+      required: [name, classification]
+      properties:
+        name:
+          type: string
+          description: Display name for the environment.
+        classification:
+          type: string
+          description: Whether this is a production or test environment.
+          enum: [PRODUCTION, TEST]
+    DeployedPackage:
+      type: object
+      description: A packaged component deployed to a specific runtime environment.
+      properties:
+        deploymentId:
+          type: string
+          description: Unique identifier of the deployment.
+        environmentId:
+          type: string
+          description: ID of the environment to which the package is deployed.
+        packageId:
+          type: string
+          description: ID of the deployed packaged component.
+        componentId:
+          type: string
+          description: ID of the underlying component.
+        componentType:
+          type: string
+          description: Type of the deployed component.
+        deployedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the package was deployed.
+        active:
+          type: boolean
+          description: Whether this deployment is currently active.
+    DeployedPackageInput:
+      type: object
+      description: Input for deploying a packaged component to an environment.
+      required: [environmentId, packageId]
+      properties:
+        environmentId:
+          type: string
+          description: ID of the target environment.
+        packageId:
+          type: string
+          description: ID of the packaged component to deploy.
+        notes:
+          type: string
+          description: Optional deployment notes.
+    Atom:
+      type: object
+      description: A Boomi Atom — the lightweight runtime engine that executes integration processes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the Atom.
+        name:
+          type: string
+          description: Display name of the Atom.
+        status:
+          type: string
+          description: Current online/offline status of the Atom.
+          enum: [ONLINE, OFFLINE, UNKNOWN]
+        type:
+          type: string
+          description: Atom type.
+          enum: [ATOM, MOLECULE, CLOUD]
+        hostName:
+          type: string
+          description: Hostname of the machine running the Atom.
+        currentVersion:
+          type: string
+          description: Current Boomi runtime version installed on the Atom.
+        dateInstalled:
+          type: string
+          format: date-time
+          description: Timestamp when the Atom was installed.
+    AtomInput:
+      type: object
+      description: Input for updating an Atom.
+      properties:
+        name:
+          type: string
+          description: Updated display name for the Atom.
+        purgeHistoryDays:
+          type: integer
+          description: Number of days to retain execution history before purging.
+    PackagedComponent:
+      type: object
+      description: A versioned, deployable package of a Boomi component.
+      properties:
+        packageId:
+          type: string
+          description: Unique identifier of the packaged component.
+        componentId:
+          type: string
+          description: ID of the underlying component.
+        componentVersion:
+          type: string
+          description: Version of the component included in this package.
+        componentType:
+          type: string
+          description: Type of the packaged component (process, connector, etc.).
+        packageVersion:
+          type: string
+          description: Version label for this package.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the package was created.
+    PackagedComponentInput:
+      type: object
+      description: Input for creating a packaged component.
+      required: [componentId, componentVersion]
+      properties:
+        componentId:
+          type: string
+          description: ID of the component to package.
+        componentVersion:
+          type: string
+          description: Version of the component to include in the package.
+        packageVersion:
+          type: string
+          description: Optional version label for the package.
+        notes:
+          type: string
+          description: Optional notes about this package version.
+    QueryRequest:
+      type: object
+      description: Request body for querying platform objects with filter criteria.
+      properties:
+        QueryFilter:
+          type: object
+          description: Filter expression for narrowing query results.
+          properties:
+            expression:
+              type: object
+              description: Filter expression with operator and arguments.
+              properties:
+                operator:
+                  type: string
+                  description: Logical operator for combining filter criteria.
+                  enum: [AND, OR]
+                nestedExpression:
+                  type: array
+                  description: Nested filter expressions.
+                  items:
+                    type: object
+                    properties:
+                      argument:
+                        type: array
+                        items:
+                          type: string
+                        description: Filter values.
+                      operator:
+                        type: string
+                        description: Comparison operator.
+                        enum: [EQUALS, NOT_EQUALS, LIKE, STARTS_WITH]
+                      property:
+                        type: string
+                        description: Object property to filter on.
+    ProcessQueryResult:
+      type: object
+      description: Paginated query results for processes.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+    ExecutionRecordQueryResult:
+      type: object
+      description: Paginated query results for execution records.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionRecord'
+    EnvironmentQueryResult:
+      type: object
+      description: Paginated query results for environments.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    DeployedPackageQueryResult:
+      type: object
+      description: Paginated query results for deployed packages.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeployedPackage'
+    AtomQueryResult:
+      type: object
+      description: Paginated query results for Atoms.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Atom'
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.

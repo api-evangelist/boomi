@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.boomi.com/schemas/process.json",
+  "title": "Boomi Integration Process",
+  "description": "Represents a Boomi integration process — an automated workflow that moves and transforms data between connected applications. Processes consist of a start shape (trigger), action shapes (steps), and optional decision logic.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique component ID of the integration process (UUID format).",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the integration process.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "type": {
+      "type": "string",
+      "description": "Component type. Always 'process' for integration processes.",
+      "const": "process"
+    },
+    "folderId": {
+      "type": "string",
+      "description": "ID of the folder containing this process within the component library."
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether this process has been deleted from the component library."
+    },
+    "currentVersion": {
+      "type": "string",
+      "description": "Version identifier of the current saved version of this process."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the process was created."
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the process was last modified."
+    },
+    "schedules": {
+      "type": "array",
+      "description": "Scheduling configurations for running this process on a time-based trigger.",
+      "items": {
+        "$ref": "#/$defs/ProcessSchedule"
+      }
+    },
+    "deployments": {
+      "type": "array",
+      "description": "Active deployments of this process across environments.",
+      "items": {
+        "$ref": "#/$defs/DeployedPackage"
+      }
+    }
+  },
+  "$defs": {
+    "ProcessSchedule": {
+      "type": "object",
+      "title": "Process Schedule",
+      "description": "A time-based schedule that triggers a Boomi integration process to run automatically.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the schedule."
+        },
+        "atomId": {
+          "type": "string",
+          "description": "ID of the Atom on which the scheduled process runs."
+        },
+        "processId": {
+          "type": "string",
+          "description": "ID of the process this schedule belongs to."
+        },
+        "schedule": {
+          "type": "object",
+          "description": "Cron-based scheduling parameters.",
+          "properties": {
+            "minutes": {
+              "type": "string",
+              "description": "Minute field of the cron expression."
+            },
+            "hours": {
+              "type": "string",
+              "description": "Hour field of the cron expression."
+            },
+            "daysOfWeek": {
+              "type": "string",
+              "description": "Days-of-week field of the cron expression."
+            },
+            "daysOfMonth": {
+              "type": "string",
+              "description": "Days-of-month field of the cron expression."
+            },
+            "months": {
+              "type": "string",
+              "description": "Month field of the cron expression."
+            },
+            "years": {
+              "type": "string",
+              "description": "Year field of the cron expression."
+            }
+          }
+        }
+      }
+    },
+    "ExecutionRecord": {
+      "type": "object",
+      "title": "Execution Record",
+      "description": "A record of a single integration process execution (job run).",
+      "required": ["executionId", "status"],
+      "properties": {
+        "executionId": {
+          "type": "string",
+          "description": "Unique identifier of this execution instance."
+        },
+        "processId": {
+          "type": "string",
+          "description": "ID of the process that was executed."
+        },
+        "atomId": {
+          "type": "string",
+          "description": "ID of the Atom that ran the process."
+        },
+        "status": {
+          "type": "string",
+          "description": "Final status of the execution.",
+          "enum": ["COMPLETE", "ERROR", "INPROCESS", "ABORTED", "DISCARDED"]
+        },
+        "executionTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the execution started."
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Execution duration in milliseconds."
+        },
+        "message": {
+          "type": "string",
+          "description": "Status message or error details for this execution."
+        },
+        "inboundDocumentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of documents processed in this execution."
+        },
+        "outboundDocumentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of output documents produced."
+        },
+        "errorDocumentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of documents that resulted in errors."
+        }
+      }
+    },
+    "Environment": {
+      "type": "object",
+      "title": "Environment",
+      "description": "A Boomi runtime environment where Atoms are assigned and processes are deployed.",
+      "required": ["id", "name", "classification"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the environment."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the environment.",
+          "minLength": 1
+        },
+        "classification": {
+          "type": "string",
+          "description": "Whether this environment is production or test.",
+          "enum": ["PRODUCTION", "TEST"]
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the environment was created."
+        }
+      }
+    },
+    "Atom": {
+      "type": "object",
+      "title": "Atom",
+      "description": "A Boomi Atom — the lightweight runtime engine that executes integration processes.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the Atom."
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the Atom."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current connectivity status of the Atom.",
+          "enum": ["ONLINE", "OFFLINE", "UNKNOWN"]
+        },
+        "type": {
+          "type": "string",
+          "description": "Atom deployment type.",
+          "enum": ["ATOM", "MOLECULE", "CLOUD"]
+        },
+        "hostName": {
+          "type": "string",
+          "description": "Hostname of the machine running the Atom."
+        },
+        "currentVersion": {
+          "type": "string",
+          "description": "Current Boomi runtime version installed on this Atom."
+        },
+        "dateInstalled": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the Atom was installed."
+        },
+        "purgeHistoryDays": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of days to retain execution history before automatic purge."
+        }
+      }
+    },
+    "DeployedPackage": {
+      "type": "object",
+      "title": "Deployed Package",
+      "description": "A packaged Boomi component deployed to a specific runtime environment.",
+      "required": ["deploymentId", "environmentId", "packageId"],
+      "properties": {
+        "deploymentId": {
+          "type": "string",
+          "description": "Unique identifier of this deployment record."
+        },
+        "environmentId": {
+          "type": "string",
+          "description": "ID of the environment this package is deployed to."
+        },
+        "packageId": {
+          "type": "string",
+          "description": "ID of the packaged component that was deployed."
+        },
+        "componentId": {
+          "type": "string",
+          "description": "ID of the underlying component."
+        },
+        "componentType": {
+          "type": "string",
+          "description": "Type of the deployed component (process, connector, etc.)."
+        },
+        "packageVersion": {
+          "type": "string",
+          "description": "Version label of the deployed package."
+        },
+        "deployedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when this package was deployed."
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether this deployment is currently active."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Optional deployment notes."
+        }
+      }
+    }
+  }
+}
