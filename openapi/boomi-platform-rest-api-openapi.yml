@@ -25,28 +25,26 @@ servers:
         description: The Boomi account ID for the authenticated account.
         default: your-account-id
 tags:
-  - name: Processes
-    description: Manage integration processes (recipes) within the Boomi platform.
-  - name: Environments
-    description: >-
-      Manage runtime environments where Boomi Atoms and Molecules are
-      deployed to run integration processes.
-  - name: Deployments
-    description: >-
-      Manage deployed packages and the deployment of integration components
-      to environments.
   - name: Atoms
     description: >-
       Manage Boomi Atoms — the lightweight runtime engines that execute
       integration processes.
+  - name: Components
+    description: Manage packaged components and integration pack attachments.
+  - name: Deployments
+    description: >-
+      Manage deployed packages and the deployment of integration components
+      to environments.
+  - name: Environments
+    description: >-
+      Manage runtime environments where Boomi Atoms and Molecules are
+      deployed to run integration processes.
   - name: Execution
     description: >-
       Execute integration processes and retrieve execution statistics and
       job results.
-  - name: Components
-    description: Manage packaged components and integration pack attachments.
-  - name: Accounts
-    description: Manage account-level settings and administration.
+  - name: Processes
+    description: Manage integration processes (recipes) within the Boomi platform.
 security:
   - basicAuth: []
 paths:

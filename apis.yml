@@ -4,8 +4,7 @@ url: >-
 apis:
   - aid: boomi:boomi
     name: Boomi
-    tags:
-      - API
+    tags: []
     humanURL: https://boomi.com/platform/api-management/
     properties:
       - url: https://boomi.com/platform/api-management/
@@ -20,23 +19,17 @@ apis:
       - Integration
       - Platform
       - REST
-    humanURL: 
-      https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+    humanURL: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
     properties:
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
         type: Documentation
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview
         type: APIReference
-      - url: 
-          https://developer.boomi.com/docs/category/platform-rest-api-reference
+      - url: https://developer.boomi.com/docs/category/platform-rest-api-reference
         type: APIReference
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
         type: OpenAPI
-      - url: 
-          https://developer.boomi.com/docs/category/introduction-to-boomi-platform-apis
+      - url: https://developer.boomi.com/docs/category/introduction-to-boomi-platform-apis
         type: GettingStarted
       - url: openapi/boomi-platform-rest-api-openapi.yml
         type: OpenAPI
@@ -59,11 +52,9 @@ apis:
     properties:
       - url: https://developer.boomi.com/api/platformpartnerapi
         type: Documentation
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformPartnerAPI/APIReference/Platform_Partner_APIs_Overview
+      - url: https://developer.boomi.com/docs/APIs/PlatformPartnerAPI/APIReference/Platform_Partner_APIs_Overview
         type: APIReference
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
         type: OpenAPI
     description: >-
       The Boomi Platform Partner API provides partners with programmatic access
@@ -74,20 +65,16 @@ apis:
     name: Boomi API Management API
     tags:
       - API Management
+      - GraphQL
       - REST
       - SOAP
-      - GraphQL
-    humanURL: 
-      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+    humanURL: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
     properties:
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
         type: Documentation
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
+      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
         type: GettingStarted
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
         type: Authentication
     description: >-
       The Boomi API Management API provides programmatic access to API
@@ -98,20 +85,16 @@ apis:
   - aid: boomi:datahub-api
     name: Boomi DataHub API
     tags:
-      - Master Data
       - Data Hub
+      - Master Data
       - REST
-    humanURL: 
-      https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+    humanURL: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
     properties:
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
         type: Documentation
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
         type: APIReference
-      - url: 
-          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
+      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
         type: APIReference
       - url: openapi/boomi-datahub-api-openapi.yml
         type: OpenAPI
@@ -125,9 +108,9 @@ apis:
     name: Boomi Event Streams REST API
     tags:
       - Events
-      - Streaming
-      - REST
       - Messaging
+      - REST
+      - Streaming
     humanURL: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
     properties:
       - url: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
@@ -145,10 +128,10 @@ apis:
   - aid: boomi:flow-api
     name: Boomi Flow API
     tags:
-      - Workflows
       - Automation
       - Low-Code
       - REST
+      - Workflows
     humanURL: https://manywho.github.io/docs-api/
     properties:
       - url: https://manywho.github.io/docs-api/
@@ -164,20 +147,16 @@ apis:
     name: Boomi Connector Deployment API
     tags:
       - Connectors
-      - SDK
       - Deployment
       - REST
-    humanURL: 
-      https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+      - SDK
+    humanURL: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
     properties:
-      - url: 
-          https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+      - url: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
         type: Documentation
-      - url: 
-          https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview
+      - url: https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview
         type: GettingStarted
-      - url: 
-          https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
+      - url: https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
         type: GettingStarted
     description: >-
       The Boomi Connector Deployment API provides programmatic access to deploy
@@ -187,17 +166,14 @@ apis:
   - aid: boomi:platform-soap-api
     name: Boomi Platform SOAP API
     tags:
+      - Integration
       - Platform
       - SOAP
-      - Integration
-    humanURL: 
-      https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
+    humanURL: https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
     properties:
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
+      - url: https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
         type: Documentation
-      - url: 
-          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
         type: GettingStarted
     description: >-
       The Boomi Platform SOAP API provides the same programmatic access to the
@@ -227,13 +203,11 @@ apis:
     name: Boomi API Gateway GraphQL API
     tags:
       - API Gateway
-      - GraphQL
       - API Management
-    humanURL: 
-      https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
+      - GraphQL
+    humanURL: https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
     properties:
-      - url: 
-          https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
+      - url: https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
         type: Documentation
       - url: https://developer.boomi.com/docs/APIs/GraphQL
         type: GettingStarted
@@ -250,8 +224,8 @@ apis:
     name: Boomi Agent Control Tower GraphQL API
     tags:
       - AI Agents
-      - GraphQL
       - Governance
+      - GraphQL
     humanURL: https://developer.boomi.com/docs/APIs/GraphQL/ACT-Custom_API
     properties:
       - url: https://developer.boomi.com/docs/APIs/GraphQL/ACT-Custom_API
@@ -270,16 +244,16 @@ apis:
       Basic Authentication against the Boomi platform.
 name: Boomi
 tags:
+  - AI Agents
+  - Automation
+  - B2B
+  - Data Integration
+  - EDI
   - Integrations
   - Management
-  - Workflows
-  - Automation
-  - Platform
-  - Data Integration
-  - B2B
-  - EDI
-  - AI Agents
   - MFT
+  - Platform
+  - Workflows
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -422,8 +396,7 @@ common:
     name: Careers | Boomi
     type: Careers
     description: 'null'
-  - url: 
-      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+  - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
     name: Authentication in API Management | Boomi
     type: Authentication
     description: 'null'
@@ -435,8 +408,7 @@ common:
     name: Model Context Protocol | Boomi
     type: MCP
     description: 'null'
-  - url: 
-      https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs
+  - url: https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs
     name: Boomi Enterprise Platform APIs | Boomi Documentation
     type: APIReference
     description: 'null'

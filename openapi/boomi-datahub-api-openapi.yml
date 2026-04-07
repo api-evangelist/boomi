@@ -21,24 +21,24 @@ servers:
   - url: https://mdh.boomi.com/mdh
     description: Boomi DataHub Platform API
 tags:
-  - name: Repositories
-    description: Manage DataHub repositories that contain master data domains.
-  - name: Models
-    description: >-
-      Manage data models that define the schema and rules for master data
-      domains.
-  - name: Sources
-    description: >-
-      Manage data sources that contribute records to the master data
-      hub for matching and merging.
   - name: Golden Records
     description: >-
       Query and manage the authoritative master records that result from
       matching and merging source records.
+  - name: Models
+    description: >-
+      Manage data models that define the schema and rules for master data
+      domains.
   - name: Quarantine
     description: >-
       Manage quarantined records that could not be automatically processed
       due to data quality issues.
+  - name: Repositories
+    description: Manage DataHub repositories that contain master data domains.
+  - name: Sources
+    description: >-
+      Manage data sources that contribute records to the master data
+      hub for matching and merging.
 security:
   - basicAuth: []
   - bearerAuth: []
