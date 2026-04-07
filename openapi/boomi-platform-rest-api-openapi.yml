@@ -53,7 +53,7 @@ paths:
   /Process:
     post:
       operationId: createProcess
-      summary: Create a process
+      summary: Boomi Create a process
       description: >-
         Creates a new integration process in the Boomi platform. The process
         definition is provided in the request body as XML or JSON.
@@ -79,7 +79,7 @@ paths:
   /Process/{id}:
     get:
       operationId: getProcess
-      summary: Get a process
+      summary: Boomi Get a process
       description: Retrieves the details of a specific integration process by its ID.
       tags:
         - Processes
@@ -98,7 +98,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateProcess
-      summary: Update a process
+      summary: Boomi Update a process
       description: Updates an existing integration process by its ID.
       tags:
         - Processes
@@ -125,7 +125,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteProcess
-      summary: Delete a process
+      summary: Boomi Delete a process
       description: Permanently deletes an integration process from the Boomi platform.
       tags:
         - Processes
@@ -141,7 +141,7 @@ paths:
   /Process/query:
     post:
       operationId: queryProcesses
-      summary: Query processes
+      summary: Boomi Query processes
       description: >-
         Returns a list of integration processes matching the specified query
         filter criteria. Supports filtering by folder ID, process name, and
@@ -168,7 +168,7 @@ paths:
   /ExecutionRequest:
     post:
       operationId: executeProcess
-      summary: Execute a process
+      summary: Boomi Execute a process
       description: >-
         Triggers the execution of an integration process on a specified Atom.
         Returns an execution request ID that can be used to track the job.
@@ -194,7 +194,7 @@ paths:
   /ExecutionRecord/query:
     post:
       operationId: queryExecutionRecords
-      summary: Query execution records
+      summary: Boomi Query execution records
       description: >-
         Returns a list of process execution records matching the specified
         filter criteria. Useful for retrieving job history and execution
@@ -221,7 +221,7 @@ paths:
   /Environment:
     post:
       operationId: createEnvironment
-      summary: Create an environment
+      summary: Boomi Create an environment
       description: >-
         Creates a new runtime environment in the Boomi platform for deploying
         and running integration processes.
@@ -247,7 +247,7 @@ paths:
   /Environment/{id}:
     get:
       operationId: getEnvironment
-      summary: Get an environment
+      summary: Boomi Get an environment
       description: Retrieves the details of a specific runtime environment by its ID.
       tags:
         - Environments
@@ -266,7 +266,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteEnvironment
-      summary: Delete an environment
+      summary: Boomi Delete an environment
       description: Permanently deletes a runtime environment from the Boomi platform.
       tags:
         - Environments
@@ -282,7 +282,7 @@ paths:
   /Environment/query:
     post:
       operationId: queryEnvironments
-      summary: Query environments
+      summary: Boomi Query environments
       description: >-
         Returns a list of runtime environments matching the specified query
         filter criteria.
@@ -308,7 +308,7 @@ paths:
   /DeployedPackage:
     post:
       operationId: createDeployedPackage
-      summary: Deploy a package
+      summary: Boomi Deploy a package
       description: >-
         Deploys a packaged component to an environment. Creates a new deployed
         package record associating the package with the target environment.
@@ -334,7 +334,7 @@ paths:
   /DeployedPackage/{id}:
     get:
       operationId: getDeployedPackage
-      summary: Get a deployed package
+      summary: Boomi Get a deployed package
       description: Retrieves the details of a specific deployed package by its ID.
       tags:
         - Deployments
@@ -353,7 +353,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDeployedPackage
-      summary: Undeploy a package
+      summary: Boomi Undeploy a package
       description: Removes a deployed package from its environment, undeploying the component.
       tags:
         - Deployments
@@ -369,7 +369,7 @@ paths:
   /DeployedPackage/query:
     post:
       operationId: queryDeployedPackages
-      summary: Query deployed packages
+      summary: Boomi Query deployed packages
       description: >-
         Returns a list of deployed packages matching the specified filter
         criteria. Useful for auditing current deployments across environments.
@@ -395,7 +395,7 @@ paths:
   /Atom/{id}:
     get:
       operationId: getAtom
-      summary: Get an Atom
+      summary: Boomi Get an Atom
       description: >-
         Retrieves the details of a specific Boomi Atom (runtime engine)
         by its ID.
@@ -416,7 +416,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateAtom
-      summary: Update an Atom
+      summary: Boomi Update an Atom
       description: Updates the name or purge schedule of an existing Boomi Atom.
       tags:
         - Atoms
@@ -443,7 +443,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAtom
-      summary: Delete an Atom
+      summary: Boomi Delete an Atom
       description: >-
         Removes an Atom from the Boomi platform. The Atom must be offline
         before it can be deleted.
@@ -461,7 +461,7 @@ paths:
   /Atom/query:
     post:
       operationId: queryAtoms
-      summary: Query Atoms
+      summary: Boomi Query Atoms
       description: >-
         Returns a list of Atoms matching the specified filter criteria,
         including online/offline status and environment associations.
@@ -487,7 +487,7 @@ paths:
   /PackagedComponent:
     post:
       operationId: createPackagedComponent
-      summary: Create a packaged component
+      summary: Boomi Create a packaged component
       description: >-
         Creates a packaged version of a Boomi component (process, connector,
         etc.) that can be deployed to environments.
@@ -513,7 +513,7 @@ paths:
   /PackagedComponent/{id}:
     get:
       operationId: getPackagedComponent
-      summary: Get a packaged component
+      summary: Boomi Get a packaged component
       description: Retrieves the details of a specific packaged component by its ID.
       tags:
         - Components
@@ -533,7 +533,7 @@ paths:
   /ProcessSchedules/{id}:
     get:
       operationId: getProcessSchedules
-      summary: Get process schedules
+      summary: Boomi Get process schedules
       description: Retrieves the scheduling configuration for a specific integration process.
       tags:
         - Processes
@@ -552,7 +552,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateProcessSchedules
-      summary: Update process schedules
+      summary: Boomi Update process schedules
       description: Updates the scheduling configuration for a specific integration process.
       tags:
         - Processes

@@ -46,7 +46,7 @@ paths:
   /repositories:
     get:
       operationId: listRepositories
-      summary: List repositories
+      summary: Boomi List repositories
       description: >-
         Returns a list of all DataHub repositories associated with the
         authenticated account.
@@ -68,7 +68,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRepository
-      summary: Create a repository
+      summary: Boomi Create a repository
       description: Creates a new DataHub repository for managing master data.
       tags:
         - Repositories
@@ -92,7 +92,7 @@ paths:
   /repositories/{repositoryId}:
     get:
       operationId: getRepository
-      summary: Get a repository
+      summary: Boomi Get a repository
       description: Retrieves details of a specific DataHub repository by its ID.
       tags:
         - Repositories
@@ -111,7 +111,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteRepository
-      summary: Delete a repository
+      summary: Boomi Delete a repository
       description: Permanently deletes a DataHub repository and all its data.
       tags:
         - Repositories
@@ -127,7 +127,7 @@ paths:
   /repositories/{repositoryId}/models:
     get:
       operationId: listModels
-      summary: List models
+      summary: Boomi List models
       description: Returns all data models defined within a specific repository.
       tags:
         - Models
@@ -151,7 +151,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createModel
-      summary: Create a model
+      summary: Boomi Create a model
       description: >-
         Creates a new data model within the repository that defines the
         schema for a master data domain.
@@ -179,7 +179,7 @@ paths:
   /repositories/{repositoryId}/models/{modelId}:
     get:
       operationId: getModel
-      summary: Get a model
+      summary: Boomi Get a model
       description: Retrieves the details and schema of a specific data model.
       tags:
         - Models
@@ -199,7 +199,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteModel
-      summary: Delete a model
+      summary: Boomi Delete a model
       description: Permanently deletes a data model from the repository.
       tags:
         - Models
@@ -216,7 +216,7 @@ paths:
   /repositories/{repositoryId}/models/{modelId}/publish:
     post:
       operationId: publishModel
-      summary: Publish a model
+      summary: Boomi Publish a model
       description: >-
         Publishes a data model, making it available for domain deployment and
         data ingestion.
@@ -239,7 +239,7 @@ paths:
   /repositories/{repositoryId}/sources:
     get:
       operationId: listSources
-      summary: List sources
+      summary: Boomi List sources
       description: Returns all data sources configured within a specific repository.
       tags:
         - Sources
@@ -263,7 +263,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createSource
-      summary: Create a source
+      summary: Boomi Create a source
       description: >-
         Creates a new data source within the repository representing a system
         that contributes records to the master data hub.
@@ -291,7 +291,7 @@ paths:
   /repositories/{repositoryId}/universes/{universeId}/records:
     get:
       operationId: listGoldenRecords
-      summary: List golden records
+      summary: Boomi List golden records
       description: >-
         Returns a paginated list of golden records from the specified master
         data domain (universe).
@@ -335,7 +335,7 @@ paths:
   /repositories/{repositoryId}/universes/{universeId}/quarantine:
     get:
       operationId: listQuarantineEntries
-      summary: List quarantine entries
+      summary: Boomi List quarantine entries
       description: >-
         Returns records held in quarantine that could not be automatically
         processed due to data quality or matching issues.

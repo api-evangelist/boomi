@@ -20,17 +20,23 @@ apis:
       - Integration
       - Platform
       - REST
-    humanURL: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+    humanURL: 
+      https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
     properties:
-      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
         type: Documentation
-      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview
         type: APIReference
-      - url: https://developer.boomi.com/docs/category/platform-rest-api-reference
+      - url: 
+          https://developer.boomi.com/docs/category/platform-rest-api-reference
         type: APIReference
-      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
         type: OpenAPI
-      - url: https://developer.boomi.com/docs/category/introduction-to-boomi-platform-apis
+      - url: 
+          https://developer.boomi.com/docs/category/introduction-to-boomi-platform-apis
         type: GettingStarted
       - url: openapi/boomi-platform-rest-api-openapi.yml
         type: OpenAPI
@@ -53,9 +59,11 @@ apis:
     properties:
       - url: https://developer.boomi.com/api/platformpartnerapi
         type: Documentation
-      - url: https://developer.boomi.com/docs/APIs/PlatformPartnerAPI/APIReference/Platform_Partner_APIs_Overview
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformPartnerAPI/APIReference/Platform_Partner_APIs_Overview
         type: APIReference
-      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
         type: OpenAPI
     description: >-
       The Boomi Platform Partner API provides partners with programmatic access
@@ -69,13 +77,17 @@ apis:
       - REST
       - SOAP
       - GraphQL
-    humanURL: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+    humanURL: 
+      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
     properties:
-      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
         type: Documentation
-      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
         type: GettingStarted
-      - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
         type: Authentication
     description: >-
       The Boomi API Management API provides programmatic access to API
@@ -89,13 +101,17 @@ apis:
       - Master Data
       - Data Hub
       - REST
-    humanURL: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+    humanURL: 
+      https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
     properties:
-      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
         type: Documentation
-      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
         type: APIReference
-      - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
+      - url: 
+          https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
         type: APIReference
       - url: openapi/boomi-datahub-api-openapi.yml
         type: OpenAPI
@@ -151,13 +167,17 @@ apis:
       - SDK
       - Deployment
       - REST
-    humanURL: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+    humanURL: 
+      https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
     properties:
-      - url: https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
+      - url: 
+          https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview
         type: Documentation
-      - url: https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview
+      - url: 
+          https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview
         type: GettingStarted
-      - url: https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
+      - url: 
+          https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
         type: GettingStarted
     description: >-
       The Boomi Connector Deployment API provides programmatic access to deploy
@@ -170,11 +190,14 @@ apis:
       - Platform
       - SOAP
       - Integration
-    humanURL: https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
+    humanURL: 
+      https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
     properties:
-      - url: https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations
         type: Documentation
-      - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
+      - url: 
+          https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
         type: GettingStarted
     description: >-
       The Boomi Platform SOAP API provides the same programmatic access to the
@@ -206,9 +229,11 @@ apis:
       - API Gateway
       - GraphQL
       - API Management
-    humanURL: https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
+    humanURL: 
+      https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
     properties:
-      - url: https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
+      - url: 
+          https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview
         type: Documentation
       - url: https://developer.boomi.com/docs/APIs/GraphQL
         type: GettingStarted
@@ -397,7 +422,8 @@ common:
     name: Careers | Boomi
     type: Careers
     description: 'null'
-  - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+  - url: 
+      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
     name: Authentication in API Management | Boomi
     type: Authentication
     description: 'null'
@@ -409,7 +435,8 @@ common:
     name: Model Context Protocol | Boomi
     type: MCP
     description: 'null'
-  - url: https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs
+  - url: 
+      https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs
     name: Boomi Enterprise Platform APIs | Boomi Documentation
     type: APIReference
     description: 'null'
@@ -472,489 +499,489 @@ common:
     name: Boomi Solutions
     type: Solutions
   - data:
-    - name: Order-to-Cash
-      url: https://boomi.com/solutions/
-      features:
-        - Sales Order Processing
-        - Invoice Management
-        - Revenue Recognition
-        - Accounts Receivable
-        - Quote To Cash
-        - Order Management
-    - name: Source-to-Pay
-      url: https://boomi.com/solutions/
-      features:
-        - Procurement Integration
-        - Purchase Orders
-        - Supplier Management
-        - Accounts Payable
-        - Spend Management
-        - Vendor Onboarding
-    - name: Hire-to-Retire
-      url: https://boomi.com/solutions/
-      features:
-        - HR Integration
-        - Employee Onboarding
-        - Offboarding
-        - Payroll Integration
-        - Workforce Management
-        - HCM Integration
-    - name: Integration Center of Excellence
-      url: https://boomi.com/solutions/
-      features:
-        - COE
-        - Integration Governance
-        - Reusable Integration
-        - Integration Standards
-        - Platform Governance
-        - Best Practices
-    - name: Practical AI
-      url: https://boomi.com/solutions/
-      features:
-        - AI Adoption
-        - Generative AI
-        - LLM Integration
-        - AI Automation
-        - AI Use Cases
-        - Agentic AI
-    - name: Customer 360
-      url: https://boomi.com/solutions/
-      features:
-        - Customer Data Integration
-        - CRM Integration
-        - Unified Customer Profile
-        - Data Unification
-        - Customer Insights
-        - Omnichannel Data
-    - name: M&A and Divestiture
-      url: https://boomi.com/solutions/
-      features:
-        - Merger Integration
-        - System Consolidation
-        - Divestiture
-        - Application Rationalization
-        - Post-Merger Integration
-        - IT Integration
-    - name: ERP Modernization
-      url: https://boomi.com/solutions/
-      features:
-        - ERP Migration
-        - SAP Migration
-        - ERP Integration
-        - Legacy ERP
-        - Cloud ERP
-        - S/4HANA Migration
-    - name: Cloud Migration Connectivity
-      url: https://boomi.com/solutions/
-      features:
-        - Cloud Migration
-        - Hybrid Integration
-        - On-Premises To Cloud
-        - Multi-Cloud Connectivity
-        - Lift And Shift
-        - Cloud-Native Integration
-    - name: Legacy Modernization
-      url: https://boomi.com/solutions/
-      features:
-        - Mainframe Integration
-        - Legacy System Connectivity
-        - Application Modernization
-        - Technical Debt Reduction
-        - API Enablement
-        - System Replacement
-    - name: Manufacturing
-      url: https://boomi.com/solutions/
-      features:
-        - Supply Chain Integration
-        - IoT Integration
-        - Shop Floor Connectivity
-        - MES Integration
-        - Industry 4.0
-        - ERP To MES
-    - name: Healthcare and Life Sciences
-      url: https://boomi.com/solutions/
-      features:
-        - HL7
-        - FHIR
-        - EHR Integration
-        - Patient Data Integration
-        - Clinical Data Exchange
-        - Healthcare Interoperability
-    - name: Retail
-      url: https://boomi.com/solutions/
-      features:
-        - POS Integration
-        - Inventory Management
-        - Omnichannel
-        - E-Commerce Integration
-        - Order Management
-        - Supplier Integration
-    - name: Financial Services
-      url: https://boomi.com/solutions/
-      features:
-        - Core Banking Integration
-        - Payments Integration
-        - Regulatory Compliance
-        - FinTech Connectivity
-        - Risk Data Integration
-        - Open Banking
-    - name: Higher Education
-      url: https://boomi.com/solutions/
-      features:
-        - Student Information Systems
-        - LMS Integration
-        - Campus Integration
-        - SIS Connectivity
-        - Enrollment Management
-        - Research Data Integration
-    - name: Public Sector
-      url: https://boomi.com/solutions/
-      features:
-        - Government Integration
-        - Citizen Services
-        - FISMA Compliance
-        - FedRAMP
-        - Agency Data Sharing
-        - Digital Government
+      - name: Order-to-Cash
+        url: https://boomi.com/solutions/
+        features:
+          - Sales Order Processing
+          - Invoice Management
+          - Revenue Recognition
+          - Accounts Receivable
+          - Quote To Cash
+          - Order Management
+      - name: Source-to-Pay
+        url: https://boomi.com/solutions/
+        features:
+          - Procurement Integration
+          - Purchase Orders
+          - Supplier Management
+          - Accounts Payable
+          - Spend Management
+          - Vendor Onboarding
+      - name: Hire-to-Retire
+        url: https://boomi.com/solutions/
+        features:
+          - HR Integration
+          - Employee Onboarding
+          - Offboarding
+          - Payroll Integration
+          - Workforce Management
+          - HCM Integration
+      - name: Integration Center of Excellence
+        url: https://boomi.com/solutions/
+        features:
+          - COE
+          - Integration Governance
+          - Reusable Integration
+          - Integration Standards
+          - Platform Governance
+          - Best Practices
+      - name: Practical AI
+        url: https://boomi.com/solutions/
+        features:
+          - AI Adoption
+          - Generative AI
+          - LLM Integration
+          - AI Automation
+          - AI Use Cases
+          - Agentic AI
+      - name: Customer 360
+        url: https://boomi.com/solutions/
+        features:
+          - Customer Data Integration
+          - CRM Integration
+          - Unified Customer Profile
+          - Data Unification
+          - Customer Insights
+          - Omnichannel Data
+      - name: M&A and Divestiture
+        url: https://boomi.com/solutions/
+        features:
+          - Merger Integration
+          - System Consolidation
+          - Divestiture
+          - Application Rationalization
+          - Post-Merger Integration
+          - IT Integration
+      - name: ERP Modernization
+        url: https://boomi.com/solutions/
+        features:
+          - ERP Migration
+          - SAP Migration
+          - ERP Integration
+          - Legacy ERP
+          - Cloud ERP
+          - S/4HANA Migration
+      - name: Cloud Migration Connectivity
+        url: https://boomi.com/solutions/
+        features:
+          - Cloud Migration
+          - Hybrid Integration
+          - On-Premises To Cloud
+          - Multi-Cloud Connectivity
+          - Lift And Shift
+          - Cloud-Native Integration
+      - name: Legacy Modernization
+        url: https://boomi.com/solutions/
+        features:
+          - Mainframe Integration
+          - Legacy System Connectivity
+          - Application Modernization
+          - Technical Debt Reduction
+          - API Enablement
+          - System Replacement
+      - name: Manufacturing
+        url: https://boomi.com/solutions/
+        features:
+          - Supply Chain Integration
+          - IoT Integration
+          - Shop Floor Connectivity
+          - MES Integration
+          - Industry 4.0
+          - ERP To MES
+      - name: Healthcare and Life Sciences
+        url: https://boomi.com/solutions/
+        features:
+          - HL7
+          - FHIR
+          - EHR Integration
+          - Patient Data Integration
+          - Clinical Data Exchange
+          - Healthcare Interoperability
+      - name: Retail
+        url: https://boomi.com/solutions/
+        features:
+          - POS Integration
+          - Inventory Management
+          - Omnichannel
+          - E-Commerce Integration
+          - Order Management
+          - Supplier Integration
+      - name: Financial Services
+        url: https://boomi.com/solutions/
+        features:
+          - Core Banking Integration
+          - Payments Integration
+          - Regulatory Compliance
+          - FinTech Connectivity
+          - Risk Data Integration
+          - Open Banking
+      - name: Higher Education
+        url: https://boomi.com/solutions/
+        features:
+          - Student Information Systems
+          - LMS Integration
+          - Campus Integration
+          - SIS Connectivity
+          - Enrollment Management
+          - Research Data Integration
+      - name: Public Sector
+        url: https://boomi.com/solutions/
+        features:
+          - Government Integration
+          - Citizen Services
+          - FISMA Compliance
+          - FedRAMP
+          - Agency Data Sharing
+          - Digital Government
     name: Use Cases
     type: UseCases
   - data:
-    - name: SAP
-      url: https://boomi.com/solutions/application/sap/
-      features:
-        - SAP Integration
-        - S/4HANA
-        - SAP ERP
-        - SAP BTP
-        - BAPI
-        - IDoc
-        - RFC
-    - name: AWS
-      url: https://boomi.com/solutions/application/aws/
-      features:
-        - Amazon Web Services
-        - AWS Integration
-        - S3
-        - Lambda
-        - SQS
-        - DynamoDB
-        - EC2
-    - name: Salesforce
-      url: https://boomi.com/solutions/application/salesforce/
-      features:
-        - Salesforce CRM
-        - Salesforce Integration
-        - Salesforce Objects
-        - Sales Cloud
-        - Service Cloud
-        - Marketing Cloud
-        - Salesforce API
-    - name: ServiceNow
-      url: https://boomi.com/solutions/application/servicenow/
-      features:
-        - ServiceNow Integration
-        - ITSM
-        - IT Service Management
-        - Incident Management
-        - Change Management
-        - ServiceNow API
-        - CMDB
-    - name: Oracle NetSuite
-      url: https://boomi.com/solutions/application/netsuite/
-      features:
-        - NetSuite Integration
-        - ERP Integration
-        - Oracle NetSuite
-        - SuiteAPI
-        - Financial Management
-        - Order Management
-        - NetSuite SuiteTalk
-    - name: Slack
-      url: https://boomi.com/solutions/application/slack/
-      features:
-        - Slack Integration
-        - Slack Messaging
-        - Slack Notifications
-        - Slack API
-        - Collaboration Integration
-        - Slack Webhooks
-    - name: Workday
-      url: https://boomi.com/solutions/application/workday/
-      features:
-        - Workday Integration
-        - HCM Integration
-        - Human Capital Management
-        - Workday API
-        - Workday Studio
-        - HR Data Sync
-        - Payroll Integration
-    - name: Stripe
-      url: https://boomi.com/connectors/
-      features:
-        - Stripe Integration
-        - Payment Processing
-        - Stripe API
-        - Billing Integration
-        - Subscription Management
-        - Payment Data Sync
-    - name: Snowflake
-      url: https://boomi.com/connectors/
-      features:
-        - Snowflake Integration
-        - Cloud Data Warehouse
-        - Snowflake Connector
-        - Data Loading
-        - Analytics Integration
-        - Snowflake SQL
-    - name: OpenAI
-      url: https://boomi.com/connectors/
-      features:
-        - OpenAI Integration
-        - ChatGPT Integration
-        - LLM Connectivity
-        - AI API Integration
-        - GPT Models
-        - Generative AI
-    - name: Shopify
-      url: https://boomi.com/connectors/
-      features:
-        - Shopify Integration
-        - E-Commerce Integration
-        - Order Sync
-        - Product Catalog Sync
-        - Shopify API
-        - Retail Integration
-    - name: Google Drive
-      url: https://boomi.com/connectors/
-      features:
-        - Google Drive Integration
-        - Google Workspace
-        - File Sync
-        - Google API
-        - Document Management
-        - Cloud Storage Integration
-    - name: Pinecone
-      url: https://boomi.com/connectors/
-      features:
-        - Pinecone Integration
-        - Vector Database
-        - AI Embeddings
-        - Semantic Search
-        - RAG
-        - Knowledge Base Storage
+      - name: SAP
+        url: https://boomi.com/solutions/application/sap/
+        features:
+          - SAP Integration
+          - S/4HANA
+          - SAP ERP
+          - SAP BTP
+          - BAPI
+          - IDoc
+          - RFC
+      - name: AWS
+        url: https://boomi.com/solutions/application/aws/
+        features:
+          - Amazon Web Services
+          - AWS Integration
+          - S3
+          - Lambda
+          - SQS
+          - DynamoDB
+          - EC2
+      - name: Salesforce
+        url: https://boomi.com/solutions/application/salesforce/
+        features:
+          - Salesforce CRM
+          - Salesforce Integration
+          - Salesforce Objects
+          - Sales Cloud
+          - Service Cloud
+          - Marketing Cloud
+          - Salesforce API
+      - name: ServiceNow
+        url: https://boomi.com/solutions/application/servicenow/
+        features:
+          - ServiceNow Integration
+          - ITSM
+          - IT Service Management
+          - Incident Management
+          - Change Management
+          - ServiceNow API
+          - CMDB
+      - name: Oracle NetSuite
+        url: https://boomi.com/solutions/application/netsuite/
+        features:
+          - NetSuite Integration
+          - ERP Integration
+          - Oracle NetSuite
+          - SuiteAPI
+          - Financial Management
+          - Order Management
+          - NetSuite SuiteTalk
+      - name: Slack
+        url: https://boomi.com/solutions/application/slack/
+        features:
+          - Slack Integration
+          - Slack Messaging
+          - Slack Notifications
+          - Slack API
+          - Collaboration Integration
+          - Slack Webhooks
+      - name: Workday
+        url: https://boomi.com/solutions/application/workday/
+        features:
+          - Workday Integration
+          - HCM Integration
+          - Human Capital Management
+          - Workday API
+          - Workday Studio
+          - HR Data Sync
+          - Payroll Integration
+      - name: Stripe
+        url: https://boomi.com/connectors/
+        features:
+          - Stripe Integration
+          - Payment Processing
+          - Stripe API
+          - Billing Integration
+          - Subscription Management
+          - Payment Data Sync
+      - name: Snowflake
+        url: https://boomi.com/connectors/
+        features:
+          - Snowflake Integration
+          - Cloud Data Warehouse
+          - Snowflake Connector
+          - Data Loading
+          - Analytics Integration
+          - Snowflake SQL
+      - name: OpenAI
+        url: https://boomi.com/connectors/
+        features:
+          - OpenAI Integration
+          - ChatGPT Integration
+          - LLM Connectivity
+          - AI API Integration
+          - GPT Models
+          - Generative AI
+      - name: Shopify
+        url: https://boomi.com/connectors/
+        features:
+          - Shopify Integration
+          - E-Commerce Integration
+          - Order Sync
+          - Product Catalog Sync
+          - Shopify API
+          - Retail Integration
+      - name: Google Drive
+        url: https://boomi.com/connectors/
+        features:
+          - Google Drive Integration
+          - Google Workspace
+          - File Sync
+          - Google API
+          - Document Management
+          - Cloud Storage Integration
+      - name: Pinecone
+        url: https://boomi.com/connectors/
+        features:
+          - Pinecone Integration
+          - Vector Database
+          - AI Embeddings
+          - Semantic Search
+          - RAG
+          - Knowledge Base Storage
     name: Integrations
     type: Integrations
   - data:
-    - name: Agent Management
-      url: https://boomi.com/platform/ai/
-      features:
-        - AI Agents
-        - Autonomous Agents
-        - Agent Orchestration
-        - LLM Integration
-        - Intelligent Automation
-        - Agent Lifecycle Management
-        - Agent Deployment
-    - name: Agentstudio
-      url: https://boomi.com/platform/agentstudio/
-      features:
-        - Agent Builder
-        - No-Code Agent Creation
-        - Agent Configuration
-        - AI Agent Studio
-        - Agent Design
-        - Agent Management Console
-    - name: Platform Agents
-      url: https://boomi.com/platform/ai-agents/
-      features:
-        - Pre-Built Agents
-        - Enterprise Agents
-        - Boomi Agents
-        - Platform Automation Agents
-        - Out-Of-The-Box Agents
-    - name: Agent Connectivity
-      url: https://boomi.com/agent-connectivity/
-      features:
-        - Agent Integrations
-        - Agent Tools
-        - API Connectivity
-        - MCP Tools
-        - Agent Access
-        - Tool Connectivity
-        - Agent API Access
-    - name: Model Context Protocol (MCP)
-      url: https://boomi.com/model-context-protocol/
-      features:
-        - MCP Server
-        - Model Context Protocol
-        - Tool Connectivity
-        - AI Tool Access
-        - LLM Tools
-        - MCP Integration
-        - Anthropic MCP
-    - name: Responsible AI
-      url: https://boomi.com/responsible-ai/
-      features:
-        - AI Governance
-        - AI Safety
-        - AI Ethics
-        - Guardrails
-        - Responsible Automation
-        - AI Compliance
-        - Bias Prevention
-    - name: Integration & Automation
-      url: https://boomi.com/platform/integration/
-      features:
-        - iPaaS
-        - Integration Platform As A Service
-        - Workflow Automation
-        - Data Synchronization
-        - App Connectivity
-        - Enterprise Integration
-        - API-Led Integration
-    - name: Flow
-      url: https://boomi.com/platform/flow/
-      features:
-        - Process Automation
-        - Workflow Builder
-        - Low-Code Workflow
-        - Business Process Automation
-        - Decision Flows
-        - UI Workflow
-        - Citizen Developer
-    - name: Event Streams
-      url: https://boomi.com/platform/event-streams/
-      features:
-        - Event-Driven Integration
-        - Pub/Sub Messaging
-        - Message Streaming
-        - Real-Time Events
-        - Event Broker
-        - Topic-Based Messaging
-        - Asynchronous Integration
-    - name: B2B/EDI Management
-      url: https://boomi.com/platform/b2b-management/
-      features:
-        - B2B Integration
-        - EDI
-        - Trading Partner Management
-        - Supply Chain Integration
-        - AS2
-        - X12
-        - EDIFACT
-        - ANSI X12
-        - Electronic Data Interchange
-    - name: Task Automation
-      url: https://boomi.com/platform/task-automation/
-      features:
-        - RPA
-        - Robotic Process Automation
-        - Task Scheduling
-        - Automated Tasks
-        - Process Execution
-        - UI Automation
-        - Desktop Automation
-    - name: Managed File Transfer
-      url: https://boomi.com/platform/managed-file-transfer/
-      features:
-        - MFT
-        - Secure File Transfer
-        - SFTP
-        - FTP
-        - File Exchange
-        - Large File Transfer
-        - File Automation
-        - FTPS
-    - name: API Management
-      url: https://boomi.com/platform/api-management/
-      features:
-        - API Gateway
-        - API Lifecycle Management
-        - API Proxy
-        - API Publishing
-        - API Versioning
-        - API Developer Portal
-        - API Monetization
-    - name: API Governance
-      url: https://boomi.com/platform/api-governance/
-      features:
-        - API Policies
-        - API Standards
-        - API Compliance
-        - API Quality
-        - API Design Governance
-        - API Linting
-        - API Style Guides
-    - name: API Security
-      url: https://boomi.com/platform/api-security/
-      features:
-        - API Authentication
-        - OAuth
-        - JWT
-        - API Threat Protection
-        - API Access Control
-        - API Key Management
-        - Rate Limiting
-    - name: API Products
-      url: https://boomi.com/platform/api-products/
-      features:
-        - API Catalog
-        - API Productization
-        - API Packaging
-        - API Marketplace
-        - API Bundling
-        - API Developer Experience
-        - API Consumption
-    - name: Data Management
-      url: https://boomi.com/platform/data-management/
-      features:
-        - Master Data Management
-        - MDM
-        - Data Quality
-        - Data Stewardship
-        - Data Governance
-        - Data Cleansing
-        - Reference Data
-    - name: Data Hub
-      url: https://boomi.com/platform/datahub/
-      features:
-        - Data Hub
-        - Golden Records
-        - Master Data
-        - Data Matching
-        - Data Deduplication
-        - Data Consolidation
-        - Single Source Of Truth
-    - name: Data Integration
-      url: https://boomi.com/platform/boomi-data-integration/
-      features:
-        - ETL
-        - Data Pipeline
-        - Data Transformation
-        - Data Migration
-        - Data Synchronization
-        - Batch Integration
-        - Real-Time Data Integration
-    - name: Meta Hub
-      url: https://boomi.com/platform/metahub/
-      features:
-        - Metadata Management
-        - Data Catalog
-        - Data Lineage
-        - Data Discovery
-        - Metadata Governance
-        - Data Observability
-        - Schema Registry
-    - name: Boomi Embedded
-      url: https://boomi.com/platform/embedded/
-      features:
-        - Embedded iPaaS
-        - White-Label Integration
-        - OEM Integration
-        - Embedded Platform
-        - Integration As A Service
-        - ISV Integration
-        - Native Integrations
+      - name: Agent Management
+        url: https://boomi.com/platform/ai/
+        features:
+          - AI Agents
+          - Autonomous Agents
+          - Agent Orchestration
+          - LLM Integration
+          - Intelligent Automation
+          - Agent Lifecycle Management
+          - Agent Deployment
+      - name: Agentstudio
+        url: https://boomi.com/platform/agentstudio/
+        features:
+          - Agent Builder
+          - No-Code Agent Creation
+          - Agent Configuration
+          - AI Agent Studio
+          - Agent Design
+          - Agent Management Console
+      - name: Platform Agents
+        url: https://boomi.com/platform/ai-agents/
+        features:
+          - Pre-Built Agents
+          - Enterprise Agents
+          - Boomi Agents
+          - Platform Automation Agents
+          - Out-Of-The-Box Agents
+      - name: Agent Connectivity
+        url: https://boomi.com/agent-connectivity/
+        features:
+          - Agent Integrations
+          - Agent Tools
+          - API Connectivity
+          - MCP Tools
+          - Agent Access
+          - Tool Connectivity
+          - Agent API Access
+      - name: Model Context Protocol (MCP)
+        url: https://boomi.com/model-context-protocol/
+        features:
+          - MCP Server
+          - Model Context Protocol
+          - Tool Connectivity
+          - AI Tool Access
+          - LLM Tools
+          - MCP Integration
+          - Anthropic MCP
+      - name: Responsible AI
+        url: https://boomi.com/responsible-ai/
+        features:
+          - AI Governance
+          - AI Safety
+          - AI Ethics
+          - Guardrails
+          - Responsible Automation
+          - AI Compliance
+          - Bias Prevention
+      - name: Integration & Automation
+        url: https://boomi.com/platform/integration/
+        features:
+          - iPaaS
+          - Integration Platform As A Service
+          - Workflow Automation
+          - Data Synchronization
+          - App Connectivity
+          - Enterprise Integration
+          - API-Led Integration
+      - name: Flow
+        url: https://boomi.com/platform/flow/
+        features:
+          - Process Automation
+          - Workflow Builder
+          - Low-Code Workflow
+          - Business Process Automation
+          - Decision Flows
+          - UI Workflow
+          - Citizen Developer
+      - name: Event Streams
+        url: https://boomi.com/platform/event-streams/
+        features:
+          - Event-Driven Integration
+          - Pub/Sub Messaging
+          - Message Streaming
+          - Real-Time Events
+          - Event Broker
+          - Topic-Based Messaging
+          - Asynchronous Integration
+      - name: B2B/EDI Management
+        url: https://boomi.com/platform/b2b-management/
+        features:
+          - B2B Integration
+          - EDI
+          - Trading Partner Management
+          - Supply Chain Integration
+          - AS2
+          - X12
+          - EDIFACT
+          - ANSI X12
+          - Electronic Data Interchange
+      - name: Task Automation
+        url: https://boomi.com/platform/task-automation/
+        features:
+          - RPA
+          - Robotic Process Automation
+          - Task Scheduling
+          - Automated Tasks
+          - Process Execution
+          - UI Automation
+          - Desktop Automation
+      - name: Managed File Transfer
+        url: https://boomi.com/platform/managed-file-transfer/
+        features:
+          - MFT
+          - Secure File Transfer
+          - SFTP
+          - FTP
+          - File Exchange
+          - Large File Transfer
+          - File Automation
+          - FTPS
+      - name: API Management
+        url: https://boomi.com/platform/api-management/
+        features:
+          - API Gateway
+          - API Lifecycle Management
+          - API Proxy
+          - API Publishing
+          - API Versioning
+          - API Developer Portal
+          - API Monetization
+      - name: API Governance
+        url: https://boomi.com/platform/api-governance/
+        features:
+          - API Policies
+          - API Standards
+          - API Compliance
+          - API Quality
+          - API Design Governance
+          - API Linting
+          - API Style Guides
+      - name: API Security
+        url: https://boomi.com/platform/api-security/
+        features:
+          - API Authentication
+          - OAuth
+          - JWT
+          - API Threat Protection
+          - API Access Control
+          - API Key Management
+          - Rate Limiting
+      - name: API Products
+        url: https://boomi.com/platform/api-products/
+        features:
+          - API Catalog
+          - API Productization
+          - API Packaging
+          - API Marketplace
+          - API Bundling
+          - API Developer Experience
+          - API Consumption
+      - name: Data Management
+        url: https://boomi.com/platform/data-management/
+        features:
+          - Master Data Management
+          - MDM
+          - Data Quality
+          - Data Stewardship
+          - Data Governance
+          - Data Cleansing
+          - Reference Data
+      - name: Data Hub
+        url: https://boomi.com/platform/datahub/
+        features:
+          - Data Hub
+          - Golden Records
+          - Master Data
+          - Data Matching
+          - Data Deduplication
+          - Data Consolidation
+          - Single Source Of Truth
+      - name: Data Integration
+        url: https://boomi.com/platform/boomi-data-integration/
+        features:
+          - ETL
+          - Data Pipeline
+          - Data Transformation
+          - Data Migration
+          - Data Synchronization
+          - Batch Integration
+          - Real-Time Data Integration
+      - name: Meta Hub
+        url: https://boomi.com/platform/metahub/
+        features:
+          - Metadata Management
+          - Data Catalog
+          - Data Lineage
+          - Data Discovery
+          - Metadata Governance
+          - Data Observability
+          - Schema Registry
+      - name: Boomi Embedded
+        url: https://boomi.com/platform/embedded/
+        features:
+          - Embedded iPaaS
+          - White-Label Integration
+          - OEM Integration
+          - Embedded Platform
+          - Integration As A Service
+          - ISV Integration
+          - Native Integrations
     name: Features
     type: Features
   - url: json-ld/boomi-context.jsonld
@@ -969,16 +996,11 @@ position: Consuming
 segments:
   - Workflows
 description: >-
-  Boomi is a leading integration platform that allows organizations to connect
-  applications, data, and people across cloud and on-premise environments. By
-  leveraging Boomi's intuitive visual interface and pre-built connectors,
-  businesses can quickly and easily create integrations that streamline
-  processes, improve productivity, and enhance the overall customer experience.
-  Boomi's platform also offers advanced features such as data mapping, workflow
-  automation, and real-time analytics, empowering organizations to drive digital
-  transformation and stay competitive in today's fast-paced market. With Boomi,
-  companies can achieve seamless connectivity, agility, and scalability to
-  support their evolving business needs.
+  Boomi is a leading integration platform that allows organizations to connect applications,
+  data, and people across cloud and on-premise environments. By leveraging Boomi's
+  intuitive visual interface and pre-built connectors, businesses can quickly and
+  easily create integrations that streamline processes, improve productivity, and
+  enhance the overall customer experience.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

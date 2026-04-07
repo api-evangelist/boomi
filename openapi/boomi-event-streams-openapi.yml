@@ -37,7 +37,7 @@ paths:
   /:
     post:
       operationId: publishMessages
-      summary: Publish messages to a topic
+      summary: Boomi Publish messages to a topic
       description: >-
         Publishes one or more messages to the event topic. Supports two
         operational modes: multiple messages mode (predefined JSON format with
