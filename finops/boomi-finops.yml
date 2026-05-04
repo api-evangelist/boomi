@@ -1,0 +1,227 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Boomi
+providerId: boomi
+publisherName: Boomi
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - AI Agents
+  - Automation
+  - B2B
+  - Data Integration
+  - EDI
+  - Integrations
+  - Management
+  - MFT
+  - Platform
+  - Workflows
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the Boomi API surface. Provides a FOCUS-aligned mapping for
+  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Boomi
+  ServiceCategory: Developer Tools / API
+  ProviderName: Boomi
+  PublisherName: Boomi
+  InvoiceIssuerName: Boomi
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: Boomi
+    baseURL: ''
+    tags: []
+    serviceName: Boomi
+    serviceCategory: API
+  - name: Boomi Platform REST API
+    baseURL: ''
+    tags:
+      - Integration
+      - Platform
+      - REST
+    serviceName: Boomi Platform REST API
+    serviceCategory: API
+  - name: Boomi Platform Partner API
+    baseURL: ''
+    tags:
+      - Partners
+      - Platform
+      - REST
+    serviceName: Boomi Platform Partner API
+    serviceCategory: API
+  - name: Boomi API Management API
+    baseURL: ''
+    tags:
+      - API Management
+      - GraphQL
+      - REST
+      - SOAP
+    serviceName: Boomi API Management API
+    serviceCategory: API
+  - name: Boomi DataHub API
+    baseURL: ''
+    tags:
+      - Data Hub
+      - Master Data
+      - REST
+    serviceName: Boomi DataHub API
+    serviceCategory: API
+  - name: Boomi Event Streams REST API
+    baseURL: ''
+    tags:
+      - Events
+      - Messaging
+      - REST
+      - Streaming
+    serviceName: Boomi Event Streams REST API
+    serviceCategory: API
+  - name: Boomi Flow API
+    baseURL: ''
+    tags:
+      - Automation
+      - Low-Code
+      - REST
+      - Workflows
+    serviceName: Boomi Flow API
+    serviceCategory: API
+  - name: Boomi Connector Deployment API
+    baseURL: ''
+    tags:
+      - Connectors
+      - Deployment
+      - REST
+      - SDK
+    serviceName: Boomi Connector Deployment API
+    serviceCategory: API
+  - name: Boomi Platform SOAP API
+    baseURL: ''
+    tags:
+      - Integration
+      - Platform
+      - SOAP
+    serviceName: Boomi Platform SOAP API
+    serviceCategory: API
+  - name: Boomi MFT API
+    baseURL: ''
+    tags:
+      - Managed File Transfer
+      - MFT
+      - REST
+      - SOAP
+    serviceName: Boomi MFT API
+    serviceCategory: API
+  - name: Boomi API Gateway GraphQL API
+    baseURL: ''
+    tags:
+      - API Gateway
+      - API Management
+      - GraphQL
+    serviceName: Boomi API Gateway GraphQL API
+    serviceCategory: API
+  - name: Boomi Agent Control Tower GraphQL API
+    baseURL: ''
+    tags:
+      - AI Agents
+      - Governance
+      - GraphQL
+    serviceName: Boomi Agent Control Tower GraphQL API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
