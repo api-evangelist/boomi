@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,10 +9,11 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Boomi
 providerId: boomi
-publisherName: Boomi
-serviceCategory: API
+publisherName: Boomi, LP
+serviceCategory: Integration Platform (iPaaS)
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - AI Agents
   - Automation
@@ -24,204 +26,98 @@ tags:
   - Platform
   - Workflows
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Boomi API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps for Boomi: tiered subscription editions across Integration, API Management,
+  Data Hub, and Data Integration product lines, with a Pay-as-you-Go option ($99/month plus usage) and
+  contact-sales pricing for upper tiers.'
+sources:
+  - https://boomi.com/pricing/
+  - https://help.boomi.com/
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Tiered Subscription + Pay-As-You-Go
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
+    - Usage
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
   ServiceName: Boomi
-  ServiceCategory: Developer Tools / API
+  ServiceCategory: Integration Platform
   ProviderName: Boomi
-  PublisherName: Boomi
-  InvoiceIssuerName: Boomi
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: Boomi, LP
+  InvoiceIssuerName: Boomi, LP
   BillingCurrency: USD
-  ChargeCategory: Usage
+  PricingCategory: Standard
+  PricingUnit: subscription-month
 meters:
-  - name: api_requests
-    description: Count of billable API requests
+  - name: subscription_month
+    description: Edition subscription fee billed monthly per account.
+    unit: month
+    aggregation: sum
+    dimensions:
+      - product_line
+      - edition
+  - name: connections
+    description: Number of provisioned source/target connections; connection count gates upgrades between
+      editions.
+    unit: connection
+    aggregation: max
+    dimensions:
+      - product_line
+      - connection_type
+  - name: runtime_environments
+    description: Atom / molecule runtime environments deployed against the account.
+    unit: environment
+    aggregation: max
+    dimensions:
+      - environment_type
+      - region
+  - name: api_management_calls
+    description: API calls flowing through Boomi API Management gateway.
     unit: request
     aggregation: sum
     dimensions:
       - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - contract
+      - environment
+  - name: mft_transfers
+    description: Managed File Transfer events processed under the MFT product line.
+    unit: transfer
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - direction
+      - partner
+  - name: data_hub_records
+    description: Records mastered / synchronized through Boomi Data Hub.
+    unit: record
+    aggregation: max
+    dimensions:
+      - domain
+  - name: pay_as_you_go_usage
+    description: Usage component metered on top of the $99/month Pay-as-you-Go platform fee.
+    unit: varies
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Boomi
-    baseURL: ''
-    tags: []
-    serviceName: Boomi
-    serviceCategory: API
-  - name: Boomi Platform REST API
-    baseURL: ''
-    tags:
-      - Integration
-      - Platform
-      - REST
-    serviceName: Boomi Platform REST API
-    serviceCategory: API
-  - name: Boomi Platform Partner API
-    baseURL: ''
-    tags:
-      - Partners
-      - Platform
-      - REST
-    serviceName: Boomi Platform Partner API
-    serviceCategory: API
-  - name: Boomi API Management API
-    baseURL: ''
-    tags:
-      - API Management
-      - GraphQL
-      - REST
-      - SOAP
-    serviceName: Boomi API Management API
-    serviceCategory: API
-  - name: Boomi DataHub API
-    baseURL: ''
-    tags:
-      - Data Hub
-      - Master Data
-      - REST
-    serviceName: Boomi DataHub API
-    serviceCategory: API
-  - name: Boomi Event Streams REST API
-    baseURL: ''
-    tags:
-      - Events
-      - Messaging
-      - REST
-      - Streaming
-    serviceName: Boomi Event Streams REST API
-    serviceCategory: API
-  - name: Boomi Flow API
-    baseURL: ''
-    tags:
-      - Automation
-      - Low-Code
-      - REST
-      - Workflows
-    serviceName: Boomi Flow API
-    serviceCategory: API
-  - name: Boomi Connector Deployment API
-    baseURL: ''
-    tags:
-      - Connectors
-      - Deployment
-      - REST
-      - SDK
-    serviceName: Boomi Connector Deployment API
-    serviceCategory: API
-  - name: Boomi Platform SOAP API
-    baseURL: ''
-    tags:
-      - Integration
-      - Platform
-      - SOAP
-    serviceName: Boomi Platform SOAP API
-    serviceCategory: API
-  - name: Boomi MFT API
-    baseURL: ''
-    tags:
-      - Managed File Transfer
-      - MFT
-      - REST
-      - SOAP
-    serviceName: Boomi MFT API
-    serviceCategory: API
-  - name: Boomi API Gateway GraphQL API
-    baseURL: ''
-    tags:
-      - API Gateway
-      - API Management
-      - GraphQL
-    serviceName: Boomi API Gateway GraphQL API
-    serviceCategory: API
-  - name: Boomi Agent Control Tower GraphQL API
-    baseURL: ''
-    tags:
-      - AI Agents
-      - Governance
-      - GraphQL
-    serviceName: Boomi Agent Control Tower GraphQL API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - service
+principles:
+  - name: Visibility
+    description: Pull invoices and platform usage exports from the Boomi AtomSphere admin console; track
+      connection count, runtime hours, and API Management call volume against the contracted edition's
+      ceilings.
+  - name: Allocation
+    description: Tag processes, APIs, and connections by business unit and environment so platform fees
+      and gateway calls allocate cleanly to consuming products.
+  - name: Optimization
+    description: Right-size the edition to the actual connection / process count, retire unused integrations,
+      consolidate runtimes where high availability is not required, and apply gateway-level throttling
+      to control downstream cost.
+  - name: Accountability
+    description: Designate an integration / API platform owner per business unit; review monthly invoices
+      and renewal posture against process and API growth, and use Premier / Premier Plus support tiers
+      where uptime tolerance is low.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

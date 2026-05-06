@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Boomi
 providerId: boomi
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - AI Agents
   - Automation
@@ -17,133 +18,59 @@ tags:
   - Platform
   - Workflows
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Boomi API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Boomi does not publish a single global per-second / per-minute rate-limit for its platform
+  REST, SOAP, and GraphQL APIs. Limits are enforced per service (Platform API, API Management gateway,
+  Event Streams, MFT) and are bound to the customer's contracted edition. Consumers should expect HTTP
+  429 throttling, apply exponential backoff, and consult the service-specific docs for any published
+  per-endpoint ceilings.
+sources:
+  - https://boomi.com/pricing/
+  - https://help.boomi.com/
+notes: Per-service / per-endpoint rate limits are not consolidated on a public page; reconcile with the
+  service-specific documentation in help.boomi.com.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Boomi
-      - Boomi Platform REST API
-      - Boomi Platform Partner API
-      - Boomi API Management API
-      - Boomi DataHub API
-      - Boomi Event Streams REST API
-      - Boomi Flow API
-      - Boomi Connector Deployment API
-      - Boomi Platform SOAP API
-      - Boomi MFT API
-      - Boomi API Gateway GraphQL API
-      - Boomi Agent Control Tower GraphQL API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Boomi
-      - Boomi Platform REST API
-      - Boomi Platform Partner API
-      - Boomi API Management API
-      - Boomi DataHub API
-      - Boomi Event Streams REST API
-      - Boomi Flow API
-      - Boomi Connector Deployment API
-      - Boomi Platform SOAP API
-      - Boomi MFT API
-      - Boomi API Gateway GraphQL API
-      - Boomi Agent Control Tower GraphQL API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Boomi
-      - Boomi Platform REST API
-      - Boomi Platform Partner API
-      - Boomi API Management API
-      - Boomi DataHub API
-      - Boomi Event Streams REST API
-      - Boomi Flow API
-      - Boomi Connector Deployment API
-      - Boomi Platform SOAP API
-      - Boomi MFT API
-      - Boomi API Gateway GraphQL API
-      - Boomi Agent Control Tower GraphQL API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Boomi
-      - Boomi Platform REST API
-      - Boomi Platform Partner API
-      - Boomi API Management API
-      - Boomi DataHub API
-      - Boomi Event Streams REST API
-      - Boomi Flow API
-      - Boomi Connector Deployment API
-      - Boomi Platform SOAP API
-      - Boomi MFT API
-      - Boomi API Gateway GraphQL API
-      - Boomi Agent Control Tower GraphQL API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Boomi
-      - Boomi Platform REST API
-      - Boomi Platform Partner API
-      - Boomi API Management API
-      - Boomi DataHub API
-      - Boomi Event Streams REST API
-      - Boomi Flow API
-      - Boomi Connector Deployment API
-      - Boomi Platform SOAP API
-      - Boomi MFT API
-      - Boomi API Gateway GraphQL API
-      - Boomi Agent Control Tower GraphQL API
+  - name: Boomi Platform REST API
+    scope: account
+    metric: varies
+    limit: 'see service-specific documentation'
+    notes: Limits vary by edition and endpoint.
+  - name: Boomi API Management gateway
+    scope: account
+    metric: varies
+    limit: 'configurable per API contract'
+    notes: API Management lets administrators define per-contract throttling on published APIs.
+  - name: Boomi Event Streams REST API
+    scope: account
+    metric: varies
+    limit: 'see service-specific documentation'
+  - name: Boomi DataHub API
+    scope: account
+    metric: varies
+    limit: 'see service-specific documentation'
+  - name: Boomi MFT API
+    scope: account
+    metric: varies
+    limit: 'see service-specific documentation'
+  - name: Boomi API Gateway GraphQL API
+    scope: account
+    metric: varies
+    limit: 'see service-specific documentation'
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
+    description: Apply exponential backoff with jitter on 429 and 5xx responses; honor Retry-After when
+      present.
+  - name: Edition-Bound Capacity
+    description: Effective request capacity is set by the contracted edition (Professional through Enterprise
+      Plus); upgrade or scale-out is required for higher steady-state throughput.
+  - name: Configurable Throttling (API Management)
+    description: For APIs published through Boomi API Management, throttling policies are administrator-defined
+      per API contract and applied at the gateway layer.
   - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Sustained traffic that materially impacts shared infrastructure is reviewed and may trigger
+      throttling regardless of contract.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

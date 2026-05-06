@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Boomi
 providerId: boomi
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - AI Agents
   - Automation
@@ -16,160 +17,214 @@ tags:
   - MFT
   - Platform
   - Workflows
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Boomi packages its iPaaS as multiple subscription editions across Integration, API Management,
+  Data Hub, and Data Integration product lines. Editions ladder Professional, Professional Plus, Enterprise,
+  and Enterprise Plus, all sold as contact-sales. A self-service Pay-as-you-Go option starts at $99/month
+  plus usage, and a 30-day Free Trial provides full Enterprise Platform access. Replace contact-sales tiers
+  with negotiated terms when available.
+sources:
+  - https://boomi.com/pricing/
 plans:
-  - id: boomi-free
-    name: Free
+  - id: boomi-free-trial
+    name: Free Trial
     type: freemium
-    description: Free entry tier for the Boomi API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: 30-day Free Trial with full Enterprise Platform access.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
+      - label: Trial period
+        name: trial_period
         type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+        metric: day
+        limit: 30
+        timeFrame: usage
         geo: global
-        domains: []
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
+        price: '0'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Boomi
-      - name: Boomi Platform REST API
-      - name: Boomi Platform Partner API
-      - name: Boomi API Management API
-      - name: Boomi DataHub API
-      - name: Boomi Event Streams REST API
-      - name: Boomi Flow API
-      - name: Boomi Connector Deployment API
-  - id: boomi-pro
-    name: Professional
-    type: paid
-    description: Production tier for Boomi. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Full Enterprise Platform Access
+      - name: Core Integration Features
+      - name: Low-Code Development
+      - name: Data Mapping
+      - name: Basic API Management
+  - id: boomi-pay-as-you-go
+    name: Pay-as-You-Go
+    type: usage-based
+    description: Self-service entry edition with no contract; flat monthly platform fee plus usage.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
+      - label: Platform fee
+        name: platform_fee
+        type: subscription
+        metric: month
+        limit: 1
         timeFrame: month
         geo: global
-        domains: []
         unit: 1
-        price: TBD
+        price: $99/month
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Usage
+        name: usage
         type: metered
-        metric: requests
+        metric: varies
         limit: -1
         timeFrame: month
         geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: see vendor pricing - billed monthly
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Boomi
-      - name: Boomi Platform REST API
-      - name: Boomi Platform Partner API
-      - name: Boomi API Management API
-      - name: Boomi DataHub API
-      - name: Boomi Event Streams REST API
-      - name: Boomi Flow API
-      - name: Boomi Connector Deployment API
-      - name: Boomi Platform SOAP API
-      - name: Boomi MFT API
-      - name: Boomi API Gateway GraphQL API
-      - name: Boomi Agent Control Tower GraphQL API
-  - id: boomi-enterprise
-    name: Enterprise
-    type: enterprise
-    description: Custom-negotiated tier for Boomi. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+      - name: Full Platform Access
+      - name: No Contract Required
+      - name: Credit Card Signup
+      - name: Boomi Integration
+  - id: boomi-integration-professional
+    name: Integration - Professional
+    type: subscription
+    description: Advanced integrations with broader environment support and process orchestration.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: -1
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Advanced Integrations
+      - name: Process Orchestration
+      - name: Workflow
+      - name: Premier Support (available)
+      - name: Boomi Integration
+  - id: boomi-integration-professional-plus
+    name: Integration - Professional Plus
+    type: subscription
+    description: Everything in Professional plus API-enabling integrations and additional connections.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: API-Enabling Integrations
+      - name: Additional Connections Included
+      - name: Process Orchestration
+      - name: Premier Support (available)
+  - id: boomi-integration-enterprise
+    name: Integration - Enterprise
+    type: enterprise
+    description: Advanced user management with custom roles and clustered runtime support.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
         timeFrame: month
         geo: configurable
-        domains: []
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Boomi
-      - name: Boomi Platform REST API
-      - name: Boomi Platform Partner API
+      - name: Advanced User Management
+      - name: Custom Roles
+      - name: Clustered Runtime
+      - name: High Availability
+      - name: More Connections
+      - name: Premier Plus Support (available)
+  - id: boomi-integration-enterprise-plus
+    name: Integration - Enterprise Plus
+    type: enterprise
+    description: Everything in Enterprise plus message queuing and additional connections.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: configurable
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Message Queuing Included
+      - name: Additional Connections
+      - name: Advanced User Management
+      - name: Clustered Runtime
+  - id: boomi-api-management
+    name: API Management
+    type: enterprise
+    description: API Management editions span Professional through Enterprise Plus, covering core APIM,
+      API discovery, federated governance, advanced analytics, and unlimited scale options.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Core API Management
+      - name: API Discovery
+      - name: Federated Governance
+      - name: Advanced Analytics
+      - name: Unlimited Scale (Enterprise Plus)
       - name: Boomi API Management API
-      - name: Boomi DataHub API
-      - name: Boomi Event Streams REST API
-      - name: Boomi Flow API
-      - name: Boomi Connector Deployment API
-      - name: Boomi Platform SOAP API
-      - name: Boomi MFT API
       - name: Boomi API Gateway GraphQL API
-      - name: Boomi Agent Control Tower GraphQL API
+  - id: boomi-data-hub
+    name: Data Hub
+    type: enterprise
+    description: Data Hub editions span Standard through Pro and Enterprise; Pro+ adds data profiling, AI
+      governance, data synchronization, security controls, and analytics.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Core Data Operations
+      - name: Data Profiling (Pro+)
+      - name: AI Governance (Pro+)
+      - name: Data Synchronization (Pro+)
+      - name: Security Controls (Pro+)
+      - name: Boomi DataHub API
+  - id: boomi-data-integration
+    name: Data Integration
+    type: enterprise
+    description: Data Integration editions span Base (pay-as-you-go), Professional, Professional Plus, and
+      Enterprise.
+    entries:
+      - label: Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Pay-As-You-Go Base Edition
+      - name: Professional / Professional Plus / Enterprise Editions
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
