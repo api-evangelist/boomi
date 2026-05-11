@@ -973,6 +973,9 @@ description: >-
   intuitive visual interface and pre-built connectors, businesses can quickly and
   easily create integrations that streamline processes, improve productivity, and
   enhance the overall customer experience.
+integrations:
+  - name: Technology Partners Collaborate on technical solutions
+  - name: Snowflake Governed, secure, cloud-native data access
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
