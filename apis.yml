@@ -254,7 +254,7 @@ tags:
   - MFT
   - Platform
   - Workflows
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
@@ -957,7 +957,7 @@ common:
     name: Features
     type: Features
   - url: json-ld/boomi-context.jsonld
-    type: JSON-LD
+    type: JSONLD
   - url: json-schema/boomi-process-schema.json
     type: JSONSchema
   - url: json-schema/boomi-ai-agent-schema.json
