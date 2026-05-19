@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boomi Platform REST API — Components
+  description: 'Boomi Platform REST API — Components. 2 operations. Lead operation: Boomi Create a packaged component. Self-contained
+    Naftiko capability covering one Boomi business surface.'
+  tags:
+  - Boomi
+  - Components
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOOMI_API_KEY: BOOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-components
+    baseUri: https://api.boomi.com/api/rest/v1/{accountId}
+    description: Boomi Platform REST API — Components business capability. Self-contained, no shared references.
+    resources:
+    - name: PackagedComponent
+      path: /PackagedComponent
+      operations:
+      - name: createpackagedcomponent
+        method: POST
+        description: Boomi Create a packaged component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: PackagedComponent-id
+      path: /PackagedComponent/{id}
+      operations:
+      - name: getpackagedcomponent
+        method: GET
+        description: Boomi Get a packaged component
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.BOOMI_USER}}'
+      password: '{{env.BOOMI_PASS}}'
+  exposes:
+  - type: rest
+    namespace: platform-rest-components-rest
+    port: 8080
+    description: REST adapter for Boomi Platform REST API — Components. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/packagedcomponent
+      name: packagedcomponent
+      description: REST surface for PackagedComponent.
+      operations:
+      - method: POST
+        name: createpackagedcomponent
+        description: Boomi Create a packaged component
+        call: platform-rest-components.createpackagedcomponent
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/packagedcomponent/{id}
+      name: packagedcomponent-id
+      description: REST surface for PackagedComponent-id.
+      operations:
+      - method: GET
+        name: getpackagedcomponent
+        description: Boomi Get a packaged component
+        call: platform-rest-components.getpackagedcomponent
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-components-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boomi Platform REST API — Components. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boomi-create-packaged-component
+      description: Boomi Create a packaged component
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-components.createpackagedcomponent
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boomi-get-packaged-component
+      description: Boomi Get a packaged component
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-components.getpackagedcomponent
+      outputParameters:
+      - type: object
+        mapping: $.

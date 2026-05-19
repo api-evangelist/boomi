@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boomi Platform REST API — Execution
+  description: 'Boomi Platform REST API — Execution. 2 operations. Lead operation: Boomi Query execution records. Self-contained
+    Naftiko capability covering one Boomi business surface.'
+  tags:
+  - Boomi
+  - Execution
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOOMI_API_KEY: BOOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-execution
+    baseUri: https://api.boomi.com/api/rest/v1/{accountId}
+    description: Boomi Platform REST API — Execution business capability. Self-contained, no shared references.
+    resources:
+    - name: ExecutionRecord-query
+      path: /ExecutionRecord/query
+      operations:
+      - name: queryexecutionrecords
+        method: POST
+        description: Boomi Query execution records
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: ExecutionRequest
+      path: /ExecutionRequest
+      operations:
+      - name: executeprocess
+        method: POST
+        description: Boomi Execute a process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.BOOMI_USER}}'
+      password: '{{env.BOOMI_PASS}}'
+  exposes:
+  - type: rest
+    namespace: platform-rest-execution-rest
+    port: 8080
+    description: REST adapter for Boomi Platform REST API — Execution. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/executionrecord/query
+      name: executionrecord-query
+      description: REST surface for ExecutionRecord-query.
+      operations:
+      - method: POST
+        name: queryexecutionrecords
+        description: Boomi Query execution records
+        call: platform-rest-execution.queryexecutionrecords
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/executionrequest
+      name: executionrequest
+      description: REST surface for ExecutionRequest.
+      operations:
+      - method: POST
+        name: executeprocess
+        description: Boomi Execute a process
+        call: platform-rest-execution.executeprocess
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-execution-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boomi Platform REST API — Execution. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boomi-query-execution-records
+      description: Boomi Query execution records
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: platform-rest-execution.queryexecutionrecords
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boomi-execute-process
+      description: Boomi Execute a process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-execution.executeprocess
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

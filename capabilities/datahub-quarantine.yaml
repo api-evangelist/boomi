@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boomi DataHub API — Quarantine
+  description: 'Boomi DataHub API — Quarantine. 1 operations. Lead operation: Boomi List quarantine entries. Self-contained
+    Naftiko capability covering one Boomi business surface.'
+  tags:
+  - Boomi
+  - Quarantine
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOOMI_API_KEY: BOOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: datahub-quarantine
+    baseUri: https://mdh.boomi.com/mdh
+    description: Boomi DataHub API — Quarantine business capability. Self-contained, no shared references.
+    resources:
+    - name: repositories-repositoryId-universes-universeId-quarantine
+      path: /repositories/{repositoryId}/universes/{universeId}/quarantine
+      operations:
+      - name: listquarantineentries
+        method: GET
+        description: Boomi List quarantine entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.BOOMI_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: datahub-quarantine-rest
+    port: 8080
+    description: REST adapter for Boomi DataHub API — Quarantine. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repositories/{repositoryid}/universes/{universeid}/quarantine
+      name: repositories-repositoryid-universes-universeid-quarantine
+      description: REST surface for repositories-repositoryId-universes-universeId-quarantine.
+      operations:
+      - method: GET
+        name: listquarantineentries
+        description: Boomi List quarantine entries
+        call: datahub-quarantine.listquarantineentries
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: datahub-quarantine-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boomi DataHub API — Quarantine. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: boomi-list-quarantine-entries
+      description: Boomi List quarantine entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: datahub-quarantine.listquarantineentries
+      outputParameters:
+      - type: object
+        mapping: $.

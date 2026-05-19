@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Boomi Platform REST API — Deployments
+  description: 'Boomi Platform REST API — Deployments. 4 operations. Lead operation: Boomi Deploy a package. Self-contained
+    Naftiko capability covering one Boomi business surface.'
+  tags:
+  - Boomi
+  - Deployments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BOOMI_API_KEY: BOOMI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-rest-deployments
+    baseUri: https://api.boomi.com/api/rest/v1/{accountId}
+    description: Boomi Platform REST API — Deployments business capability. Self-contained, no shared references.
+    resources:
+    - name: DeployedPackage
+      path: /DeployedPackage
+      operations:
+      - name: createdeployedpackage
+        method: POST
+        description: Boomi Deploy a package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: DeployedPackage-query
+      path: /DeployedPackage/query
+      operations:
+      - name: querydeployedpackages
+        method: POST
+        description: Boomi Query deployed packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: DeployedPackage-id
+      path: /DeployedPackage/{id}
+      operations:
+      - name: getdeployedpackage
+        method: GET
+        description: Boomi Get a deployed package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletedeployedpackage
+        method: DELETE
+        description: Boomi Undeploy a package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.BOOMI_USER}}'
+      password: '{{env.BOOMI_PASS}}'
+  exposes:
+  - type: rest
+    namespace: platform-rest-deployments-rest
+    port: 8080
+    description: REST adapter for Boomi Platform REST API — Deployments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/deployedpackage
+      name: deployedpackage
+      description: REST surface for DeployedPackage.
+      operations:
+      - method: POST
+        name: createdeployedpackage
+        description: Boomi Deploy a package
+        call: platform-rest-deployments.createdeployedpackage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deployedpackage/query
+      name: deployedpackage-query
+      description: REST surface for DeployedPackage-query.
+      operations:
+      - method: POST
+        name: querydeployedpackages
+        description: Boomi Query deployed packages
+        call: platform-rest-deployments.querydeployedpackages
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/deployedpackage/{id}
+      name: deployedpackage-id
+      description: REST surface for DeployedPackage-id.
+      operations:
+      - method: GET
+        name: getdeployedpackage
+        description: Boomi Get a deployed package
+        call: platform-rest-deployments.getdeployedpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedeployedpackage
+        description: Boomi Undeploy a package
+        call: platform-rest-deployments.deletedeployedpackage
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-rest-deployments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Boomi Platform REST API — Deployments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: boomi-deploy-package
+      description: Boomi Deploy a package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-rest-deployments.createdeployedpackage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boomi-query-deployed-packages
+      description: Boomi Query deployed packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: platform-rest-deployments.querydeployedpackages
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boomi-get-deployed-package
+      description: Boomi Get a deployed package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-rest-deployments.getdeployedpackage
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: boomi-undeploy-package
+      description: Boomi Undeploy a package
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-rest-deployments.deletedeployedpackage
+      outputParameters:
+      - type: object
+        mapping: $.
