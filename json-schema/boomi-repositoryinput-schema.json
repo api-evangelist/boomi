@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RepositoryInput",
+  "title": "RepositoryInput",
+  "type": "object",
+  "description": "Input for creating a DataHub repository.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the repository."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the repository."
+    }
+  }
+}

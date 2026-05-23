@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProcessSchedules",
+  "title": "ProcessSchedules",
+  "type": "object",
+  "description": "Schedule configuration for an integration process.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the process schedule."
+    },
+    "atomId": {
+      "type": "string",
+      "description": "ID of the Atom on which this schedule runs."
+    },
+    "processId": {
+      "type": "string",
+      "description": "ID of the process this schedule applies to."
+    },
+    "schedule": {
+      "type": "object",
+      "description": "Scheduling parameters including frequency and timing.",
+      "additionalProperties": true
+    }
+  }
+}

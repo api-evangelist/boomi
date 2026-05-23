@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutionRequestResult",
+  "title": "ExecutionRequestResult",
+  "type": "object",
+  "description": "Result of an execution request submission.",
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "description": "Unique identifier for tracking this execution request."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the execution request."
+    }
+  }
+}

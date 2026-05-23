@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelInput",
+  "title": "ModelInput",
+  "type": "object",
+  "description": "Input for creating or updating a data model.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the model."
+    },
+    "fields": {
+      "type": "array",
+      "description": "Field definitions for the model schema.",
+      "items": {
+        "$ref": "#/components/schemas/ModelField"
+      }
+    }
+  }
+}

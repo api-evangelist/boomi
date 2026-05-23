@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployedPackageInput",
+  "title": "DeployedPackageInput",
+  "type": "object",
+  "description": "Input for deploying a packaged component to an environment.",
+  "required": [
+    "environmentId",
+    "packageId"
+  ],
+  "properties": {
+    "environmentId": {
+      "type": "string",
+      "description": "ID of the target environment."
+    },
+    "packageId": {
+      "type": "string",
+      "description": "ID of the packaged component to deploy."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional deployment notes."
+    }
+  }
+}

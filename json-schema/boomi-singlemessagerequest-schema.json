@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SingleMessageRequest",
+  "title": "SingleMessageRequest",
+  "type": "object",
+  "description": "Request body for publishing a single message in its original format. Properties are sent via request headers prefixed with x-msg-props-.",
+  "additionalProperties": true
+}

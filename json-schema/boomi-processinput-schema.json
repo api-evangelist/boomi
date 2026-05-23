@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProcessInput",
+  "title": "ProcessInput",
+  "type": "object",
+  "description": "Input for creating or updating an integration process.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the process."
+    },
+    "folderId": {
+      "type": "string",
+      "description": "ID of the folder to place the process in."
+    }
+  }
+}

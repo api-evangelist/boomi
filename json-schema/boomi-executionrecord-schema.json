@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutionRecord",
+  "title": "ExecutionRecord",
+  "type": "object",
+  "description": "A record of an integration process execution (job run).",
+  "properties": {
+    "executionId": {
+      "type": "string",
+      "description": "Unique identifier of the execution."
+    },
+    "processId": {
+      "type": "string",
+      "description": "ID of the process that was executed."
+    },
+    "atomId": {
+      "type": "string",
+      "description": "ID of the Atom that ran the process."
+    },
+    "status": {
+      "type": "string",
+      "description": "Final status of the execution.",
+      "enum": [
+        "COMPLETE",
+        "ERROR",
+        "INPROCESS",
+        "ABORTED",
+        "DISCARDED"
+      ]
+    },
+    "executionTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the execution started."
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Execution duration in milliseconds."
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message or error details."
+    }
+  }
+}

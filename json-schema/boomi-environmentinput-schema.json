@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EnvironmentInput",
+  "title": "EnvironmentInput",
+  "type": "object",
+  "description": "Input for creating a runtime environment.",
+  "required": [
+    "name",
+    "classification"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the environment."
+    },
+    "classification": {
+      "type": "string",
+      "description": "Whether this is a production or test environment.",
+      "enum": [
+        "PRODUCTION",
+        "TEST"
+      ]
+    }
+  }
+}

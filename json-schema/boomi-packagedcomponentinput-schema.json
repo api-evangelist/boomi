@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackagedComponentInput",
+  "title": "PackagedComponentInput",
+  "type": "object",
+  "description": "Input for creating a packaged component.",
+  "required": [
+    "componentId",
+    "componentVersion"
+  ],
+  "properties": {
+    "componentId": {
+      "type": "string",
+      "description": "ID of the component to package."
+    },
+    "componentVersion": {
+      "type": "string",
+      "description": "Version of the component to include in the package."
+    },
+    "packageVersion": {
+      "type": "string",
+      "description": "Optional version label for the package."
+    },
+    "notes": {
+      "type": "string",
+      "description": "Optional notes about this package version."
+    }
+  }
+}

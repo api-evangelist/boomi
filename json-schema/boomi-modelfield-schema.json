@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ModelField",
+  "title": "ModelField",
+  "type": "object",
+  "description": "A field definition within a data model schema.",
+  "required": [
+    "name",
+    "type"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Field name used as the identifier."
+    },
+    "type": {
+      "type": "string",
+      "description": "Data type of the field.",
+      "enum": [
+        "STRING",
+        "INTEGER",
+        "FLOAT",
+        "BOOLEAN",
+        "DATE",
+        "DATETIME",
+        "REFERENCE"
+      ]
+    },
+    "required": {
+      "type": "boolean",
+      "description": "Whether this field is required."
+    },
+    "unique": {
+      "type": "boolean",
+      "description": "Whether this field must be unique across records."
+    }
+  }
+}

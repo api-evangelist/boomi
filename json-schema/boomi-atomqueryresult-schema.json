@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AtomQueryResult",
+  "title": "AtomQueryResult",
+  "type": "object",
+  "description": "Paginated query results for Atoms.",
+  "properties": {
+    "numberOfResults": {
+      "type": "integer",
+      "description": "Total number of matching records."
+    },
+    "queryToken": {
+      "type": "string",
+      "description": "Token for retrieving the next page of results."
+    },
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Atom"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QuarantineEntry",
+  "title": "QuarantineEntry",
+  "type": "object",
+  "description": "A record held in quarantine due to data quality or matching issues.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the quarantine entry."
+    },
+    "sourceId": {
+      "type": "string",
+      "description": "ID of the source that submitted this record."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Reason the record was quarantined."
+    },
+    "fields": {
+      "type": "object",
+      "description": "Field values of the quarantined record.",
+      "additionalProperties": true
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the record entered quarantine."
+    }
+  }
+}

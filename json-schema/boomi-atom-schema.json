@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Atom",
+  "title": "Atom",
+  "type": "object",
+  "description": "A Boomi Atom \u2014 the lightweight runtime engine that executes integration processes.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the Atom."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the Atom."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current online/offline status of the Atom.",
+      "enum": [
+        "ONLINE",
+        "OFFLINE",
+        "UNKNOWN"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Atom type.",
+      "enum": [
+        "ATOM",
+        "MOLECULE",
+        "CLOUD"
+      ]
+    },
+    "hostName": {
+      "type": "string",
+      "description": "Hostname of the machine running the Atom."
+    },
+    "currentVersion": {
+      "type": "string",
+      "description": "Current Boomi runtime version installed on the Atom."
+    },
+    "dateInstalled": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the Atom was installed."
+    }
+  }
+}

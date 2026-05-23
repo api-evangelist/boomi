@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GoldenRecord",
+  "title": "GoldenRecord",
+  "type": "object",
+  "description": "The authoritative master record that results from matching and merging source records across contributing systems.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the golden record."
+    },
+    "fields": {
+      "type": "object",
+      "description": "Field values of the golden record, keyed by field name.",
+      "additionalProperties": true
+    },
+    "sources": {
+      "type": "array",
+      "description": "Source records that contribute to this golden record.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "description": "ID of the contributing source system."
+          },
+          "recordId": {
+            "type": "string",
+            "description": "ID of the record in the source system."
+          }
+        }
+      }
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the golden record was created."
+    },
+    "updatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the golden record was last updated."
+    }
+  }
+}

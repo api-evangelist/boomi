@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Repository",
+  "title": "Repository",
+  "type": "object",
+  "description": "A DataHub repository that organizes master data domains and models.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the repository."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the repository."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the repository's purpose."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the repository was created."
+    }
+  }
+}

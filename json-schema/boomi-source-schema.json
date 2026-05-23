@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Source",
+  "title": "Source",
+  "type": "object",
+  "description": "A data source that contributes records to the master data hub.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the source."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the source."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the source system."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the source was created."
+    }
+  }
+}

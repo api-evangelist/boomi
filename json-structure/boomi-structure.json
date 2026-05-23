@@ -1,0 +1,357 @@
+{
+  "provider": "Boomi",
+  "providerId": "boomi",
+  "kind": "json-structure",
+  "description": "Structural overview of the Boomi API surface; extracted from openapi/.",
+  "schemaCount": 21,
+  "operationCount": 23,
+  "schemas": [
+    {
+      "name": "Process",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "ProcessInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ProcessSchedules",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "ExecutionRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "atomId",
+        "processId"
+      ]
+    },
+    {
+      "name": "ExecutionRequestResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ExecutionRecord",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Environment",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "EnvironmentInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "classification"
+      ]
+    },
+    {
+      "name": "DeployedPackage",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "DeployedPackageInput",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "environmentId",
+        "packageId"
+      ]
+    },
+    {
+      "name": "Atom",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AtomInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PackagedComponent",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "PackagedComponentInput",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "componentId",
+        "componentVersion"
+      ]
+    },
+    {
+      "name": "QueryRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ProcessQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ExecutionRecordQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "EnvironmentQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DeployedPackageQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AtomQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/Process",
+      "operationId": "createProcess",
+      "summary": "Boomi Create a process",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/Process/{id}",
+      "operationId": "getProcess",
+      "summary": "Boomi Get a process",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Process/{id}",
+      "operationId": "updateProcess",
+      "summary": "Boomi Update a process",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/Process/{id}",
+      "operationId": "deleteProcess",
+      "summary": "Boomi Delete a process",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Process/query",
+      "operationId": "queryProcesses",
+      "summary": "Boomi Query processes",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ExecutionRequest",
+      "operationId": "executeProcess",
+      "summary": "Boomi Execute a process",
+      "tags": [
+        "Execution"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ExecutionRecord/query",
+      "operationId": "queryExecutionRecords",
+      "summary": "Boomi Query execution records",
+      "tags": [
+        "Execution"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Environment",
+      "operationId": "createEnvironment",
+      "summary": "Boomi Create an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/Environment/{id}",
+      "operationId": "getEnvironment",
+      "summary": "Boomi Get an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/Environment/{id}",
+      "operationId": "deleteEnvironment",
+      "summary": "Boomi Delete an environment",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Environment/query",
+      "operationId": "queryEnvironments",
+      "summary": "Boomi Query environments",
+      "tags": [
+        "Environments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/DeployedPackage",
+      "operationId": "createDeployedPackage",
+      "summary": "Boomi Deploy a package",
+      "tags": [
+        "Deployments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/DeployedPackage/{id}",
+      "operationId": "getDeployedPackage",
+      "summary": "Boomi Get a deployed package",
+      "tags": [
+        "Deployments"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/DeployedPackage/{id}",
+      "operationId": "deleteDeployedPackage",
+      "summary": "Boomi Undeploy a package",
+      "tags": [
+        "Deployments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/DeployedPackage/query",
+      "operationId": "queryDeployedPackages",
+      "summary": "Boomi Query deployed packages",
+      "tags": [
+        "Deployments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/Atom/{id}",
+      "operationId": "getAtom",
+      "summary": "Boomi Get an Atom",
+      "tags": [
+        "Atoms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Atom/{id}",
+      "operationId": "updateAtom",
+      "summary": "Boomi Update an Atom",
+      "tags": [
+        "Atoms"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/Atom/{id}",
+      "operationId": "deleteAtom",
+      "summary": "Boomi Delete an Atom",
+      "tags": [
+        "Atoms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/Atom/query",
+      "operationId": "queryAtoms",
+      "summary": "Boomi Query Atoms",
+      "tags": [
+        "Atoms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/PackagedComponent",
+      "operationId": "createPackagedComponent",
+      "summary": "Boomi Create a packaged component",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/PackagedComponent/{id}",
+      "operationId": "getPackagedComponent",
+      "summary": "Boomi Get a packaged component",
+      "tags": [
+        "Components"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ProcessSchedules/{id}",
+      "operationId": "getProcessSchedules",
+      "summary": "Boomi Get process schedules",
+      "tags": [
+        "Processes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ProcessSchedules/{id}",
+      "operationId": "updateProcessSchedules",
+      "summary": "Boomi Update process schedules",
+      "tags": [
+        "Processes"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackagedComponent",
+  "title": "PackagedComponent",
+  "type": "object",
+  "description": "A versioned, deployable package of a Boomi component.",
+  "properties": {
+    "packageId": {
+      "type": "string",
+      "description": "Unique identifier of the packaged component."
+    },
+    "componentId": {
+      "type": "string",
+      "description": "ID of the underlying component."
+    },
+    "componentVersion": {
+      "type": "string",
+      "description": "Version of the component included in this package."
+    },
+    "componentType": {
+      "type": "string",
+      "description": "Type of the packaged component (process, connector, etc.)."
+    },
+    "packageVersion": {
+      "type": "string",
+      "description": "Version label for this package."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the package was created."
+    }
+  }
+}

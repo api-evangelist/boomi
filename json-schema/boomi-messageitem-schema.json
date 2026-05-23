@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MessageItem",
+  "title": "MessageItem",
+  "type": "object",
+  "description": "A single message in multi-message mode.",
+  "required": [
+    "payload"
+  ],
+  "properties": {
+    "payload": {
+      "type": "string",
+      "description": "The message content. May be plain text, JSON, or XML encoded as a string."
+    },
+    "properties": {
+      "type": "object",
+      "description": "Optional custom metadata key-value pairs associated with this message.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutionRequest",
+  "title": "ExecutionRequest",
+  "type": "object",
+  "description": "Request to execute an integration process on a specific Atom.",
+  "required": [
+    "atomId",
+    "processId"
+  ],
+  "properties": {
+    "atomId": {
+      "type": "string",
+      "description": "ID of the Atom on which to run the process."
+    },
+    "processId": {
+      "type": "string",
+      "description": "ID of the process to execute."
+    },
+    "processProperties": {
+      "type": "array",
+      "description": "Optional runtime properties to pass to the process.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Property name."
+          },
+          "value": {
+            "type": "string",
+            "description": "Property value."
+          }
+        }
+      }
+    }
+  }
+}

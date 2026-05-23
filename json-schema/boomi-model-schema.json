@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Model",
+  "title": "Model",
+  "type": "object",
+  "description": "A data model defining the schema and matching rules for a master data domain.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the model."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the model."
+    },
+    "version": {
+      "type": "integer",
+      "description": "Current version number of the model."
+    },
+    "publishedVersion": {
+      "type": "integer",
+      "description": "Version number of the last published model."
+    },
+    "status": {
+      "type": "string",
+      "description": "Publication status of the model.",
+      "enum": [
+        "DRAFT",
+        "PUBLISHED"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "description": "Field definitions for this model's schema.",
+      "items": {
+        "$ref": "#/components/schemas/ModelField"
+      }
+    }
+  }
+}

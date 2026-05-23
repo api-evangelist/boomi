@@ -1,0 +1,17 @@
+name: Boomi Domain Vocabulary
+provider: Boomi
+providerId: boomi
+description: Tag-derived vocabulary for the Boomi API surface; sourced from openapi/ tags.
+terms:
+- term: Atoms
+  description: Manage Boomi Atoms — the lightweight runtime engines that execute integration processes.
+- term: Components
+  description: Manage packaged components and integration pack attachments.
+- term: Deployments
+  description: Manage deployed packages and the deployment of integration components to environments.
+- term: Environments
+  description: Manage runtime environments where Boomi Atoms and Molecules are deployed to run integration processes.
+- term: Execution
+  description: Execute integration processes and retrieve execution statistics and job results.
+- term: Processes
+  description: Manage integration processes (recipes) within the Boomi platform.

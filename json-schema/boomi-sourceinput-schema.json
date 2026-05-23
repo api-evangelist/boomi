@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SourceInput",
+  "title": "SourceInput",
+  "type": "object",
+  "description": "Input for creating a data source.",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name for the source."
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the source system."
+    }
+  }
+}

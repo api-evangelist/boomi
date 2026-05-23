@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PublishResponse",
+  "title": "PublishResponse",
+  "type": "object",
+  "description": "Response returned after successfully publishing messages.",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Status of the publish operation.",
+      "example": "success"
+    },
+    "messageIds": {
+      "type": "string",
+      "description": "Comma-separated list of message IDs assigned to the published messages."
+    }
+  }
+}

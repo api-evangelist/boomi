@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployedPackage",
+  "title": "DeployedPackage",
+  "type": "object",
+  "description": "A packaged component deployed to a specific runtime environment.",
+  "properties": {
+    "deploymentId": {
+      "type": "string",
+      "description": "Unique identifier of the deployment."
+    },
+    "environmentId": {
+      "type": "string",
+      "description": "ID of the environment to which the package is deployed."
+    },
+    "packageId": {
+      "type": "string",
+      "description": "ID of the deployed packaged component."
+    },
+    "componentId": {
+      "type": "string",
+      "description": "ID of the underlying component."
+    },
+    "componentType": {
+      "type": "string",
+      "description": "Type of the deployed component."
+    },
+    "deployedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the package was deployed."
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether this deployment is currently active."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiMessageRequest",
+  "title": "MultiMessageRequest",
+  "type": "object",
+  "description": "Request body for publishing multiple messages in the predefined JSON format. Each message contains a payload and optional properties.",
+  "required": [
+    "messages"
+  ],
+  "properties": {
+    "messages": {
+      "type": "array",
+      "description": "Array of messages to publish to the topic.",
+      "items": {
+        "$ref": "#/components/schemas/MessageItem"
+      }
+    }
+  }
+}

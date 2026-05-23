@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryRequest",
+  "title": "QueryRequest",
+  "type": "object",
+  "description": "Request body for querying platform objects with filter criteria.",
+  "properties": {
+    "QueryFilter": {
+      "type": "object",
+      "description": "Filter expression for narrowing query results.",
+      "properties": {
+        "expression": {
+          "type": "object",
+          "description": "Filter expression with operator and arguments.",
+          "properties": {
+            "operator": {
+              "type": "string",
+              "description": "Logical operator for combining filter criteria.",
+              "enum": [
+                "AND",
+                "OR"
+              ]
+            },
+            "nestedExpression": {
+              "type": "array",
+              "description": "Nested filter expressions.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "argument": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Filter values."
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description": "Comparison operator.",
+                    "enum": [
+                      "EQUALS",
+                      "NOT_EQUALS",
+                      "LIKE",
+                      "STARTS_WITH"
+                    ]
+                  },
+                  "property": {
+                    "type": "string",
+                    "description": "Object property to filter on."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

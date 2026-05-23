@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AtomInput",
+  "title": "AtomInput",
+  "type": "object",
+  "description": "Input for updating an Atom.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated display name for the Atom."
+    },
+    "purgeHistoryDays": {
+      "type": "integer",
+      "description": "Number of days to retain execution history before purging."
+    }
+  }
+}
