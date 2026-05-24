@@ -953,6 +953,8 @@ common:
   type: JSONSchema
 - url: json-schema/boomi-ai-agent-schema.json
   type: JSONSchema
+- type: LLMsTxt
+  url: https://developer.boomi.com/llms.txt
 created: '2025-01-08'
 modified: '2026-05-19'
 position: Consuming
