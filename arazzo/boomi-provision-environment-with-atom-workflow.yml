@@ -1,0 +1,92 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Provision Environment With Atom
+  summary: Create a runtime environment and confirm an online Atom is available for it.
+  description: >-
+    Stands up a new Boomi runtime environment and verifies runtime capacity. The
+    workflow creates the environment, queries the Atom fleet for a matching Atom
+    by name, and reads that Atom's detail to confirm it is online before any
+    processes are deployed. Every step spells out its request inline so the
+    provisioning flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-environment-with-atom
+  summary: Create an environment, locate an Atom by name, and confirm it is online.
+  description: >-
+    Creates a runtime environment, queries the Atom fleet for an Atom matching
+    the supplied name, and reads its detail to confirm online status so the
+    environment is ready to receive deployments.
+  inputs:
+    type: object
+    required:
+    - environmentName
+    - classification
+    - atomName
+    properties:
+      environmentName:
+        type: string
+        description: Display name for the new runtime environment.
+      classification:
+        type: string
+        description: Whether this is a PRODUCTION or TEST environment.
+      atomName:
+        type: string
+        description: The display name of the Atom to associate with the environment.
+  steps:
+  - stepId: createEnvironment
+    description: >-
+      Create the runtime environment with the supplied name and classification.
+    operationId: createEnvironment
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.environmentName
+        classification: $inputs.classification
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/id
+  - stepId: findAtom
+    description: >-
+      Query the Atom fleet for an Atom whose name matches the supplied value,
+      returning the first match.
+    operationId: queryAtoms
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: name
+              operator: EQUALS
+              argument:
+              - $inputs.atomName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedAtomId: $response.body#/result/0/id
+  - stepId: confirmAtomOnline
+    description: >-
+      Read the matched Atom to confirm it is online and ready before deploying
+      processes into the new environment.
+    operationId: getAtom
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findAtom.outputs.matchedAtomId
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/status == "ONLINE"
+    outputs:
+      atomId: $response.body#/id
+      atomStatus: $response.body#/status
+  outputs:
+    environmentId: $steps.createEnvironment.outputs.environmentId
+    atomId: $steps.confirmAtomOnline.outputs.atomId
+    atomStatus: $steps.confirmAtomOnline.outputs.atomStatus

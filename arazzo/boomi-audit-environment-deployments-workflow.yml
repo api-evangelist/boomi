@@ -1,0 +1,104 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Audit Environment Deployments
+  summary: Resolve an environment by name and inspect a deployed package within it.
+  description: >-
+    A deployment auditing flow. The workflow finds a runtime environment by name,
+    queries the deployed packages scoped to that environment, and reads the
+    detail of the first deployed package to confirm it is active. Every step
+    spells out its request inline so the audit can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: audit-environment-deployments
+  summary: Find an environment by name, list its deployed packages, and inspect one in detail.
+  description: >-
+    Queries for an environment by name, queries the deployed packages associated
+    with that environment id, and reads the first deployed package to verify it
+    is active.
+  inputs:
+    type: object
+    required:
+    - environmentName
+    properties:
+      environmentName:
+        type: string
+        description: The display name of the environment to audit.
+  steps:
+  - stepId: findEnvironment
+    description: >-
+      Query for a runtime environment whose name matches the supplied value,
+      returning the first match.
+    operationId: queryEnvironments
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: name
+              operator: EQUALS
+              argument:
+              - $inputs.environmentName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      environmentId: $response.body#/result/0/id
+  - stepId: listDeployments
+    description: >-
+      Query the deployed packages scoped to the resolved environment to see what
+      is currently deployed there.
+    operationId: queryDeployedPackages
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: environmentId
+              operator: EQUALS
+              argument:
+              - $steps.findEnvironment.outputs.environmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstDeploymentId: $response.body#/result/0/deploymentId
+    onSuccess:
+    - name: hasDeployments
+      type: goto
+      stepId: inspectDeployment
+      criteria:
+      - context: $response.body
+        condition: $.result.length > 0
+        type: jsonpath
+    - name: noDeployments
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.result.length == 0
+        type: jsonpath
+  - stepId: inspectDeployment
+    description: >-
+      Read the first deployed package in detail to confirm the component and
+      whether the deployment is active.
+    operationId: getDeployedPackage
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listDeployments.outputs.firstDeploymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deploymentId
+      componentId: $response.body#/componentId
+      active: $response.body#/active
+  outputs:
+    environmentId: $steps.findEnvironment.outputs.environmentId
+    deploymentId: $steps.inspectDeployment.outputs.deploymentId
+    active: $steps.inspectDeployment.outputs.active

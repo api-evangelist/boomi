@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Deploy a Process
+  summary: Find an integration process, package it, and deploy the package to an environment.
+  description: >-
+    The core Boomi promotion path. The workflow queries the process catalog for
+    a process by name, reads its full detail to capture the component id and
+    current version, creates a packaged component from that version, and then
+    deploys the package into the target environment. Every step spells out its
+    request inline so the deployment flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-process
+  summary: Query a process by name, package its current version, and deploy it to an environment.
+  description: >-
+    Resolves a process by name, reads its detail to obtain the component id and
+    current version, packages that version, and deploys the resulting package to
+    the supplied environment.
+  inputs:
+    type: object
+    required:
+    - processName
+    - environmentId
+    properties:
+      processName:
+        type: string
+        description: The display name of the integration process to deploy.
+      environmentId:
+        type: string
+        description: The ID of the target runtime environment to deploy into.
+      packageVersion:
+        type: string
+        description: Optional version label to assign to the new package.
+      notes:
+        type: string
+        description: Optional deployment notes recorded with the deployed package.
+  steps:
+  - stepId: findProcess
+    description: >-
+      Query the process catalog for a process whose name matches the supplied
+      value, returning the first matching component.
+    operationId: queryProcesses
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: name
+              operator: EQUALS
+              argument:
+              - $inputs.processName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedProcessId: $response.body#/result/0/id
+  - stepId: getProcessDetail
+    description: >-
+      Read the matched process to capture its component id and current version
+      before packaging.
+    operationId: getProcess
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findProcess.outputs.matchedProcessId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processId: $response.body#/id
+      currentVersion: $response.body#/currentVersion
+  - stepId: packageProcess
+    description: >-
+      Create a packaged component from the process component at its current
+      version so it becomes deployable.
+    operationId: createPackagedComponent
+    requestBody:
+      contentType: application/json
+      payload:
+        componentId: $steps.getProcessDetail.outputs.processId
+        componentVersion: $steps.getProcessDetail.outputs.currentVersion
+        packageVersion: $inputs.packageVersion
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      packageId: $response.body#/packageId
+  - stepId: deployPackage
+    description: >-
+      Deploy the newly created package into the target environment, producing an
+      active deployed package record.
+    operationId: createDeployedPackage
+    requestBody:
+      contentType: application/json
+      payload:
+        environmentId: $inputs.environmentId
+        packageId: $steps.packageProcess.outputs.packageId
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deploymentId
+      active: $response.body#/active
+  outputs:
+    processId: $steps.getProcessDetail.outputs.processId
+    packageId: $steps.packageProcess.outputs.packageId
+    deploymentId: $steps.deployPackage.outputs.deploymentId

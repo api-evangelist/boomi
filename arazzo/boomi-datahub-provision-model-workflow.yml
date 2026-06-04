@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Boomi DataHub Provision a Model
+  summary: Create a repository, define a data model within it, and publish the model.
+  description: >-
+    The end-to-end setup path for Boomi DataHub master data management. The
+    workflow creates a new repository, defines a data model with its field schema
+    inside that repository, and publishes the model so it becomes available for
+    domain deployment and data ingestion. Every step spells out its request
+    inline so the provisioning flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataHubApi
+  url: ../openapi/boomi-datahub-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: datahub-provision-model
+  summary: Create a repository, create a model inside it, and publish that model.
+  description: >-
+    Creates a DataHub repository, creates a data model with the supplied field
+    schema in that repository, and publishes the model to make it available for
+    use.
+  inputs:
+    type: object
+    required:
+    - repositoryName
+    - modelName
+    - fields
+    properties:
+      repositoryName:
+        type: string
+        description: Display name for the new DataHub repository.
+      repositoryDescription:
+        type: string
+        description: Optional description of the repository's purpose.
+      modelName:
+        type: string
+        description: Display name for the new data model.
+      fields:
+        type: array
+        description: Field definitions for the model schema.
+  steps:
+  - stepId: createRepository
+    description: >-
+      Create a new DataHub repository to hold the model.
+    operationId: createRepository
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.repositoryName
+        description: $inputs.repositoryDescription
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      repositoryId: $response.body#/id
+  - stepId: createModel
+    description: >-
+      Create a data model with the supplied field schema inside the new
+      repository.
+    operationId: createModel
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.createRepository.outputs.repositoryId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.modelName
+        fields: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelId: $response.body#/id
+  - stepId: publishModel
+    description: >-
+      Publish the new model so it becomes available for domain deployment and
+      data ingestion.
+    operationId: publishModel
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.createRepository.outputs.repositoryId
+    - name: modelId
+      in: path
+      value: $steps.createModel.outputs.modelId
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/status == "PUBLISHED"
+    outputs:
+      publishedVersion: $response.body#/publishedVersion
+      status: $response.body#/status
+  outputs:
+    repositoryId: $steps.createRepository.outputs.repositoryId
+    modelId: $steps.createModel.outputs.modelId
+    publishedVersion: $steps.publishModel.outputs.publishedVersion

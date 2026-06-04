@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Boomi DataHub Review Data Quality
+  summary: Pick a repository, list golden records for a domain, and review quarantined records.
+  description: >-
+    A master-data health check. The workflow lists the available DataHub
+    repositories to select one, lists the golden records for a chosen domain
+    (universe) to sample the authoritative master data, and then lists the
+    quarantine entries for that same domain to surface records blocked by data
+    quality issues. Every step spells out its request inline so the review can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataHubApi
+  url: ../openapi/boomi-datahub-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: datahub-review-data-quality
+  summary: Select a repository, sample its golden records for a domain, and review quarantined records.
+  description: >-
+    Lists DataHub repositories to resolve the first available repository, lists
+    the golden records for the supplied domain, and lists the quarantine entries
+    for that domain to review data quality.
+  inputs:
+    type: object
+    required:
+    - universeId
+    properties:
+      universeId:
+        type: string
+        description: The ID of the master data domain (universe) to review.
+      pageSize:
+        type: integer
+        description: Number of golden records to sample per page.
+  steps:
+  - stepId: selectRepository
+    description: >-
+      List the available DataHub repositories and select the first one for
+      review.
+    operationId: listRepositories
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      repositoryId: $response.body#/repositories/0/id
+  - stepId: sampleGoldenRecords
+    description: >-
+      List the golden records for the chosen domain to sample the authoritative
+      master data.
+    operationId: listGoldenRecords
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.selectRepository.outputs.repositoryId
+    - name: universeId
+      in: path
+      value: $inputs.universeId
+    - name: pageSize
+      in: query
+      value: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      records: $response.body#/records
+      nextPageToken: $response.body#/nextPageToken
+  - stepId: reviewQuarantine
+    description: >-
+      List the quarantine entries for the same domain to surface records blocked
+      by data quality or matching issues.
+    operationId: listQuarantineEntries
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.selectRepository.outputs.repositoryId
+    - name: universeId
+      in: path
+      value: $inputs.universeId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      quarantinedRecords: $response.body#/records
+  outputs:
+    repositoryId: $steps.selectRepository.outputs.repositoryId
+    goldenRecords: $steps.sampleGoldenRecords.outputs.records
+    quarantinedRecords: $steps.reviewQuarantine.outputs.quarantinedRecords

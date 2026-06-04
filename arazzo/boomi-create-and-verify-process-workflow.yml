@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Create and Verify a Process
+  summary: Create a new integration process, read it back, and apply an initial update.
+  description: >-
+    Bootstraps a new Boomi integration process and confirms it is stored
+    correctly. The workflow creates a process in a target folder, reads it back
+    to confirm its id and folder placement, and applies an initial update to set
+    its name. Every step spells out its request inline so the creation flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-verify-process
+  summary: Create a process, read it back to confirm placement, and apply an initial update.
+  description: >-
+    Creates an integration process in the supplied folder, reads it back to
+    confirm its id and folder, and updates it to apply a finalized name.
+  inputs:
+    type: object
+    required:
+    - name
+    - folderId
+    properties:
+      name:
+        type: string
+        description: Display name for the new process.
+      folderId:
+        type: string
+        description: ID of the folder to place the process in.
+      finalName:
+        type: string
+        description: The finalized name to apply in the verification update.
+  steps:
+  - stepId: createProcess
+    description: >-
+      Create the new integration process in the supplied folder.
+    operationId: createProcess
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        folderId: $inputs.folderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processId: $response.body#/id
+  - stepId: verifyProcess
+    description: >-
+      Read the new process back to confirm its id and folder placement.
+    operationId: getProcess
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createProcess.outputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processId: $response.body#/id
+      folderId: $response.body#/folderId
+  - stepId: applyInitialUpdate
+    description: >-
+      Apply an initial update to set the finalized name on the verified process.
+    operationId: updateProcess
+    parameters:
+    - name: id
+      in: path
+      value: $steps.verifyProcess.outputs.processId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.finalName
+        folderId: $steps.verifyProcess.outputs.folderId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processId: $response.body#/id
+      name: $response.body#/name
+  outputs:
+    processId: $steps.applyInitialUpdate.outputs.processId
+    name: $steps.applyInitialUpdate.outputs.name

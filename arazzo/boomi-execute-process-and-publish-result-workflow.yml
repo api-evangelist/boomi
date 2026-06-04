@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Execute a Process and Publish the Result
+  summary: Run a process, read its execution record, and publish the outcome to an Event Streams topic.
+  description: >-
+    Bridges integration execution with event-driven notification. The workflow
+    triggers a process run on an Atom, queries the execution records to capture
+    the run status, and publishes a message describing the outcome to a Boomi
+    Event Streams topic so downstream consumers are notified. Because the two
+    APIs use different authentication, each step inlines its own credentials.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+- name: eventStreamsApi
+  url: ../openapi/boomi-event-streams-openapi.yml
+  type: openapi
+workflows:
+- workflowId: execute-process-and-publish-result
+  summary: Execute a process, read its execution record, and publish the outcome to an event topic.
+  description: >-
+    Submits an execution request for a process on an Atom, queries the execution
+    records to capture the latest run's status and message, and publishes that
+    outcome as a message to an Event Streams topic.
+  inputs:
+    type: object
+    required:
+    - processId
+    - atomId
+    properties:
+      processId:
+        type: string
+        description: The ID of the integration process to execute.
+      atomId:
+        type: string
+        description: The ID of the Atom on which to run the process.
+  steps:
+  - stepId: triggerExecution
+    description: >-
+      Submit an execution request to run the process on the chosen Atom.
+    operationId: executeProcess
+    requestBody:
+      contentType: application/json
+      payload:
+        atomId: $inputs.atomId
+        processId: $inputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/requestId
+  - stepId: readExecutionRecord
+    description: >-
+      Query the execution records for the process to capture the latest run's
+      status and message.
+    operationId: queryExecutionRecords
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: processId
+              operator: EQUALS
+              argument:
+              - $inputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      executionId: $response.body#/result/0/executionId
+      runStatus: $response.body#/result/0/status
+      message: $response.body#/result/0/message
+  - stepId: publishOutcome
+    description: >-
+      Publish a message describing the execution outcome to the Event Streams
+      topic so downstream consumers are notified.
+    operationId: publishMessages
+    requestBody:
+      contentType: application/json
+      payload:
+        messages:
+        - payload: $steps.readExecutionRecord.outputs.message
+          properties:
+            executionId: $steps.readExecutionRecord.outputs.executionId
+            status: $steps.readExecutionRecord.outputs.runStatus
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      publishStatus: $response.body#/status
+      messageIds: $response.body#/messageIds
+  outputs:
+    executionId: $steps.readExecutionRecord.outputs.executionId
+    runStatus: $steps.readExecutionRecord.outputs.runStatus
+    messageIds: $steps.publishOutcome.outputs.messageIds

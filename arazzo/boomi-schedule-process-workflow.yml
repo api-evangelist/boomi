@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Schedule a Process
+  summary: Find a process by name, read its current schedule, and update it.
+  description: >-
+    Configures unattended execution for a Boomi process. The workflow resolves a
+    process by name, reads its existing schedule configuration, and then writes a
+    new schedule that binds the process to a chosen Atom. Every step spells out
+    its request inline so the scheduling flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: schedule-process
+  summary: Resolve a process by name, read its schedule, and apply an updated schedule.
+  description: >-
+    Queries for a process by name, reads its current schedule configuration, and
+    updates the schedule to run on the supplied Atom with the supplied schedule
+    parameters.
+  inputs:
+    type: object
+    required:
+    - processName
+    - atomId
+    - schedule
+    properties:
+      processName:
+        type: string
+        description: The display name of the process to schedule.
+      atomId:
+        type: string
+        description: The ID of the Atom the schedule should run on.
+      schedule:
+        type: object
+        description: Scheduling parameters including frequency and timing.
+  steps:
+  - stepId: findProcess
+    description: >-
+      Query for a process whose name matches the supplied value, returning the
+      first match.
+    operationId: queryProcesses
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: name
+              operator: EQUALS
+              argument:
+              - $inputs.processName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedProcessId: $response.body#/result/0/id
+  - stepId: readSchedule
+    description: >-
+      Read the current schedule configuration for the matched process before
+      changing it.
+    operationId: getProcessSchedules
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findProcess.outputs.matchedProcessId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      scheduleId: $response.body#/id
+  - stepId: applySchedule
+    description: >-
+      Update the process schedule to run on the supplied Atom with the supplied
+      schedule parameters.
+    operationId: updateProcessSchedules
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findProcess.outputs.matchedProcessId
+    requestBody:
+      contentType: application/json
+      payload:
+        atomId: $inputs.atomId
+        processId: $steps.findProcess.outputs.matchedProcessId
+        schedule: $inputs.schedule
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      scheduleId: $response.body#/id
+      atomId: $response.body#/atomId
+  outputs:
+    processId: $steps.findProcess.outputs.matchedProcessId
+    scheduleId: $steps.applySchedule.outputs.scheduleId

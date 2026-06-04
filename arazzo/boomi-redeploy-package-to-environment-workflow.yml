@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Redeploy a Package to a New Environment
+  summary: Take an existing deployment's package and deploy it to a freshly created environment.
+  description: >-
+    A promotion-across-environments flow. The workflow queries the deployed
+    packages of a source environment to discover a package that is already in
+    use, creates a new target environment, and deploys that same package into the
+    new environment. Every step spells out its request inline so the promotion
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: redeploy-package-to-environment
+  summary: Discover a package from a source environment and deploy it into a new environment.
+  description: >-
+    Queries the deployed packages of the source environment, creates a new
+    target environment, and deploys the discovered package into the new
+    environment to promote it.
+  inputs:
+    type: object
+    required:
+    - sourceEnvironmentId
+    - targetEnvironmentName
+    - targetClassification
+    properties:
+      sourceEnvironmentId:
+        type: string
+        description: The ID of the environment whose deployed package is being promoted.
+      targetEnvironmentName:
+        type: string
+        description: Display name for the new target environment.
+      targetClassification:
+        type: string
+        description: Whether the new environment is PRODUCTION or TEST.
+      notes:
+        type: string
+        description: Optional deployment notes recorded with the new deployment.
+  steps:
+  - stepId: findSourcePackage
+    description: >-
+      Query the deployed packages of the source environment to discover a
+      package id to promote.
+    operationId: queryDeployedPackages
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: environmentId
+              operator: EQUALS
+              argument:
+              - $inputs.sourceEnvironmentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      packageId: $response.body#/result/0/packageId
+  - stepId: createTargetEnvironment
+    description: >-
+      Create the new target environment that the package will be promoted into.
+    operationId: createEnvironment
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.targetEnvironmentName
+        classification: $inputs.targetClassification
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      targetEnvironmentId: $response.body#/id
+  - stepId: deployToTarget
+    description: >-
+      Deploy the discovered package into the newly created target environment.
+    operationId: createDeployedPackage
+    requestBody:
+      contentType: application/json
+      payload:
+        environmentId: $steps.createTargetEnvironment.outputs.targetEnvironmentId
+        packageId: $steps.findSourcePackage.outputs.packageId
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentId: $response.body#/deploymentId
+      active: $response.body#/active
+  outputs:
+    targetEnvironmentId: $steps.createTargetEnvironment.outputs.targetEnvironmentId
+    packageId: $steps.findSourcePackage.outputs.packageId
+    deploymentId: $steps.deployToTarget.outputs.deploymentId

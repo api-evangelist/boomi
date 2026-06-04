@@ -1,0 +1,84 @@
+arazzo: 1.0.1
+info:
+  title: Boomi DataHub Onboard a Source
+  summary: Confirm a repository exists, create a contributing source, and list sources to verify.
+  description: >-
+    Onboards a new contributing system to a Boomi DataHub repository. The
+    workflow reads the target repository to confirm it exists, creates a new data
+    source within it, and lists the repository's sources to verify the new source
+    is registered. Every step spells out its request inline so the onboarding can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataHubApi
+  url: ../openapi/boomi-datahub-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: datahub-onboard-source
+  summary: Verify a repository, create a source within it, and list sources to confirm registration.
+  description: >-
+    Reads the target repository to confirm it exists, creates a data source in
+    that repository, and lists the repository's sources to verify the new source
+    is present.
+  inputs:
+    type: object
+    required:
+    - repositoryId
+    - sourceName
+    properties:
+      repositoryId:
+        type: string
+        description: The ID of the repository to onboard the source into.
+      sourceName:
+        type: string
+        description: Display name for the new data source.
+      sourceDescription:
+        type: string
+        description: Optional description of the source system.
+  steps:
+  - stepId: confirmRepository
+    description: >-
+      Read the target repository to confirm it exists before adding a source.
+    operationId: getRepository
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $inputs.repositoryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      repositoryId: $response.body#/id
+  - stepId: createSource
+    description: >-
+      Create a new data source within the repository representing the
+      contributing system.
+    operationId: createSource
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.confirmRepository.outputs.repositoryId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.sourceName
+        description: $inputs.sourceDescription
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sourceId: $response.body#/id
+  - stepId: verifySources
+    description: >-
+      List the repository's sources to verify the new source is registered.
+    operationId: listSources
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $steps.confirmRepository.outputs.repositoryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      sources: $response.body#/sources
+  outputs:
+    repositoryId: $steps.confirmRepository.outputs.repositoryId
+    sourceId: $steps.createSource.outputs.sourceId
+    sources: $steps.verifySources.outputs.sources

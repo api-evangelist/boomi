@@ -1,0 +1,94 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Decommission a Process
+  summary: Find a process by name, confirm it exists, and delete it from the platform.
+  description: >-
+    A safe teardown flow for retiring an integration process. The workflow
+    queries the process catalog for a process by name, reads its detail to
+    confirm the resolved id and capture identifying metadata, and then deletes
+    the process from the platform. Every step spells out its request inline so
+    the decommission can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: decommission-process
+  summary: Resolve a process by name, confirm its detail, and delete it.
+  description: >-
+    Queries for a process by name, reads its detail to confirm the resolved id,
+    and deletes the process from the Boomi platform.
+  inputs:
+    type: object
+    required:
+    - processName
+    properties:
+      processName:
+        type: string
+        description: The display name of the process to decommission.
+  steps:
+  - stepId: findProcess
+    description: >-
+      Query for a process whose name matches the supplied value, returning the
+      first match.
+    operationId: queryProcesses
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: name
+              operator: EQUALS
+              argument:
+              - $inputs.processName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      matchedProcessId: $response.body#/result/0/id
+    onSuccess:
+    - name: found
+      type: goto
+      stepId: confirmProcess
+      criteria:
+      - context: $response.body
+        condition: $.result.length > 0
+        type: jsonpath
+    - name: notFound
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.result.length == 0
+        type: jsonpath
+  - stepId: confirmProcess
+    description: >-
+      Read the matched process to confirm the resolved id and capture
+      identifying metadata before deleting.
+    operationId: getProcess
+    parameters:
+    - name: id
+      in: path
+      value: $steps.findProcess.outputs.matchedProcessId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      processId: $response.body#/id
+      processName: $response.body#/name
+  - stepId: deleteProcess
+    description: >-
+      Permanently delete the confirmed process from the Boomi platform.
+    operationId: deleteProcess
+    parameters:
+    - name: id
+      in: path
+      value: $steps.confirmProcess.outputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deletedProcessId: $steps.confirmProcess.outputs.processId
+  outputs:
+    deletedProcessId: $steps.deleteProcess.outputs.deletedProcessId
+    processName: $steps.confirmProcess.outputs.processName

@@ -249,6 +249,51 @@ kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/boomi-audit-environment-deployments-workflow.yml
+    name: Boomi Audit Environment Deployments
+    summary: Resolve an environment by name and inspect a deployed package within it.
+  - url: arazzo/boomi-create-and-verify-process-workflow.yml
+    name: Boomi Create and Verify a Process
+    summary: Create a new integration process, read it back, and apply an initial update.
+  - url: arazzo/boomi-datahub-onboard-source-workflow.yml
+    name: Boomi DataHub Onboard a Source
+    summary: Confirm a repository exists, create a contributing source, and list sources to verify.
+  - url: arazzo/boomi-datahub-provision-model-workflow.yml
+    name: Boomi DataHub Provision a Model
+    summary: Create a repository, define a data model within it, and publish the model.
+  - url: arazzo/boomi-datahub-publish-draft-model-workflow.yml
+    name: Boomi DataHub Publish a Draft Model
+    summary: List models in a repository, read a draft model, and publish it if still in draft.
+  - url: arazzo/boomi-datahub-review-data-quality-workflow.yml
+    name: Boomi DataHub Review Data Quality
+    summary: Pick a repository, list golden records for a domain, and review quarantined records.
+  - url: arazzo/boomi-decommission-process-workflow.yml
+    name: Boomi Decommission a Process
+    summary: Find a process by name, confirm it exists, and delete it from the platform.
+  - url: arazzo/boomi-deploy-process-workflow.yml
+    name: Boomi Deploy a Process
+    summary: Find an integration process, package it, and deploy the package to an environment.
+  - url: arazzo/boomi-execute-and-monitor-process-workflow.yml
+    name: Boomi Execute and Monitor a Process
+    summary: Trigger a process run on an Atom and poll execution records until it finishes.
+  - url: arazzo/boomi-execute-process-and-publish-result-workflow.yml
+    name: Boomi Execute a Process and Publish the Result
+    summary: Run a process, read its execution record, and publish the outcome to an Event Streams topic.
+  - url: arazzo/boomi-package-and-inspect-component-workflow.yml
+    name: Boomi Package and Inspect a Component
+    summary: Create a packaged component from a component version and read it back.
+  - url: arazzo/boomi-provision-environment-with-atom-workflow.yml
+    name: Boomi Provision Environment With Atom
+    summary: Create a runtime environment and confirm an online Atom is available for it.
+  - url: arazzo/boomi-redeploy-package-to-environment-workflow.yml
+    name: Boomi Redeploy a Package to a New Environment
+    summary: Take an existing deployment's package and deploy it to a freshly created environment.
+  - url: arazzo/boomi-schedule-process-workflow.yml
+    name: Boomi Schedule a Process
+    summary: Find a process by name, read its current schedule, and update it.
 - url: https://www.linkedin.com/company/boomi-inc/
   name: LinkedIn
   type: LinkedIn

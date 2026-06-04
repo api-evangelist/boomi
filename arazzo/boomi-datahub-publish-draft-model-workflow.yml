@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Boomi DataHub Publish a Draft Model
+  summary: List models in a repository, read a draft model, and publish it if still in draft.
+  description: >-
+    Promotes a draft DataHub model to published. The workflow lists the models in
+    a repository to locate one, reads that model to inspect its publication
+    status, and branches: when the model is still in draft it publishes it, and
+    when it is already published it ends. Every step spells out its request inline
+    so the publishing flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: dataHubApi
+  url: ../openapi/boomi-datahub-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: datahub-publish-draft-model
+  summary: Locate a model in a repository, inspect its status, and publish it when it is a draft.
+  description: >-
+    Lists the models in the repository to resolve the first model id, reads that
+    model to inspect its status, and publishes it only when it is still in the
+    DRAFT state.
+  inputs:
+    type: object
+    required:
+    - repositoryId
+    properties:
+      repositoryId:
+        type: string
+        description: The ID of the repository whose model should be published.
+  steps:
+  - stepId: listModels
+    description: >-
+      List the models defined within the repository and select the first one.
+    operationId: listModels
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $inputs.repositoryId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelId: $response.body#/models/0/id
+  - stepId: readModel
+    description: >-
+      Read the selected model to inspect its current publication status.
+    operationId: getModel
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $inputs.repositoryId
+    - name: modelId
+      in: path
+      value: $steps.listModels.outputs.modelId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      modelId: $response.body#/id
+      status: $response.body#/status
+    onSuccess:
+    - name: isDraft
+      type: goto
+      stepId: publishModel
+      criteria:
+      - context: $response.body
+        condition: $.status == "DRAFT"
+        type: jsonpath
+    - name: alreadyPublished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "PUBLISHED"
+        type: jsonpath
+  - stepId: publishModel
+    description: >-
+      Publish the draft model so it becomes available for domain deployment and
+      data ingestion.
+    operationId: publishModel
+    parameters:
+    - name: repositoryId
+      in: path
+      value: $inputs.repositoryId
+    - name: modelId
+      in: path
+      value: $steps.readModel.outputs.modelId
+    successCriteria:
+    - condition: $statusCode == 200
+    - condition: $response.body#/status == "PUBLISHED"
+    outputs:
+      publishedVersion: $response.body#/publishedVersion
+      status: $response.body#/status
+  outputs:
+    modelId: $steps.readModel.outputs.modelId
+    publishedVersion: $steps.publishModel.outputs.publishedVersion

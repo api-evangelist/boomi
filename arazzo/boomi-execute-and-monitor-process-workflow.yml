@@ -1,0 +1,91 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Execute and Monitor a Process
+  summary: Trigger a process run on an Atom and poll execution records until it finishes.
+  description: >-
+    The standard run-and-watch pattern for Boomi integration jobs. The workflow
+    submits an execution request for a process on a chosen Atom, then queries the
+    execution records for that process and branches on the final status: when the
+    run is still in process it loops back to poll again, and when it reaches a
+    terminal state it ends. Every step spells out its request inline so the run
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: execute-and-monitor-process
+  summary: Execute a process on an Atom and poll execution records until it reaches a terminal status.
+  description: >-
+    Submits an execution request for the supplied process and Atom, then queries
+    the execution records and branches on status to either re-poll while the job
+    is in process or finish once it completes.
+  inputs:
+    type: object
+    required:
+    - processId
+    - atomId
+    properties:
+      processId:
+        type: string
+        description: The ID of the integration process to execute.
+      atomId:
+        type: string
+        description: The ID of the Atom on which to run the process.
+  steps:
+  - stepId: triggerExecution
+    description: >-
+      Submit an execution request to run the process on the chosen Atom and
+      capture the returned tracking request id.
+    operationId: executeProcess
+    requestBody:
+      contentType: application/json
+      payload:
+        atomId: $inputs.atomId
+        processId: $inputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      requestId: $response.body#/requestId
+      status: $response.body#/status
+  - stepId: pollExecutionRecords
+    description: >-
+      Query the execution records for this process to find the most recent run
+      and inspect its status.
+    operationId: queryExecutionRecords
+    requestBody:
+      contentType: application/json
+      payload:
+        QueryFilter:
+          expression:
+            operator: AND
+            nestedExpression:
+            - property: processId
+              operator: EQUALS
+              argument:
+              - $inputs.processId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      executionId: $response.body#/result/0/executionId
+      runStatus: $response.body#/result/0/status
+      message: $response.body#/result/0/message
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollExecutionRecords
+      criteria:
+      - context: $response.body
+        condition: $.result[0].status == "INPROCESS"
+        type: jsonpath
+    - name: finished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.result[0].status != "INPROCESS"
+        type: jsonpath
+  outputs:
+    requestId: $steps.triggerExecution.outputs.requestId
+    executionId: $steps.pollExecutionRecords.outputs.executionId
+    runStatus: $steps.pollExecutionRecords.outputs.runStatus

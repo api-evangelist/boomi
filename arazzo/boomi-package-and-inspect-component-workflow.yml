@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Boomi Package and Inspect a Component
+  summary: Create a packaged component from a component version and read it back.
+  description: >-
+    Builds a deployable package from any Boomi component and confirms the result.
+    The workflow creates a packaged component for the supplied component id and
+    version, then reads the packaged component back to verify its recorded
+    version and type. Every step spells out its request inline so the packaging
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/boomi-platform-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: package-and-inspect-component
+  summary: Package a component version and read the packaged component back for confirmation.
+  description: >-
+    Creates a packaged component from the supplied component id and version, then
+    retrieves the packaged component by its package id to confirm the recorded
+    component version and type.
+  inputs:
+    type: object
+    required:
+    - componentId
+    - componentVersion
+    properties:
+      componentId:
+        type: string
+        description: The ID of the component to package.
+      componentVersion:
+        type: string
+        description: The version of the component to include in the package.
+      packageVersion:
+        type: string
+        description: Optional version label for the new package.
+      notes:
+        type: string
+        description: Optional notes about this package version.
+  steps:
+  - stepId: createPackage
+    description: >-
+      Create a packaged component from the supplied component id and version.
+    operationId: createPackagedComponent
+    requestBody:
+      contentType: application/json
+      payload:
+        componentId: $inputs.componentId
+        componentVersion: $inputs.componentVersion
+        packageVersion: $inputs.packageVersion
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      packageId: $response.body#/packageId
+  - stepId: readPackage
+    description: >-
+      Read the packaged component back by its package id to confirm the recorded
+      component version and type.
+    operationId: getPackagedComponent
+    parameters:
+    - name: id
+      in: path
+      value: $steps.createPackage.outputs.packageId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      packageId: $response.body#/packageId
+      componentType: $response.body#/componentType
+      componentVersion: $response.body#/componentVersion
+  outputs:
+    packageId: $steps.readPackage.outputs.packageId
+    componentType: $steps.readPackage.outputs.componentType
