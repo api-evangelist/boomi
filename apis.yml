@@ -8,19 +8,8 @@ apis:
   properties:
   - url: https://boomi.com/platform/api-management/
     type: Documentation
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-atoms.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-components.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-deployments.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-environments.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-execution.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-rest-processes.yaml
-  description: Boomi API Management supports the full lifecycle of APIs in any environment. Configure APIs and expose real-time
+  description: >-
+    Boomi API Management supports the full lifecycle of APIs in any environment. Configure APIs and expose real-time
     integrations effortlessly.
 - aid: boomi:platform-rest-api
   name: Boomi Platform REST API
@@ -44,10 +33,11 @@ apis:
     type: OpenAPI
   - url: json-schema/boomi-process-schema.json
     type: JSONSchema
-  description: The Boomi Platform REST API provides programmatic access to the Boomi Enterprise Platform functionality. It
-    allows for control of many objects associated with your account including account administration, cloud management, component
-    management, deployment, environment management, execution statistics, integration packs, process execution, and runtime
-    management.
+  description: >-
+    The Boomi Platform REST API provides programmatic access to the Boomi Enterprise Platform functionality. It allows
+    for control of many objects associated with your account including account administration, cloud management,
+    component management, deployment, environment management, execution statistics, integration packs, process
+    execution, and runtime management.
 - aid: boomi:platform-partner-api
   name: Boomi Platform Partner API
   tags:
@@ -62,9 +52,10 @@ apis:
     type: APIReference
   - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0
     type: OpenAPI
-  description: The Boomi Platform Partner API provides partners with programmatic access to the secondary accounts that they
-    manage. It builds upon the standard Boomi Enterprise Platform API with additional capabilities including account CREATE
-    and DELETE operations and account provisioning.
+  description: >-
+    The Boomi Platform Partner API provides partners with programmatic access to the secondary accounts that they
+    manage. It builds upon the standard Boomi Enterprise Platform API with additional capabilities including account
+    CREATE and DELETE operations and account provisioning.
 - aid: boomi:api-management-api
   name: Boomi API Management API
   tags:
@@ -72,46 +63,48 @@ apis:
   - GraphQL
   - REST
   - SOAP
-  humanURL: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+  humanURL: >-
+    https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
   properties:
-  - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340
     type: Documentation
-  - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868
     type: GettingStarted
-  - url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
     type: Authentication
-  description: The Boomi API Management API provides programmatic access to API Management service functionality through REST,
-    SOAP, and GraphQL implementations. It supports API objects and object-based operations, API actions, and audit log query
-    types. The API enforces a rate limit of 10 requests per second.
+  - url: graphql/boomi-graphql.md
+    type: GraphQL
+  description: >-
+    The Boomi API Management API provides programmatic access to API Management service functionality through REST,
+    SOAP, and GraphQL implementations. It supports API objects and object-based operations, API actions, and audit log
+    query types. The API enforces a rate limit of 10 requests per second.
 - aid: boomi:datahub-api
   name: Boomi DataHub API
   tags:
   - Data Hub
   - Master Data
   - REST
-  humanURL: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+  humanURL: >-
+    https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
   properties:
-  - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
     type: Documentation
-  - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83
     type: APIReference
-  - url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
+  - url: >-
+      https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b
     type: APIReference
   - url: openapi/boomi-datahub-api-openapi.yml
     type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/datahub-golden-records.yaml
-  - type: NaftikoCapability
-    url: capabilities/datahub-models.yaml
-  - type: NaftikoCapability
-    url: capabilities/datahub-quarantine.yaml
-  - type: NaftikoCapability
-    url: capabilities/datahub-repositories.yaml
-  - type: NaftikoCapability
-    url: capabilities/datahub-sources.yaml
-  description: The Boomi DataHub REST APIs enable programmatic access to the master data management system through the DataHub
-    Platform API and Repository API. The Platform API enables platform-level operations on master data domains, while the
-    Repository API supports data repository operations with JWT authentication.
+  description: >-
+    The Boomi DataHub REST APIs enable programmatic access to the master data management system through the DataHub
+    Platform API and Repository API. The Platform API enables platform-level operations on master data domains, while
+    the Repository API supports data repository operations with JWT authentication.
 - aid: boomi:event-streams-api
   name: Boomi Event Streams REST API
   tags:
@@ -127,11 +120,10 @@ apis:
     type: OpenAPI
   - url: asyncapi/boomi-event-streams-asyncapi.yml
     type: AsyncAPI
-  - type: NaftikoCapability
-    url: capabilities/event-streams-messages.yaml
-  description: The Boomi Event Streams REST API enables HTTP-based applications to produce messages to topics. It supports
-    multiple message modes including multiple messages in predefined JSON format and single messages in their original format
-    without transformation. The API accommodates messages up to 5MB and uses Bearer token authentication.
+  description: >-
+    The Boomi Event Streams REST API enables HTTP-based applications to produce messages to topics. It supports
+    multiple message modes including multiple messages in predefined JSON format and single messages in their original
+    format without transformation. The API accommodates messages up to 5MB and uses Bearer token authentication.
 - aid: boomi:flow-api
   name: Boomi Flow API
   tags:
@@ -145,9 +137,10 @@ apis:
     type: Documentation
   - url: https://github.com/manywho/docs-api
     type: GitHubRepository
-  description: The Boomi Flow API provides REST endpoints for programmatic access to Boomi Flow functionality. Built on an
-    API-first architecture, many operations performed within Boomi Flow can be accessed through this API. The API supports
-    authorization using tenant-specific API keys.
+  description: >-
+    The Boomi Flow API provides REST endpoints for programmatic access to Boomi Flow functionality. Built on an
+    API-first architecture, many operations performed within Boomi Flow can be accessed through this API. The API
+    supports authorization using tenant-specific API keys.
 - aid: boomi:connector-deployment-api
   name: Boomi Connector Deployment API
   tags:
@@ -163,9 +156,10 @@ apis:
     type: GettingStarted
   - url: https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform
     type: GettingStarted
-  description: The Boomi Connector Deployment API provides programmatic access to deploy connectors created using the Boomi
-    Connector SDK. It enables integration with CI/CD pipelines for automated connector deployment to the Boomi Enterprise
-    Platform.
+  description: >-
+    The Boomi Connector Deployment API provides programmatic access to deploy connectors created using the Boomi
+    Connector SDK. It enables integration with CI/CD pipelines for automated connector deployment to the Boomi
+    Enterprise Platform.
 - aid: boomi:platform-soap-api
   name: Boomi Platform SOAP API
   tags:
@@ -178,9 +172,11 @@ apis:
     type: Documentation
   - url: https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API
     type: GettingStarted
-  description: The Boomi Platform SOAP API provides the same programmatic access to the Boomi Enterprise Platform as the REST
-    API but through a SOAP interface. The WSDL is available at api.boomi.com and the API uses WS-Security with UsernameToken
-    for authentication. It supports GET, QUERY, CREATE, UPDATE, EXECUTE, and DELETE operations on platform objects.
+  description: >-
+    The Boomi Platform SOAP API provides the same programmatic access to the Boomi Enterprise Platform as the REST API
+    but through a SOAP interface. The WSDL is available at api.boomi.com and the API uses WS-Security with
+    UsernameToken for authentication. It supports GET, QUERY, CREATE, UPDATE, EXECUTE, and DELETE operations on
+    platform objects.
 - aid: boomi:mft-api
   name: Boomi MFT API
   tags:
@@ -192,10 +188,11 @@ apis:
   properties:
   - url: https://developer.boomi.com/docs/APIs/MFT/overview
     type: Documentation
-  description: 'The Boomi Managed File Transfer (MFT) API provides two main types of APIs for interacting with MFT services:
-    REST APIs and SOAP APIs. REST APIs are designed around a resource-oriented model using standard HTTP methods, while SOAP
-    APIs offer a structured, protocol-driven alternative. The API covers AFT Management, AuditLog, Content Upload and Download,
-    Health Check, and File Sharing operations.'
+  description: >-
+    The Boomi Managed File Transfer (MFT) API provides two main types of APIs for interacting with MFT services: REST
+    APIs and SOAP APIs. REST APIs are designed around a resource-oriented model using standard HTTP methods, while
+    SOAP APIs offer a structured, protocol-driven alternative. The API covers AFT Management, AuditLog, Content Upload
+    and Download, Health Check, and File Sharing operations.
 - aid: boomi:api-gateway-graphql-api
   name: Boomi API Gateway GraphQL API
   tags:
@@ -210,10 +207,11 @@ apis:
     type: GettingStarted
   - url: https://developer.boomi.com/docs/APIs/GraphQL/GraphQL_api_explorer
     type: Documentation
-  description: The Boomi API Gateway GraphQL API enables developers to retrieve and modify data related to API Gateway management
-    through GraphQL. It supports queries and mutations across authentication sources, deployed APIs and applications, API
-    plans, environments and gateway configuration, metrics, and runtime operations. The API implements rate limiting and returns
-    HTTP 429 when exceeded.
+  description: >-
+    The Boomi API Gateway GraphQL API enables developers to retrieve and modify data related to API Gateway management
+    through GraphQL. It supports queries and mutations across authentication sources, deployed APIs and applications,
+    API plans, environments and gateway configuration, metrics, and runtime operations. The API implements rate
+    limiting and returns HTTP 429 when exceeded.
 - aid: boomi:agent-control-tower-graphql-api
   name: Boomi Agent Control Tower GraphQL API
   tags:
@@ -230,8 +228,9 @@ apis:
     type: Documentation
   - url: json-schema/boomi-ai-agent-schema.json
     type: JSONSchema
-  description: The Boomi Agent Control Tower GraphQL API provides programmatic access to AI agent management capabilities
-    within Boomi Agentstudio. It enables listing accounts and agents, including those from external providers, through Custom
+  description: >-
+    The Boomi Agent Control Tower GraphQL API provides programmatic access to AI agent management capabilities within
+    Boomi Agentstudio. It enables listing accounts and agents, including those from external providers, through Custom
     Account APIs. Authentication uses JWT tokens obtained via Basic Authentication against the Boomi platform.
 name: Boomi
 tags:
@@ -432,7 +431,8 @@ common:
   name: Careers | Boomi
   type: Careers
   description: 'null'
-- url: https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
+- url: >-
+    https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098
   name: Authentication in API Management | Boomi
   type: Authentication
   description: 'null'
@@ -1005,10 +1005,11 @@ modified: '2026-05-19'
 position: Consuming
 segments:
 - Workflows
-description: Boomi is a leading integration platform that allows organizations to connect applications, data, and people across
-  cloud and on-premise environments. By leveraging Boomi's intuitive visual interface and pre-built connectors, businesses
-  can quickly and easily create integrations that streamline processes, improve productivity, and enhance the overall customer
-  experience.
+description: >-
+  Boomi is a leading integration platform that allows organizations to connect applications, data, and people across
+  cloud and on-premise environments. By leveraging Boomi's intuitive visual interface and pre-built connectors,
+  businesses can quickly and easily create integrations that streamline processes, improve productivity, and enhance the
+  overall customer experience.
 integrations:
 - name: Technology Partners Collaborate on technical solutions
 - name: Snowflake Governed, secure, cloud-native data access
