@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "9069c207-d437-4613-9f8a-f8fef73b8f8e",
+    "name": "Boomi Event Streams REST API",
+    "description": "The Boomi Event Streams REST API enables HTTP-based applications to produce messages to event topics. It supports two operational modes: multiple messages in a predefined JSON format, and single messages in their original format without transformation. The API accommodates messages up to 5 MB and enforces a rate limit of 60,000 requests per IP per 5-minute window. Each topic has a unique REST API URL available in the Event Streams UI. Authentication uses an Environment Token as a Bearer token.\n\nContact Support:\n Name: Boomi Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:57.000Z",
+    "updatedAt": "2026-06-05T15:05:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9069c207-d437-4613-9f8a-f8fef73b8f8e"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Boomi Publish messages to a topic",
+          "id": "8c06b06a-1afe-4509-88b5-b3f4fd3470be",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Publishes one or more messages to the event topic. Supports two operational modes: multiple messages mode (predefined JSON format with payload and properties fields) and single message mode (original format in plain text, JSON, or XML). Messages may be up to 5 MB each and the total HTTP request must not exceed 10 MB. Rate limited to 60,000 requests per IP per 5-minute window."
+          },
+          "response": [
+            {
+              "id": "013f4dd3-3da0-400e-936a-d8280784f84d",
+              "name": "Messages accepted and published successfully.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"messageIds\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:58.000Z",
+              "updatedAt": "2026-06-05T15:05:58.000Z",
+              "uid": "35240-013f4dd3-3da0-400e-936a-d8280784f84d"
+            },
+            {
+              "id": "4daab098-4210-4528-ad05-53b4b1f4a714",
+              "name": "The request payload is invalid or malformed.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:58.000Z",
+              "updatedAt": "2026-06-05T15:05:58.000Z",
+              "uid": "35240-4daab098-4210-4528-ad05-53b4b1f4a714"
+            },
+            {
+              "id": "0ad45d79-31eb-4f50-8a15-fc601d747b21",
+              "name": "Authentication token is missing or invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-06-05T15:05:58.000Z",
+              "updatedAt": "2026-06-05T15:05:58.000Z",
+              "uid": "35240-0ad45d79-31eb-4f50-8a15-fc601d747b21"
+            },
+            {
+              "id": "8efb3180-294d-4c73-ba26-f7b952143177",
+              "name": "Payload too large. Maximum message size is 5 MB.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:05:58.000Z",
+              "updatedAt": "2026-06-05T15:05:58.000Z",
+              "uid": "35240-8efb3180-294d-4c73-ba26-f7b952143177"
+            },
+            {
+              "id": "7db97618-6e9e-46ed-b653-af2bd79ac98e",
+              "name": "Rate limit exceeded. Maximum 60,000 requests per IP per 5-minute window.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"messages\": [\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"nostrud_3\": \"<string>\",\n        \"ad9f8\": \"<string>\",\n        \"anim_1d8\": \"<string>\",\n        \"consectetur_6\": \"<string>\"\n      }\n    },\n    {\n      \"payload\": \"<string>\",\n      \"properties\": {\n        \"veniam934\": \"<string>\",\n        \"ex_40\": \"<string>\",\n        \"culpa423\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:05:58.000Z",
+              "updatedAt": "2026-06-05T15:05:58.000Z",
+              "uid": "35240-7db97618-6e9e-46ed-b653-af2bd79ac98e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:58.000Z",
+          "updatedAt": "2026-06-05T15:05:58.000Z",
+          "uid": "35240-8c06b06a-1afe-4509-88b5-b3f4fd3470be"
+        }
+      ],
+      "id": "9f916058-95fe-4539-8254-2fe04330f98f",
+      "createdAt": "2026-06-05T15:05:58.000Z",
+      "updatedAt": "2026-06-05T15:05:58.000Z",
+      "uid": "35240-9f916058-95fe-4539-8254-2fe04330f98f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "topicEndpoint",
+      "value": "your-topic-endpoint.boomi.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{topicEndpoint}}"
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories"
+          },
+          "docs": "Returns a list of all DataHub repositories associated with the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Boomi Create a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new DataHub repository for managing master data."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific DataHub repository by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a DataHub repository and all its data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Returns all data models defined within a specific repository."
+        },
+        {
+          "info": {
+            "name": "Boomi Create a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data model within the repository that defines the schema for a master data domain."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Retrieves the details and schema of a specific data model."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a data model from the repository."
+        },
+        {
+          "info": {
+            "name": "Boomi Publish a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId/publish",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Publishes a data model, making it available for domain deployment and data ingestion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/sources",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Returns all data sources configured within a specific repository."
+        },
+        {
+          "info": {
+            "name": "Boomi Create a source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/sources",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data source within the repository representing a system that contributes records to the master data hub."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Golden Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List golden records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/universes/:universeId/records",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "universeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the master data domain (universe)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of golden records from the specified master data domain (universe)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quarantine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List quarantine entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/universes/:universeId/quarantine",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "universeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the master data domain (universe)."
+              }
+            ]
+          },
+          "docs": "Returns records held in quarantine that could not be automatically processed due to data quality or matching issues."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

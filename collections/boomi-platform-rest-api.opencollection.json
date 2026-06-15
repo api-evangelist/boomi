@@ -1,0 +1,474 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi Platform REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Processes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Create a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Process",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new integration process in the Boomi platform. The process definition is provided in the request body as XML or JSON."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific integration process by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Update a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing integration process by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an integration process from the Boomi platform."
+        },
+        {
+          "info": {
+            "name": "Boomi Query processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Process/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of integration processes matching the specified query filter criteria. Supports filtering by folder ID, process name, and other properties."
+        },
+        {
+          "info": {
+            "name": "Boomi Get process schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/ProcessSchedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the scheduling configuration for a specific integration process."
+        },
+        {
+          "info": {
+            "name": "Boomi Update process schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/ProcessSchedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the scheduling configuration for a specific integration process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Execution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Execute a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/ExecutionRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers the execution of an integration process on a specified Atom. Returns an execution request ID that can be used to track the job."
+        },
+        {
+          "info": {
+            "name": "Boomi Query execution records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/ExecutionRecord/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of process execution records matching the specified filter criteria. Useful for retrieving job history and execution statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Create an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new runtime environment in the Boomi platform for deploying and running integration processes."
+        },
+        {
+          "info": {
+            "name": "Boomi Get an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Environment/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific runtime environment by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Environment/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a runtime environment from the Boomi platform."
+        },
+        {
+          "info": {
+            "name": "Boomi Query environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Environment/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of runtime environments matching the specified query filter criteria."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Deploy a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/DeployedPackage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys a packaged component to an environment. Creates a new deployed package record associating the package with the target environment."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a deployed package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/DeployedPackage/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific deployed package by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Undeploy a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/DeployedPackage/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Removes a deployed package from its environment, undeploying the component."
+        },
+        {
+          "info": {
+            "name": "Boomi Query deployed packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/DeployedPackage/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of deployed packages matching the specified filter criteria. Useful for auditing current deployments across environments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Atoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Get an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific Boomi Atom (runtime engine) by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Update an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or purge schedule of an existing Boomi Atom."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Removes an Atom from the Boomi platform. The Atom must be offline before it can be deleted."
+        },
+        {
+          "info": {
+            "name": "Boomi Query Atoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/Atom/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of Atoms matching the specified filter criteria, including online/offline status and environment associations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Create a packaged component",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/PackagedComponent",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a packaged version of a Boomi component (process, connector, etc.) that can be deployed to environments."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a packaged component",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.boomi.com/api/rest/v1/{accountId}/PackagedComponent/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific packaged component by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

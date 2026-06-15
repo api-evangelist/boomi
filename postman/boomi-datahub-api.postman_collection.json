@@ -1,0 +1,2762 @@
+{
+  "info": {
+    "_postman_id": "570d697d-a66f-4e3c-a1d9-fd31cad76b60",
+    "name": "Boomi DataHub API",
+    "description": "The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).\n\nContact Support:\n Name: Boomi Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:55.000Z",
+    "updatedAt": "2026-06-05T15:05:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-570d697d-a66f-4e3c-a1d9-fd31cad76b60"
+  },
+  "item": [
+    {
+      "name": "repositories",
+      "item": [
+        {
+          "name": "{repositoryId}",
+          "item": [
+            {
+              "name": "models",
+              "item": [
+                {
+                  "name": "{modelId}",
+                  "item": [
+                    {
+                      "name": "publish",
+                      "item": [
+                        {
+                          "name": "Boomi Publish a model",
+                          "id": "f136e42f-946b-48d1-8f7c-786336faf9e1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId/publish",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId",
+                                "publish"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "96a3fa58-fbc6-47e1-9213-ec2409cd6a71",
+                                  "key": "repositoryId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the DataHub repository."
+                                },
+                                {
+                                  "id": "95df736b-f9b2-4d6a-8c32-13927b7b9ebd",
+                                  "key": "modelId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the data model."
+                                }
+                              ]
+                            },
+                            "description": "Publishes a data model, making it available for domain deployment and data ingestion."
+                          },
+                          "response": [
+                            {
+                              "id": "b1e3d9b2-17a9-4bc5-9ffe-45fd0ac8e4a5",
+                              "name": "The published model.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId/publish",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "models",
+                                    ":modelId",
+                                    "publish"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "modelId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"publishedVersion\": \"<integer>\",\n  \"status\": \"DRAFT\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"INTEGER\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"FLOAT\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-b1e3d9b2-17a9-4bc5-9ffe-45fd0ac8e4a5"
+                            },
+                            {
+                              "id": "aa6a67f1-d6fe-4aab-8e68-aff6569ee583",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId/publish",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "models",
+                                    ":modelId",
+                                    "publish"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "modelId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-aa6a67f1-d6fe-4aab-8e68-aff6569ee583"
+                            },
+                            {
+                              "id": "c8418654-ce6c-4090-a155-d13cf949b81b",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId/publish",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "models",
+                                    ":modelId",
+                                    "publish"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "modelId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-c8418654-ce6c-4090-a155-d13cf949b81b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-f136e42f-946b-48d1-8f7c-786336faf9e1"
+                        }
+                      ],
+                      "id": "4bacf438-0ae3-44e2-bbf3-1de2edff15a8",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-4bacf438-0ae3-44e2-bbf3-1de2edff15a8"
+                    },
+                    {
+                      "name": "Boomi Get a model",
+                      "id": "d4cabd2d-1207-49f9-89de-f14fde5930eb",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models",
+                            ":modelId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7b6ab0dd-dff0-45d0-8510-89d11607a74f",
+                              "key": "repositoryId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the DataHub repository."
+                            },
+                            {
+                              "id": "b7126d0d-87ee-4049-9839-0a0386bdd8d8",
+                              "key": "modelId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the data model."
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the details and schema of a specific data model."
+                      },
+                      "response": [
+                        {
+                          "id": "148ec029-653d-4bef-8c0c-4f90b5008ffe",
+                          "name": "The data model details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"publishedVersion\": \"<integer>\",\n  \"status\": \"DRAFT\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"INTEGER\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"FLOAT\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-148ec029-653d-4bef-8c0c-4f90b5008ffe"
+                        },
+                        {
+                          "id": "9ec47450-91fd-4def-92ee-81b2288fd741",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-9ec47450-91fd-4def-92ee-81b2288fd741"
+                        },
+                        {
+                          "id": "ae8db02c-19ed-4ede-8f78-e5261fa0f8da",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-ae8db02c-19ed-4ede-8f78-e5261fa0f8da"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-d4cabd2d-1207-49f9-89de-f14fde5930eb"
+                    },
+                    {
+                      "name": "Boomi Delete a model",
+                      "id": "5160170a-7d0b-4083-8d34-1d702e546497",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models",
+                            ":modelId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cc65fc72-0189-4200-af26-0f7fbc69bf28",
+                              "key": "repositoryId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the DataHub repository."
+                            },
+                            {
+                              "id": "20521810-182d-4c78-8c69-1c149cbe6e23",
+                              "key": "modelId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier of the data model."
+                            }
+                          ]
+                        },
+                        "description": "Permanently deletes a data model from the repository."
+                      },
+                      "response": [
+                        {
+                          "id": "8aa72098-2241-46ce-b1c3-289ab8b84b91",
+                          "name": "Deletion successful.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-8aa72098-2241-46ce-b1c3-289ab8b84b91"
+                        },
+                        {
+                          "id": "b062d09f-0c10-44ef-803c-74aa21a3988b",
+                          "name": "Authentication credentials are missing or invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-b062d09f-0c10-44ef-803c-74aa21a3988b"
+                        },
+                        {
+                          "id": "923345ec-c4fa-459c-9866-62caf8b8fecb",
+                          "name": "The requested resource was not found.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/models/:modelId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "models",
+                                ":modelId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "repositoryId"
+                                },
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-923345ec-c4fa-459c-9866-62caf8b8fecb"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-5160170a-7d0b-4083-8d34-1d702e546497"
+                    }
+                  ],
+                  "id": "3da44f0f-a9e1-4052-8526-5a14b3e36868",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-3da44f0f-a9e1-4052-8526-5a14b3e36868"
+                },
+                {
+                  "name": "Boomi List models",
+                  "id": "a87a7c44-7fe1-41a7-a856-d77418e5a346",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId",
+                        "models"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2148add5-2b3b-48cc-8346-edaa5db9e42c",
+                          "key": "repositoryId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the DataHub repository."
+                        }
+                      ]
+                    },
+                    "description": "Returns all data models defined within a specific repository."
+                  },
+                  "response": [
+                    {
+                      "id": "e5558389-98e2-4048-9ae4-1307a9fe6bca",
+                      "name": "A list of data models.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"models\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"publishedVersion\": \"<integer>\",\n      \"status\": \"DRAFT\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"INTEGER\",\n          \"required\": \"<boolean>\",\n          \"unique\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"DATETIME\",\n          \"required\": \"<boolean>\",\n          \"unique\": \"<boolean>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"publishedVersion\": \"<integer>\",\n      \"status\": \"PUBLISHED\",\n      \"fields\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"REFERENCE\",\n          \"required\": \"<boolean>\",\n          \"unique\": \"<boolean>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"INTEGER\",\n          \"required\": \"<boolean>\",\n          \"unique\": \"<boolean>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-e5558389-98e2-4048-9ae4-1307a9fe6bca"
+                    },
+                    {
+                      "id": "f0604e2f-65e3-4171-ad73-f4766e95600f",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-f0604e2f-65e3-4171-ad73-f4766e95600f"
+                    },
+                    {
+                      "id": "93b5186c-f7dc-4bf1-a83f-bb2d5e11c417",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-93b5186c-f7dc-4bf1-a83f-bb2d5e11c417"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-a87a7c44-7fe1-41a7-a856-d77418e5a346"
+                },
+                {
+                  "name": "Boomi Create a model",
+                  "id": "95cb7108-a730-4d20-81e7-05985edc4c1e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"DATE\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"STRING\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId",
+                        "models"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4da07690-1c3b-4ade-badc-3becdba32ac2",
+                          "key": "repositoryId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the DataHub repository."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new data model within the repository that defines the schema for a master data domain."
+                  },
+                  "response": [
+                    {
+                      "id": "030f11fe-3365-4c2b-8e9d-ee14a3b34209",
+                      "name": "The created data model.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"DATE\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"STRING\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"version\": \"<integer>\",\n  \"publishedVersion\": \"<integer>\",\n  \"status\": \"DRAFT\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"INTEGER\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"FLOAT\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-030f11fe-3365-4c2b-8e9d-ee14a3b34209"
+                    },
+                    {
+                      "id": "27bde82d-900d-43c4-910f-124c5da19272",
+                      "name": "The request body is invalid or missing required fields.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"DATE\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"STRING\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-27bde82d-900d-43c4-910f-124c5da19272"
+                    },
+                    {
+                      "id": "e9dff111-df31-4e01-8d6b-adac6b7c3074",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"DATE\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"STRING\",\n      \"required\": \"<boolean>\",\n      \"unique\": \"<boolean>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/models",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "models"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-e9dff111-df31-4e01-8d6b-adac6b7c3074"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-95cb7108-a730-4d20-81e7-05985edc4c1e"
+                }
+              ],
+              "id": "05bebdb4-1cae-485b-a1ea-950f5b29e4c4",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-05bebdb4-1cae-485b-a1ea-950f5b29e4c4"
+            },
+            {
+              "name": "sources",
+              "item": [
+                {
+                  "name": "Boomi List sources",
+                  "id": "06cd7bbc-a681-4af6-9363-ab8e9941b98c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId",
+                        "sources"
+                      ],
+                      "variable": [
+                        {
+                          "id": "677b27bf-c28c-4f07-847d-262cc92ccac8",
+                          "key": "repositoryId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the DataHub repository."
+                        }
+                      ]
+                    },
+                    "description": "Returns all data sources configured within a specific repository."
+                  },
+                  "response": [
+                    {
+                      "id": "2dabeaf8-a1c2-49f8-a639-1845cd30bf3e",
+                      "name": "A list of data sources.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sources\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-2dabeaf8-a1c2-49f8-a639-1845cd30bf3e"
+                    },
+                    {
+                      "id": "0d3a114d-3382-45ad-93a7-2f1c113cd9ae",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-0d3a114d-3382-45ad-93a7-2f1c113cd9ae"
+                    },
+                    {
+                      "id": "e8e9a263-871d-4453-823f-c3450b5b4de2",
+                      "name": "The requested resource was not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-e8e9a263-871d-4453-823f-c3450b5b4de2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-06cd7bbc-a681-4af6-9363-ab8e9941b98c"
+                },
+                {
+                  "name": "Boomi Create a source",
+                  "id": "a51fb4ca-ef99-42d8-a184-4915fd66680e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId",
+                        "sources"
+                      ],
+                      "variable": [
+                        {
+                          "id": "865a714a-5ffd-4574-bd7e-94d2c73659d7",
+                          "key": "repositoryId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier of the DataHub repository."
+                        }
+                      ]
+                    },
+                    "description": "Creates a new data source within the repository representing a system that contributes records to the master data hub."
+                  },
+                  "response": [
+                    {
+                      "id": "7c822e34-0929-4f27-8b7c-58c70a5cf5d0",
+                      "name": "The created data source.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-7c822e34-0929-4f27-8b7c-58c70a5cf5d0"
+                    },
+                    {
+                      "id": "453b48eb-46cc-4dfc-8e36-7f09c00d2897",
+                      "name": "The request body is invalid or missing required fields.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-453b48eb-46cc-4dfc-8e36-7f09c00d2897"
+                    },
+                    {
+                      "id": "b09cea94-9664-4284-b675-bc615d7636f0",
+                      "name": "Authentication credentials are missing or invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/repositories/:repositoryId/sources",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "repositories",
+                            ":repositoryId",
+                            "sources"
+                          ],
+                          "variable": [
+                            {
+                              "key": "repositoryId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-b09cea94-9664-4284-b675-bc615d7636f0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-a51fb4ca-ef99-42d8-a184-4915fd66680e"
+                }
+              ],
+              "id": "03d22c79-d477-41a5-9b05-41d5dc06e404",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-03d22c79-d477-41a5-9b05-41d5dc06e404"
+            },
+            {
+              "name": "universes",
+              "item": [
+                {
+                  "name": "{universeId}",
+                  "item": [
+                    {
+                      "name": "records",
+                      "item": [
+                        {
+                          "name": "Boomi List golden records",
+                          "id": "7ec3c29d-6730-4b37-9d2f-8402f45b266b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/records?pageSize=100&pageToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "universes",
+                                ":universeId",
+                                "records"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of records per page.",
+                                  "key": "pageSize",
+                                  "value": "100"
+                                },
+                                {
+                                  "description": "Pagination token from a previous response.",
+                                  "key": "pageToken",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "302cfb83-d990-4511-8f39-22e81feb7a62",
+                                  "key": "repositoryId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the DataHub repository."
+                                },
+                                {
+                                  "id": "45703d83-a651-43d6-aec4-c3f0c966440b",
+                                  "key": "universeId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the master data domain (universe)."
+                                }
+                              ]
+                            },
+                            "description": "Returns a paginated list of golden records from the specified master data domain (universe)."
+                          },
+                          "response": [
+                            {
+                              "id": "81f071ec-d2b5-435c-bebf-de84f785c522",
+                              "name": "A paginated list of golden records.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/records?pageSize=100&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "Pagination token from a previous response.",
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"fields\": {\n        \"nostrud011\": -84191548,\n        \"nostrud550\": false\n      },\n      \"sources\": [\n        {\n          \"sourceId\": \"<string>\",\n          \"recordId\": \"<string>\"\n        },\n        {\n          \"sourceId\": \"<string>\",\n          \"recordId\": \"<string>\"\n        }\n      ],\n      \"createdDate\": \"<dateTime>\",\n      \"updatedDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"fields\": {\n        \"occaecat_c5\": 29846966,\n        \"nostrud_a49\": -47894732.623072356,\n        \"exercitation__e3\": 93864815.95938423\n      },\n      \"sources\": [\n        {\n          \"sourceId\": \"<string>\",\n          \"recordId\": \"<string>\"\n        },\n        {\n          \"sourceId\": \"<string>\",\n          \"recordId\": \"<string>\"\n        }\n      ],\n      \"createdDate\": \"<dateTime>\",\n      \"updatedDate\": \"<dateTime>\"\n    }\n  ],\n  \"nextPageToken\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-81f071ec-d2b5-435c-bebf-de84f785c522"
+                            },
+                            {
+                              "id": "ffe918c8-9b1b-4d45-bce5-cd44a8d7fd8d",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/records?pageSize=100&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "Pagination token from a previous response.",
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-ffe918c8-9b1b-4d45-bce5-cd44a8d7fd8d"
+                            },
+                            {
+                              "id": "ac8e7d0b-2a9b-4990-a161-8f2d0b9edfee",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/records?pageSize=100&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "records"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of records per page.",
+                                      "key": "pageSize",
+                                      "value": "100"
+                                    },
+                                    {
+                                      "description": "Pagination token from a previous response.",
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-ac8e7d0b-2a9b-4990-a161-8f2d0b9edfee"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-7ec3c29d-6730-4b37-9d2f-8402f45b266b"
+                        }
+                      ],
+                      "id": "2a45e08f-75c3-4845-a05a-32529f610028",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-2a45e08f-75c3-4845-a05a-32529f610028"
+                    },
+                    {
+                      "name": "quarantine",
+                      "item": [
+                        {
+                          "name": "Boomi List quarantine entries",
+                          "id": "92ae27f9-e700-4174-9ed1-38b4c95aeb6f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/quarantine",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "repositories",
+                                ":repositoryId",
+                                "universes",
+                                ":universeId",
+                                "quarantine"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9cd2945e-93fc-4f7a-a41a-2635c6fad927",
+                                  "key": "repositoryId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the DataHub repository."
+                                },
+                                {
+                                  "id": "aedca401-1705-40b0-a78c-e3736bf25808",
+                                  "key": "universeId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier of the master data domain (universe)."
+                                }
+                              ]
+                            },
+                            "description": "Returns records held in quarantine that could not be automatically processed due to data quality or matching issues."
+                          },
+                          "response": [
+                            {
+                              "id": "e617f98f-de20-466e-a388-5815156623fe",
+                              "name": "A list of quarantined records.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/quarantine",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "quarantine"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"sourceId\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"fields\": {\n        \"qui_f43\": -44819841.90882651,\n        \"nulla1c4\": -54573909.995408475\n      },\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"sourceId\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"fields\": {\n        \"ut_5\": -33202054\n      },\n      \"createdDate\": \"<dateTime>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-e617f98f-de20-466e-a388-5815156623fe"
+                            },
+                            {
+                              "id": "ea7910f4-504c-4fc5-bc84-63657dc540a6",
+                              "name": "Authentication credentials are missing or invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/quarantine",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "quarantine"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-ea7910f4-504c-4fc5-bc84-63657dc540a6"
+                            },
+                            {
+                              "id": "3b180c14-3d92-47cc-b61a-2dbcf28eab33",
+                              "name": "The requested resource was not found.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/repositories/:repositoryId/universes/:universeId/quarantine",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "repositories",
+                                    ":repositoryId",
+                                    "universes",
+                                    ":universeId",
+                                    "quarantine"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "repositoryId"
+                                    },
+                                    {
+                                      "key": "universeId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                              "createdAt": "2026-06-05T15:05:55.000Z",
+                              "updatedAt": "2026-06-05T15:05:55.000Z",
+                              "uid": "35240-3b180c14-3d92-47cc-b61a-2dbcf28eab33"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:05:55.000Z",
+                          "updatedAt": "2026-06-05T15:05:55.000Z",
+                          "uid": "35240-92ae27f9-e700-4174-9ed1-38b4c95aeb6f"
+                        }
+                      ],
+                      "id": "1ae79f80-91e9-4443-a1f0-2243127d8a64",
+                      "createdAt": "2026-06-05T15:05:55.000Z",
+                      "updatedAt": "2026-06-05T15:05:55.000Z",
+                      "uid": "35240-1ae79f80-91e9-4443-a1f0-2243127d8a64"
+                    }
+                  ],
+                  "id": "5643f492-e5a4-4d7f-bb00-148db95000b2",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-5643f492-e5a4-4d7f-bb00-148db95000b2"
+                }
+              ],
+              "id": "6ea6a1a8-ea1c-4558-b4b6-6c269eb20904",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-6ea6a1a8-ea1c-4558-b4b6-6c269eb20904"
+            },
+            {
+              "name": "Boomi Get a repository",
+              "id": "5de45e67-c66f-4ba9-a715-103a563fe96c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repositories/:repositoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories",
+                    ":repositoryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2e87cbc0-9649-4cbf-a315-5722833e9d11",
+                      "key": "repositoryId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the DataHub repository."
+                    }
+                  ]
+                },
+                "description": "Retrieves details of a specific DataHub repository by its ID."
+              },
+              "response": [
+                {
+                  "id": "edc2c441-e801-4c3a-863a-4416ac606c26",
+                  "name": "The repository details.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-edc2c441-e801-4c3a-863a-4416ac606c26"
+                },
+                {
+                  "id": "44d97934-17a1-4146-901e-7eda88a05f6a",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-44d97934-17a1-4146-901e-7eda88a05f6a"
+                },
+                {
+                  "id": "13ed70f0-e0f6-4a0f-99f9-f3a3d6b8456e",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-13ed70f0-e0f6-4a0f-99f9-f3a3d6b8456e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-5de45e67-c66f-4ba9-a715-103a563fe96c"
+            },
+            {
+              "name": "Boomi Delete a repository",
+              "id": "2176f050-841a-4ddb-aa66-65c35e4858b3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repositories/:repositoryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories",
+                    ":repositoryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "18f45a79-f553-4c69-a183-de9689dfdd67",
+                      "key": "repositoryId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier of the DataHub repository."
+                    }
+                  ]
+                },
+                "description": "Permanently deletes a DataHub repository and all its data."
+              },
+              "response": [
+                {
+                  "id": "441fd072-e05c-4df9-962c-5a9f831415b4",
+                  "name": "Deletion successful.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-441fd072-e05c-4df9-962c-5a9f831415b4"
+                },
+                {
+                  "id": "8e0a4a12-04e7-4b46-a822-492e5af2f33b",
+                  "name": "Authentication credentials are missing or invalid.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-8e0a4a12-04e7-4b46-a822-492e5af2f33b"
+                },
+                {
+                  "id": "fc0c2fa6-df92-4cae-ae92-7a02a143c7d5",
+                  "name": "The requested resource was not found.",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/repositories/:repositoryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "repositories",
+                        ":repositoryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "repositoryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:05:55.000Z",
+                  "updatedAt": "2026-06-05T15:05:55.000Z",
+                  "uid": "35240-fc0c2fa6-df92-4cae-ae92-7a02a143c7d5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-2176f050-841a-4ddb-aa66-65c35e4858b3"
+            }
+          ],
+          "id": "74353293-6cc4-4dd0-8942-d6d7aa6790e8",
+          "createdAt": "2026-06-05T15:05:55.000Z",
+          "updatedAt": "2026-06-05T15:05:55.000Z",
+          "uid": "35240-74353293-6cc4-4dd0-8942-d6d7aa6790e8"
+        },
+        {
+          "name": "Boomi List repositories",
+          "id": "30161c70-7609-45c0-b012-d4603d999057",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/repositories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repositories"
+              ]
+            },
+            "description": "Returns a list of all DataHub repositories associated with the authenticated account."
+          },
+          "response": [
+            {
+              "id": "6df536b1-dcff-48c2-b676-fc5904e2ba56",
+              "name": "A list of DataHub repositories.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repositories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"repositories\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-6df536b1-dcff-48c2-b676-fc5904e2ba56"
+            },
+            {
+              "id": "981d3316-4c0c-47f4-957a-655233895013",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/repositories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-981d3316-4c0c-47f4-957a-655233895013"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:55.000Z",
+          "updatedAt": "2026-06-05T15:05:55.000Z",
+          "uid": "35240-30161c70-7609-45c0-b012-d4603d999057"
+        },
+        {
+          "name": "Boomi Create a repository",
+          "id": "dc9cf086-0193-41a4-a375-8bf89eae60b7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/repositories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "repositories"
+              ]
+            },
+            "description": "Creates a new DataHub repository for managing master data."
+          },
+          "response": [
+            {
+              "id": "20f5659f-c85d-4ac0-8f30-ee29aed4c547",
+              "name": "The created repository.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repositories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-20f5659f-c85d-4ac0-8f30-ee29aed4c547"
+            },
+            {
+              "id": "3de7dcf3-5f38-49e2-902e-3e49fab3f387",
+              "name": "The request body is invalid or missing required fields.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repositories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-3de7dcf3-5f38-49e2-902e-3e49fab3f387"
+            },
+            {
+              "id": "1702919d-d0e4-48bd-bb8d-42f64360ba39",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/repositories",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "repositories"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:05:55.000Z",
+              "updatedAt": "2026-06-05T15:05:55.000Z",
+              "uid": "35240-1702919d-d0e4-48bd-bb8d-42f64360ba39"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:55.000Z",
+          "updatedAt": "2026-06-05T15:05:55.000Z",
+          "uid": "35240-dc9cf086-0193-41a4-a375-8bf89eae60b7"
+        }
+      ],
+      "id": "db83a326-3958-402d-b13c-c5e32d7b209e",
+      "createdAt": "2026-06-05T15:05:55.000Z",
+      "updatedAt": "2026-06-05T15:05:55.000Z",
+      "uid": "35240-db83a326-3958-402d-b13c-c5e32d7b209e"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://mdh.boomi.com/mdh"
+    }
+  ]
+}
