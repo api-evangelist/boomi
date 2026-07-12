@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: boomi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep  7 19:41:16 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: developer.boomi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  5 20:38:33 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: help.boomi.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 19 06:54:58 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: boomi.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/boomi-datahub-api-openapi.yml, openapi/boomi-event-streams-openapi.yml, openapi/boomi-platform-rest-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication
+    must include an X-Boomi-OTP header.
+  sources:
+  - openapi/boomi-datahub-api-openapi.yml
+  - openapi/boomi-platform-rest-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: JWT Bearer token for the Repository API.
+  sources:
+  - openapi/boomi-datahub-api-openapi.yml
+  - openapi/boomi-event-streams-openapi.yml

@@ -248,6 +248,10 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+- type: DomainSecurity
+  url: security/boomi-domain-security.yml
+- type: Authentication
+  url: authentication/boomi-authentication.yml
 - type: Arazzo
   url: arazzo/boomi-audit-environment-deployments-workflow.yml
   name: Boomi Audit Environment Deployments
