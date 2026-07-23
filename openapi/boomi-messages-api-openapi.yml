@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Messages API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Messages
+  description: Endpoints for producing messages to Boomi Event Streams topics via HTTP REST calls.
+paths:
+  /:
+    post:
+      operationId: publishMessages
+      summary: Boomi Publish messages to a topic
+      description: 'Publishes one or more messages to the event topic. Supports two operational modes: multiple messages mode (predefined JSON format with payload and properties fields) and single message mode (original format in plain text, JSON, or XML). Messages may be up to 5 MB each and the total HTTP request must not exceed 10 MB. Rate limited to 60,000 requests per IP per 5-minute window.'
+      tags:
+      - Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/MultiMessageRequest'
+              - $ref: '#/components/schemas/SingleMessageRequest'
+          text/plain:
+            schema:
+              type: string
+              description: Single message payload in plain text format.
+          application/xml:
+            schema:
+              type: string
+              description: Single message payload in XML format.
+      responses:
+        '200':
+          description: Messages accepted and published successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '413':
+          description: Payload too large. Maximum message size is 5 MB.
+        '429':
+          description: Rate limit exceeded. Maximum 60,000 requests per IP per 5-minute window.
+components:
+  schemas:
+    MultiMessageRequest:
+      type: object
+      description: Request body for publishing multiple messages in the predefined JSON format. Each message contains a payload and optional properties.
+      required:
+      - messages
+      properties:
+        messages:
+          type: array
+          description: Array of messages to publish to the topic.
+          items:
+            $ref: '#/components/schemas/MessageItem'
+    MessageItem:
+      type: object
+      description: A single message in multi-message mode.
+      required:
+      - payload
+      properties:
+        payload:
+          type: string
+          description: The message content. May be plain text, JSON, or XML encoded as a string.
+        properties:
+          type: object
+          description: Optional custom metadata key-value pairs associated with this message.
+          additionalProperties:
+            type: string
+    SingleMessageRequest:
+      type: object
+      description: Request body for publishing a single message in its original format. Properties are sent via request headers prefixed with x-msg-props-.
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+    PublishResponse:
+      type: object
+      description: Response returned after successfully publishing messages.
+      properties:
+        status:
+          type: string
+          description: Status of the publish operation.
+          example: success
+        messageIds:
+          type: string
+          description: Comma-separated list of message IDs assigned to the published messages.
+  responses:
+    Unauthorized:
+      description: Authentication token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request payload is invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

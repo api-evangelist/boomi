@@ -1,0 +1,156 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Components API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Components
+  description: Manage packaged components and integration pack attachments.
+paths:
+  /PackagedComponent:
+    post:
+      operationId: createPackagedComponent
+      summary: Boomi Create a packaged component
+      description: Creates a packaged version of a Boomi component (process, connector, etc.) that can be deployed to environments.
+      tags:
+      - Components
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackagedComponentInput'
+      responses:
+        '200':
+          description: The created packaged component.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagedComponent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /PackagedComponent/{id}:
+    get:
+      operationId: getPackagedComponent
+      summary: Boomi Get a packaged component
+      description: Retrieves the details of a specific packaged component by its ID.
+      tags:
+      - Components
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The packaged component object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagedComponent'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    PackagedComponent:
+      type: object
+      description: A versioned, deployable package of a Boomi component.
+      properties:
+        packageId:
+          type: string
+          description: Unique identifier of the packaged component.
+        componentId:
+          type: string
+          description: ID of the underlying component.
+        componentVersion:
+          type: string
+          description: Version of the component included in this package.
+        componentType:
+          type: string
+          description: Type of the packaged component (process, connector, etc.).
+        packageVersion:
+          type: string
+          description: Version label for this package.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the package was created.
+    PackagedComponentInput:
+      type: object
+      description: Input for creating a packaged component.
+      required:
+      - componentId
+      - componentVersion
+      properties:
+        componentId:
+          type: string
+          description: ID of the component to package.
+        componentVersion:
+          type: string
+          description: Version of the component to include in the package.
+        packageVersion:
+          type: string
+          description: Optional version label for the package.
+        notes:
+          type: string
+          description: Optional notes about this package version.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

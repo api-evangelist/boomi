@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Sources API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Sources
+  description: Manage data sources that contribute records to the master data hub for matching and merging.
+paths:
+  /repositories/{repositoryId}/sources:
+    get:
+      operationId: listSources
+      summary: Boomi List sources
+      description: Returns all data sources configured within a specific repository.
+      tags:
+      - Sources
+      parameters:
+      - $ref: '#/components/parameters/RepositoryId'
+      responses:
+        '200':
+          description: A list of data sources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sources:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Source'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createSource
+      summary: Boomi Create a source
+      description: Creates a new data source within the repository representing a system that contributes records to the master data hub.
+      tags:
+      - Sources
+      parameters:
+      - $ref: '#/components/parameters/RepositoryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceInput'
+      responses:
+        '200':
+          description: The created data source.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Source'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    SourceInput:
+      type: object
+      description: Input for creating a data source.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name for the source.
+        description:
+          type: string
+          description: Optional description of the source system.
+    Source:
+      type: object
+      description: A data source that contributes records to the master data hub.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the source.
+        name:
+          type: string
+          description: Display name of the source.
+        description:
+          type: string
+          description: Human-readable description of the source system.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the source was created.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

@@ -1,0 +1,338 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Processes API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Processes
+  description: Manage integration processes (recipes) within the Boomi platform.
+paths:
+  /Process:
+    post:
+      operationId: createProcess
+      summary: Boomi Create a process
+      description: Creates a new integration process in the Boomi platform. The process definition is provided in the request body as XML or JSON.
+      tags:
+      - Processes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessInput'
+      responses:
+        '200':
+          description: The created process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Process/{id}:
+    get:
+      operationId: getProcess
+      summary: Boomi Get a process
+      description: Retrieves the details of a specific integration process by its ID.
+      tags:
+      - Processes
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateProcess
+      summary: Boomi Update a process
+      description: Updates an existing integration process by its ID.
+      tags:
+      - Processes
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessInput'
+      responses:
+        '200':
+          description: The updated process object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteProcess
+      summary: Boomi Delete a process
+      description: Permanently deletes an integration process from the Boomi platform.
+      tags:
+      - Processes
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Process/query:
+    post:
+      operationId: queryProcesses
+      summary: Boomi Query processes
+      description: Returns a list of integration processes matching the specified query filter criteria. Supports filtering by folder ID, process name, and other properties.
+      tags:
+      - Processes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching process objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ProcessSchedules/{id}:
+    get:
+      operationId: getProcessSchedules
+      summary: Boomi Get process schedules
+      description: Retrieves the scheduling configuration for a specific integration process.
+      tags:
+      - Processes
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The process schedule configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessSchedules'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateProcessSchedules
+      summary: Boomi Update process schedules
+      description: Updates the scheduling configuration for a specific integration process.
+      tags:
+      - Processes
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessSchedules'
+      responses:
+        '200':
+          description: The updated process schedule configuration.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessSchedules'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Process:
+      type: object
+      description: A Boomi integration process that defines automated data flows between systems.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the process (component ID).
+        name:
+          type: string
+          description: Display name of the integration process.
+        type:
+          type: string
+          description: Component type, always 'process' for integration processes.
+        folderId:
+          type: string
+          description: ID of the folder containing this process.
+        deleted:
+          type: boolean
+          description: Whether this process has been deleted.
+        currentVersion:
+          type: string
+          description: Current version identifier of the process.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the process was created.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the process was last modified.
+    QueryRequest:
+      type: object
+      description: Request body for querying platform objects with filter criteria.
+      properties:
+        QueryFilter:
+          type: object
+          description: Filter expression for narrowing query results.
+          properties:
+            expression:
+              type: object
+              description: Filter expression with operator and arguments.
+              properties:
+                operator:
+                  type: string
+                  description: Logical operator for combining filter criteria.
+                  enum:
+                  - AND
+                  - OR
+                nestedExpression:
+                  type: array
+                  description: Nested filter expressions.
+                  items:
+                    type: object
+                    properties:
+                      argument:
+                        type: array
+                        items:
+                          type: string
+                        description: Filter values.
+                      operator:
+                        type: string
+                        description: Comparison operator.
+                        enum:
+                        - EQUALS
+                        - NOT_EQUALS
+                        - LIKE
+                        - STARTS_WITH
+                      property:
+                        type: string
+                        description: Object property to filter on.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+    ProcessSchedules:
+      type: object
+      description: Schedule configuration for an integration process.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the process schedule.
+        atomId:
+          type: string
+          description: ID of the Atom on which this schedule runs.
+        processId:
+          type: string
+          description: ID of the process this schedule applies to.
+        schedule:
+          type: object
+          description: Scheduling parameters including frequency and timing.
+          additionalProperties: true
+    ProcessInput:
+      type: object
+      description: Input for creating or updating an integration process.
+      properties:
+        name:
+          type: string
+          description: Display name for the process.
+        folderId:
+          type: string
+          description: ID of the folder to place the process in.
+    ProcessQueryResult:
+      type: object
+      description: Paginated query results for processes.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

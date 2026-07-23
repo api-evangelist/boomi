@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Atoms
+  description: Manage Boomi Atoms — the lightweight runtime engines that execute integration processes.
+paths:
+  /Atom/{id}:
+    get:
+      operationId: getAtom
+      summary: Boomi Get an Atom
+      description: Retrieves the details of a specific Boomi Atom (runtime engine) by its ID.
+      tags:
+      - Atoms
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The Atom object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atom'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateAtom
+      summary: Boomi Update an Atom
+      description: Updates the name or purge schedule of an existing Boomi Atom.
+      tags:
+      - Atoms
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtomInput'
+      responses:
+        '200':
+          description: The updated Atom object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Atom'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAtom
+      summary: Boomi Delete an Atom
+      description: Removes an Atom from the Boomi platform. The Atom must be offline before it can be deleted.
+      tags:
+      - Atoms
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Atom/query:
+    post:
+      operationId: queryAtoms
+      summary: Boomi Query Atoms
+      description: Returns a list of Atoms matching the specified filter criteria, including online/offline status and environment associations.
+      tags:
+      - Atoms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching Atom objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AtomQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Atom:
+      type: object
+      description: A Boomi Atom — the lightweight runtime engine that executes integration processes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the Atom.
+        name:
+          type: string
+          description: Display name of the Atom.
+        status:
+          type: string
+          description: Current online/offline status of the Atom.
+          enum:
+          - ONLINE
+          - OFFLINE
+          - UNKNOWN
+        type:
+          type: string
+          description: Atom type.
+          enum:
+          - ATOM
+          - MOLECULE
+          - CLOUD
+        hostName:
+          type: string
+          description: Hostname of the machine running the Atom.
+        currentVersion:
+          type: string
+          description: Current Boomi runtime version installed on the Atom.
+        dateInstalled:
+          type: string
+          format: date-time
+          description: Timestamp when the Atom was installed.
+    QueryRequest:
+      type: object
+      description: Request body for querying platform objects with filter criteria.
+      properties:
+        QueryFilter:
+          type: object
+          description: Filter expression for narrowing query results.
+          properties:
+            expression:
+              type: object
+              description: Filter expression with operator and arguments.
+              properties:
+                operator:
+                  type: string
+                  description: Logical operator for combining filter criteria.
+                  enum:
+                  - AND
+                  - OR
+                nestedExpression:
+                  type: array
+                  description: Nested filter expressions.
+                  items:
+                    type: object
+                    properties:
+                      argument:
+                        type: array
+                        items:
+                          type: string
+                        description: Filter values.
+                      operator:
+                        type: string
+                        description: Comparison operator.
+                        enum:
+                        - EQUALS
+                        - NOT_EQUALS
+                        - LIKE
+                        - STARTS_WITH
+                      property:
+                        type: string
+                        description: Object property to filter on.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+    AtomInput:
+      type: object
+      description: Input for updating an Atom.
+      properties:
+        name:
+          type: string
+          description: Updated display name for the Atom.
+        purgeHistoryDays:
+          type: integer
+          description: Number of days to retain execution history before purging.
+    AtomQueryResult:
+      type: object
+      description: Paginated query results for Atoms.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Atom'
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

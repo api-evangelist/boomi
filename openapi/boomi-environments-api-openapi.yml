@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Environments API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Environments
+  description: Manage runtime environments where Boomi Atoms and Molecules are deployed to run integration processes.
+paths:
+  /Environment:
+    post:
+      operationId: createEnvironment
+      summary: Boomi Create an environment
+      description: Creates a new runtime environment in the Boomi platform for deploying and running integration processes.
+      tags:
+      - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentInput'
+      responses:
+        '200':
+          description: The created environment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Environment/{id}:
+    get:
+      operationId: getEnvironment
+      summary: Boomi Get an environment
+      description: Retrieves the details of a specific runtime environment by its ID.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: The environment object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Environment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteEnvironment
+      summary: Boomi Delete an environment
+      description: Permanently deletes a runtime environment from the Boomi platform.
+      tags:
+      - Environments
+      parameters:
+      - $ref: '#/components/parameters/ObjectId'
+      responses:
+        '200':
+          description: Deletion successful.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /Environment/query:
+    post:
+      operationId: queryEnvironments
+      summary: Boomi Query environments
+      description: Returns a list of runtime environments matching the specified query filter criteria.
+      tags:
+      - Environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query results containing matching environment objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentQueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    EnvironmentInput:
+      type: object
+      description: Input for creating a runtime environment.
+      required:
+      - name
+      - classification
+      properties:
+        name:
+          type: string
+          description: Display name for the environment.
+        classification:
+          type: string
+          description: Whether this is a production or test environment.
+          enum:
+          - PRODUCTION
+          - TEST
+    Environment:
+      type: object
+      description: A Boomi runtime environment where Atoms are assigned and processes are deployed.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the environment.
+        name:
+          type: string
+          description: Display name of the environment.
+        classification:
+          type: string
+          description: Environment classification.
+          enum:
+          - PRODUCTION
+          - TEST
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the environment was created.
+    EnvironmentQueryResult:
+      type: object
+      description: Paginated query results for environments.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
+    QueryRequest:
+      type: object
+      description: Request body for querying platform objects with filter criteria.
+      properties:
+        QueryFilter:
+          type: object
+          description: Filter expression for narrowing query results.
+          properties:
+            expression:
+              type: object
+              description: Filter expression with operator and arguments.
+              properties:
+                operator:
+                  type: string
+                  description: Logical operator for combining filter criteria.
+                  enum:
+                  - AND
+                  - OR
+                nestedExpression:
+                  type: array
+                  description: Nested filter expressions.
+                  items:
+                    type: object
+                    properties:
+                      argument:
+                        type: array
+                        items:
+                          type: string
+                        description: Filter values.
+                      operator:
+                        type: string
+                        description: Comparison operator.
+                        enum:
+                        - EQUALS
+                        - NOT_EQUALS
+                        - LIKE
+                        - STARTS_WITH
+                      property:
+                        type: string
+                        description: Object property to filter on.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f

@@ -1,0 +1,144 @@
+openapi: 3.1.0
+info:
+  title: Boomi DataHub Atoms Golden Records API
+  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  version: '1.0'
+  contact:
+    name: Boomi Support
+    url: https://community.boomi.com/s/support
+  termsOfService: https://boomi.com/legal/service/
+servers:
+- url: https://mdh.boomi.com/mdh
+  description: Boomi DataHub Platform API
+security:
+- basicAuth: []
+- bearerAuth: []
+tags:
+- name: Golden Records
+  description: Query and manage the authoritative master records that result from matching and merging source records.
+paths:
+  /repositories/{repositoryId}/universes/{universeId}/records:
+    get:
+      operationId: listGoldenRecords
+      summary: Boomi List golden records
+      description: Returns a paginated list of golden records from the specified master data domain (universe).
+      tags:
+      - Golden Records
+      parameters:
+      - $ref: '#/components/parameters/RepositoryId'
+      - $ref: '#/components/parameters/UniverseId'
+      - name: pageSize
+        in: query
+        description: Number of records per page.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 200
+          default: 100
+      - name: pageToken
+        in: query
+        description: Pagination token from a previous response.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated list of golden records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/GoldenRecord'
+                  nextPageToken:
+                    type: string
+                    description: Token for retrieving the next page of results.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    UniverseId:
+      name: universeId
+      in: path
+      required: true
+      description: Unique identifier of the master data domain (universe).
+      schema:
+        type: string
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    GoldenRecord:
+      type: object
+      description: The authoritative master record that results from matching and merging source records across contributing systems.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the golden record.
+        fields:
+          type: object
+          description: Field values of the golden record, keyed by field name.
+          additionalProperties: true
+        sources:
+          type: array
+          description: Source records that contribute to this golden record.
+          items:
+            type: object
+            properties:
+              sourceId:
+                type: string
+                description: ID of the contributing source system.
+              recordId:
+                type: string
+                description: ID of the record in the source system.
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the golden record was created.
+        updatedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the golden record was last updated.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: JWT Bearer token for the Repository API.
+externalDocs:
+  description: Boomi DataHub REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
