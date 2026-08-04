@@ -1,0 +1,36 @@
+{
+  "provider": "boomi",
+  "sources": [
+    "boomi-atoms-api-openapi.yml",
+    "boomi-components-api-openapi.yml",
+    "boomi-deployments-api-openapi.yml",
+    "boomi-environments-api-openapi.yml",
+    "boomi-execution-api-openapi.yml",
+    "boomi-golden-records-api-openapi.yml",
+    "boomi-messages-api-openapi.yml",
+    "boomi-models-api-openapi.yml",
+    "boomi-processes-api-openapi.yml",
+    "boomi-quarantine-api-openapi.yml",
+    "boomi-repositories-api-openapi.yml",
+    "boomi-sources-api-openapi.yml"
+  ],
+  "outputs": [
+    "boomi-atoms-api-openapi.yml",
+    "boomi-components-api-openapi.yml",
+    "boomi-deployments-api-openapi.yml",
+    "boomi-environments-api-openapi.yml",
+    "boomi-execution-api-openapi.yml",
+    "boomi-golden-records-api-openapi.yml",
+    "boomi-messages-api-openapi.yml",
+    "boomi-models-api-openapi.yml",
+    "boomi-processes-api-openapi.yml",
+    "boomi-quarantine-api-openapi.yml",
+    "boomi-repositories-api-openapi.yml",
+    "boomi-sources-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
