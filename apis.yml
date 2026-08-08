@@ -822,7 +822,7 @@ common:
   description: 'null'
 - url: https://boomi.com/model-context-protocol/
   name: Model Context Protocol | Boomi
-  type: MCP
+  type: Documentation
   description: 'null'
 - url: https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs
   name: Boomi Enterprise Platform APIs | Boomi Documentation
