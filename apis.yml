@@ -625,6 +625,11 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/boomi.png
 access: 3rd-Party
 common:
+- type: Subsidiary
+  name: APIIDA
+  url: https://apiida.com/
+- type: GettingStarted
+  url: https://help.boomi.com/docs/Atomsphere/Platform/quickstart_guides
 - type: AgenticAccess
   url: agentic-access/boomi-agentic-access.yml
 - type: DomainSecurity
