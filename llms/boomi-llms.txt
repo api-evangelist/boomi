@@ -1,0 +1,102 @@
+---
+servers:
+  - url: https://api.boomi.com/api/rest/v1/{accountId}/
+    description: REST API — US region
+    region: us
+  - url: https://api.platform.gb.boomi.com/api/rest/v1/{accountId}/
+    description: REST API — GB region
+    region: gb
+  - url: https://api.boomi.com/graphql
+    description: GraphQL API
+---
+
+# Boomi Developer Documentation
+
+> API references, guides, and developer resources for the Boomi Enterprise Platform.
+>
+> This file is the primary entry point for AI Agents. Load the section file
+> for your topic — each is small enough to fit comfortably in a context window.
+>
+> For bulk ingestion or RAG pipelines, use the full index: https://developer.boomi.com/llms-full.txt
+
+## Service Areas
+
+- [Blog](https://developer.boomi.com/md/blog/llms.txt): Developer blog — tutorials, release highlights, and best practices (35 pages)
+- [APIs](https://developer.boomi.com/md/docs/APIs/llms.txt): Platform REST APIs, GraphQL, SOAP, MFT, Data Integration, Event Notifications, and connector API references (1464 pages)
+- [Boomi AI](https://developer.boomi.com/md/docs/BoomiAI/llms.txt): Boomi AI agent building, prompt engineering, and AI-assisted integration (32 pages)
+- [Boomi Companion](https://developer.boomi.com/md/docs/BoomiCompanion/llms.txt): Boomi Companion — AI-powered assistant embedded in the Boomi platform UI; setup, configuration, and usage guides for the in-product copilot that helps users build integrations, answer platform questions, and get contextual guidance (17 pages)
+- [Boomi Embedded](https://developer.boomi.com/md/docs/BoomiEmbedded/llms.txt): Boomi EmbedKit — embed Boomi integration capabilities in third-party applications; SDK setup, configuration, and usage guides (11 pages)
+- [Changelog](https://developer.boomi.com/md/docs/Changelog/llms.txt): API and platform changelog — breaking changes and version history (9 pages)
+- [Connectors](https://developer.boomi.com/md/docs/Connectors/llms.txt): Connector SDK, custom connector development, and connector certification (67 pages)
+- [Controlplane SDK](https://developer.boomi.com/md/docs/ControlplaneSDK/llms.txt): API Control Plane Agent SDK — build custom gateway agents to connect third-party API management platforms to Boomi's API Control Plane; covers SDK setup, agent implementation, and gateway integration patterns (8 pages)
+- [Getting Started](https://developer.boomi.com/md/docs/GettingStarted/llms.txt): Onboarding, authentication, and developer quickstarts (10 pages)
+- [Partners](https://developer.boomi.com/md/docs/Partners/llms.txt): Partner program resources, co-sell guides, and integration templates (10 pages)
+
+## Notes for AI tools
+
+Most documentation pages on this site can be fetched directly.
+REST API reference pages (URLs matching `/docs/api/*`, e.g.
+`/docs/api/platformapi/AuditLog`) are rendered client-side and return empty
+content when fetched as HTML — but their .md counterpart in this index is
+NOT an empty stub: it has the object's operations and schemas baked in
+directly (an `## Operations` section with each endpoint's method, path,
+and description, and a `## Schemas` section with the full JSON schema).
+In most cases you can answer directly from that .md file — no separate
+spec fetch needed.
+
+For these `/docs/api/*` pages, follow both rules below:
+
+1. **To answer a question:** read the page's own .md file first — the
+   operations and schemas are usually already there. Only fall back to
+   fetching the FULL merged OpenAPI spec (via the stub's `openapi_spec`
+   frontmatter field, or the table below) if the .md file's `## Operations`/
+   `## Schemas` sections are missing — a small number of pages don't have
+   a matched per-object spec and fall back to a spec-URL pointer instead.
+   When you do read a merged spec, read the whole file, not just a keyword
+   match — a schema is often defined via `$ref` elsewhere in it.
+2. **To give the user a reference link:** always use the page's own
+   `canonical_html_url` (from its stub .md frontmatter, or this index).
+   Never link to the OpenAPI spec JSON file itself as a user-facing
+   reference, and never construct or guess a URL — every `/docs/api/*`
+   page has a real stub entry in this index with its exact canonical URL.
+
+| URL pattern | Fallback OpenAPI Spec (merged; only needed if the page's own .md lacks Operations/Schemas) |
+|---|---|
+| `/docs/api/platformapi/*` | https://developer.boomi.com/APIs/platformOpenAPISpec.json |
+| `/docs/api/platformpartnerapi/*` | https://developer.boomi.com/APIs/platformPartnerAPISpec.json |
+| `/docs/api/connectors/*` | https://developer.boomi.com/APIs/connectorsOpenAPISpec.json |
+| `/docs/api/bundles/*` | https://developer.boomi.com/APIs/bundlesOpenAPISpec.json |
+| `/docs/api/dataintegration/*` | https://developer.boomi.com/APIs/dataIntegrationOpenAPISpec.json |
+| `/docs/api/aftmanagementapi/*` | https://developer.boomi.com/APIs/aftManagementRESTOpenAPISpec.json |
+| `/docs/api/filesharingapi/*` | https://developer.boomi.com/APIs/mftFileSharingOpenAPISpec.json |
+| `/docs/api/eventnotifications/*` | https://developer.boomi.com/APIs/eventNotificationsOpenAPISpec.json |
+| `/docs/api/agentgardendesign/*` | https://developer.boomi.com/APIs/Agent_Garden_Design_OpenAPI_Spec.json |
+| `/docs/api/agentgardenexecute/*` | https://developer.boomi.com/APIs/Agent_Garden_Execute_OpenAPI_spec.json |
+| `/docs/api/datahub/*` | https://developer.boomi.com/APIs/mdm-openapi-spec.json |
+| `/docs/api/aftauditlogapi/*` | https://developer.boomi.com/APIs/aftAuditLogRESTOpenAPISpec.json |
+| `/docs/api/dataintegrationlegacyapi/*` | https://developer.boomi.com/APIs/dataIntegrationLegacyOpenAPISpec.json |
+
+GraphQL and SOAP API pages render correctly and can be fetched directly.
+
+Pages at `/docs/category/*` are Docusaurus navigation shells — they contain
+only links, not content. Use the URLs in this file to reach actual documentation.
+
+### Authentication
+
+All Boomi Platform REST APIs use Basic Auth (username + API token).
+JWT authentication is also supported.
+
+Base URLs:
+- US region: `https://api.boomi.com/api/rest/v1/{accountId}/`
+- GB region: `https://api.platform.gb.boomi.com/api/rest/v1/{accountId}/`
+
+For rate limits and API licensing details, see:
+https://developer.boomi.com/docs/GettingStarted/API_licensing
+
+### GraphQL
+
+- Endpoint: `https://api.boomi.com/graphql`
+- Authentication guide: https://developer.boomi.com/docs/APIs/GraphQL/Authentication
+- API Explorer: https://developer.boomi.com/docs/APIs/GraphQL/GraphQL_api_explorer
+
+- [Boomi Developer Documentation](https://developer.boomi.com/index.md)
