@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Golden Records API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Golden Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List golden records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/universes/:universeId/records",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "universeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the master data domain (universe)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of golden records from the specified master data domain (universe)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

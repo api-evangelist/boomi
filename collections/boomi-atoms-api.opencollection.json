@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Atoms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Get an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific Boomi Atom (runtime engine) by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Update an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or purge schedule of an existing Boomi Atom."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete an Atom",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/Atom/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Removes an Atom from the Boomi platform. The Atom must be offline before it can be deleted."
+        },
+        {
+          "info": {
+            "name": "Boomi Query Atoms",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Atom/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of Atoms matching the specified filter criteria, including online/offline status and environment associations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

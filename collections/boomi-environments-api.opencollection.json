@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Environments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Create an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Environment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new runtime environment in the Boomi platform for deploying and running integration processes."
+        },
+        {
+          "info": {
+            "name": "Boomi Get an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/Environment/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific runtime environment by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete an environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/Environment/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a runtime environment from the Boomi platform."
+        },
+        {
+          "info": {
+            "name": "Boomi Query environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Environment/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of runtime environments matching the specified query filter criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

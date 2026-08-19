@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Processes API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Processes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Create a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Process",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new integration process in the Boomi platform. The process definition is provided in the request body as XML or JSON."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific integration process by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Update a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing integration process by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/Process/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Permanently deletes an integration process from the Boomi platform."
+        },
+        {
+          "info": {
+            "name": "Boomi Query processes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/Process/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of integration processes matching the specified query filter criteria. Supports filtering by folder ID, process name, and other properties."
+        },
+        {
+          "info": {
+            "name": "Boomi Get process schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/ProcessSchedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the scheduling configuration for a specific integration process."
+        },
+        {
+          "info": {
+            "name": "Boomi Update process schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/ProcessSchedules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the scheduling configuration for a specific integration process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

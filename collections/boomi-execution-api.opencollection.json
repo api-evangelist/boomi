@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Execution API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Execution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Execute a process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/ExecutionRequest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers the execution of an integration process on a specified Atom. Returns an execution request ID that can be used to track the job."
+        },
+        {
+          "info": {
+            "name": "Boomi Query execution records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/ExecutionRecord/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of process execution records matching the specified filter criteria. Useful for retrieving job history and execution statistics."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

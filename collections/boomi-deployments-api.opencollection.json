@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Deployments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi Deploy a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/DeployedPackage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys a packaged component to an environment. Creates a new deployed package record associating the package with the target environment."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a deployed package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/DeployedPackage/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific deployed package by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Undeploy a package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/DeployedPackage/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the platform object."
+              }
+            ]
+          },
+          "docs": "Removes a deployed package from its environment, undeploying the component."
+        },
+        {
+          "info": {
+            "name": "Boomi Query deployed packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/DeployedPackage/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of deployed packages matching the specified filter criteria. Useful for auditing current deployments across environments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

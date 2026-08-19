@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Quarantine API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Quarantine",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List quarantine entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/universes/:universeId/quarantine",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "universeId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the master data domain (universe)."
+              }
+            ]
+          },
+          "docs": "Returns records held in quarantine that could not be automatically processed due to data quality or matching issues."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

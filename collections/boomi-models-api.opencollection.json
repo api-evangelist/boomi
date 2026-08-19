@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Models API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Returns all data models defined within a specific repository."
+        },
+        {
+          "info": {
+            "name": "Boomi Create a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new data model within the repository that defines the schema for a master data domain."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Retrieves the details and schema of a specific data model."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a data model from the repository."
+        },
+        {
+          "info": {
+            "name": "Boomi Publish a model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId/models/:modelId/publish",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              },
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the data model."
+              }
+            ]
+          },
+          "docs": "Publishes a data model, making it available for domain deployment and data ingestion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

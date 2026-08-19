@@ -1,0 +1,451 @@
+{
+  "item": [
+    {
+      "id": "8947da83-f41f-4230-b5d7-4c4816c7c8dc",
+      "name": "Execution",
+      "description": {
+        "content": "Execute integration processes and retrieve execution statistics and job results.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ac35ccb-79bc-41e1-851e-b4cae7c5fff4",
+          "name": "Boomi Execute a process",
+          "request": {
+            "name": "Boomi Execute a process",
+            "description": {
+              "content": "Triggers the execution of an integration process on a specified Atom. Returns an execution request ID that can be used to track the job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ExecutionRequest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"atomId\": \"<string>\",\n  \"processId\": \"<string>\",\n  \"processProperties\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6829a3a-15eb-4866-be5a-088d5c0aae34",
+              "name": "The execution request with a job ID for tracking.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"atomId\": \"<string>\",\n  \"processId\": \"<string>\",\n  \"processProperties\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c3ebd89-11eb-4b2e-8a36-4d4c8002dedc",
+              "name": "The request body is invalid or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"atomId\": \"<string>\",\n  \"processId\": \"<string>\",\n  \"processProperties\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4478\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b253eaa-3e11-4836-b838-9f6d222f6f02",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRequest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"atomId\": \"<string>\",\n  \"processId\": \"<string>\",\n  \"processProperties\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4478\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ccf90ba5-8f07-4728-9972-6eb377305f2f",
+          "name": "Boomi Query execution records",
+          "request": {
+            "name": "Boomi Query execution records",
+            "description": {
+              "content": "Returns a list of process execution records matching the specified filter criteria. Useful for retrieving job history and execution statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ExecutionRecord",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"QueryFilter\": {\n    \"expression\": {\n      \"operator\": \"<string>\",\n      \"nestedExpression\": [\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        },\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0afb415-59d0-434e-ad09-44f906aec0dd",
+              "name": "Query results containing matching execution records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRecord",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"QueryFilter\": {\n    \"expression\": {\n      \"operator\": \"<string>\",\n      \"nestedExpression\": [\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        },\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"numberOfResults\": 7637,\n  \"queryToken\": \"string\",\n  \"result\": [\n    {\n      \"executionId\": \"string\",\n      \"processId\": \"string\",\n      \"atomId\": \"string\",\n      \"status\": \"DISCARDED\",\n      \"executionTime\": \"1968-12-06T23:52:35.987Z\",\n      \"duration\": 6643,\n      \"message\": \"string\"\n    },\n    {\n      \"executionId\": \"string\",\n      \"processId\": \"string\",\n      \"atomId\": \"string\",\n      \"status\": \"COMPLETE\",\n      \"executionTime\": \"1951-01-07T23:35:11.045Z\",\n      \"duration\": 9932,\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfaad853-760a-40fd-905e-fe5b11f594c2",
+              "name": "The request body is invalid or missing required fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRecord",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"QueryFilter\": {\n    \"expression\": {\n      \"operator\": \"<string>\",\n      \"nestedExpression\": [\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        },\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4478\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc47d5b9-0849-4bd3-9645-3c1fea8c9f44",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ExecutionRecord",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"QueryFilter\": {\n    \"expression\": {\n      \"operator\": \"<string>\",\n      \"nestedExpression\": [\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        },\n        {\n          \"argument\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"operator\": \"<string>\",\n          \"property\": \"<string>\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": 4478\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdh.boomi.com/mdh",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "db9ee420-9461-41e0-8f27-c82fa11c995a",
+    "name": "Boomi DataHub Atoms Execution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).\n\nContact Support:\n Name: Boomi Support",
+      "type": "text/plain"
+    }
+  }
+}

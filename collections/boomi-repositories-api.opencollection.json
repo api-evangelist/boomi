@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Boomi DataHub Atoms Repositories API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boomi List repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories"
+          },
+          "docs": "Returns a list of all DataHub repositories associated with the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Boomi Create a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdh.boomi.com/mdh/repositories",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new DataHub repository for managing master data."
+        },
+        {
+          "info": {
+            "name": "Boomi Get a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Retrieves details of a specific DataHub repository by its ID."
+        },
+        {
+          "info": {
+            "name": "Boomi Delete a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://mdh.boomi.com/mdh/repositories/:repositoryId",
+            "params": [
+              {
+                "name": "repositoryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier of the DataHub repository."
+              }
+            ]
+          },
+          "docs": "Permanently deletes a DataHub repository and all its data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
