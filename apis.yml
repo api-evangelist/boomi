@@ -227,6 +227,8 @@ apis:
   description: Manage deployed packages and the deployment of integration components to environments.
   humanURL: https://boomi.com/platform/api-management/
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -377,6 +379,8 @@ apis:
   description: Endpoints for producing messages to Boomi Event Streams topics via HTTP REST calls.
   humanURL: https://boomi.com/platform/api-management/
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -598,6 +602,17 @@ apis:
     url: asyncapi/boomi-event-streams-asyncapi.yml
 name: Boomi
 tags:
+- AI Agents
+- Automation
+- B2B
+- Data Integration
+- EDI
+- Integration
+- Management
+- MFT
+- Platform
+- Workflows
+tags_raw:
 - AI Agents
 - Automation
 - B2B
