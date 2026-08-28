@@ -11,8 +11,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: componentsApi
+  url: ../openapi/boomi-components-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: package-and-inspect-component

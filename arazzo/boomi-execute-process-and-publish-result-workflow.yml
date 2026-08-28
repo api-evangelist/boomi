@@ -12,11 +12,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: executionApi
+  url: ../openapi/boomi-execution-api-openapi.yml
   type: openapi
-- name: eventStreamsApi
-  url: ../openapi/boomi-event-streams-openapi.yml
+- name: messagesApi
+  url: ../openapi/boomi-messages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: execute-process-and-publish-result

@@ -11,8 +11,14 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataHubApi
-  url: ../openapi/boomi-datahub-api-openapi.yml
+- name: goldenRecordsApi
+  url: ../openapi/boomi-golden-records-api-openapi.yml
+  type: openapi
+- name: quarantineApi
+  url: ../openapi/boomi-quarantine-api-openapi.yml
+  type: openapi
+- name: repositoriesApi
+  url: ../openapi/boomi-repositories-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: datahub-review-data-quality

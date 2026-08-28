@@ -11,8 +11,11 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: atomsApi
+  url: ../openapi/boomi-atoms-api-openapi.yml
+  type: openapi
+- name: environmentsApi
+  url: ../openapi/boomi-environments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-environment-with-atom

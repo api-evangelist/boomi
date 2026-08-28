@@ -11,8 +11,8 @@ info:
     OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: processesApi
+  url: ../openapi/boomi-processes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: decommission-process

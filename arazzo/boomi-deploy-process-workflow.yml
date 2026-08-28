@@ -11,8 +11,14 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: componentsApi
+  url: ../openapi/boomi-components-api-openapi.yml
+  type: openapi
+- name: deploymentsApi
+  url: ../openapi/boomi-deployments-api-openapi.yml
+  type: openapi
+- name: processesApi
+  url: ../openapi/boomi-processes-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: deploy-process

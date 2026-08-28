@@ -10,8 +10,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/boomi-platform-rest-api-openapi.yml
+- name: deploymentsApi
+  url: ../openapi/boomi-deployments-api-openapi.yml
+  type: openapi
+- name: environmentsApi
+  url: ../openapi/boomi-environments-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: audit-environment-deployments

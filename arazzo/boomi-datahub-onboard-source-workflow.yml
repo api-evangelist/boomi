@@ -10,8 +10,11 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: dataHubApi
-  url: ../openapi/boomi-datahub-api-openapi.yml
+- name: repositoriesApi
+  url: ../openapi/boomi-repositories-api-openapi.yml
+  type: openapi
+- name: sourcesApi
+  url: ../openapi/boomi-sources-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: datahub-onboard-source
