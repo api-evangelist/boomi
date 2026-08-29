@@ -1,36 +1,45 @@
 {
   "provider": "boomi",
   "sources": [
-    "boomi-atoms-api-openapi.yml",
-    "boomi-components-api-openapi.yml",
-    "boomi-deployments-api-openapi.yml",
-    "boomi-environments-api-openapi.yml",
-    "boomi-execution-api-openapi.yml",
-    "boomi-golden-records-api-openapi.yml",
-    "boomi-messages-api-openapi.yml",
-    "boomi-models-api-openapi.yml",
-    "boomi-processes-api-openapi.yml",
-    "boomi-quarantine-api-openapi.yml",
-    "boomi-repositories-api-openapi.yml",
-    "boomi-sources-api-openapi.yml"
+    "_original/boomi-datahub-api-openapi.yml",
+    "_original/boomi-event-streams-openapi.yml",
+    "_original/boomi-platform-rest-api-openapi.yml"
   ],
   "outputs": [
+    "boomi-golden-records-api-openapi.yml",
+    "boomi-models-api-openapi.yml",
+    "boomi-quarantine-api-openapi.yml",
+    "boomi-repositories-api-openapi.yml",
+    "boomi-sources-api-openapi.yml",
+    "boomi-messages-api-openapi.yml",
     "boomi-atoms-api-openapi.yml",
     "boomi-components-api-openapi.yml",
     "boomi-deployments-api-openapi.yml",
     "boomi-environments-api-openapi.yml",
     "boomi-execution-api-openapi.yml",
-    "boomi-golden-records-api-openapi.yml",
-    "boomi-messages-api-openapi.yml",
-    "boomi-models-api-openapi.yml",
-    "boomi-processes-api-openapi.yml",
-    "boomi-quarantine-api-openapi.yml",
-    "boomi-repositories-api-openapi.yml",
-    "boomi-sources-api-openapi.yml"
+    "boomi-processes-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "boomi-datahub-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boomi-event-streams-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "boomi-platform-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "boomi-atoms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-components-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-execution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-golden-records-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-processes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-quarantine-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-repositories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "boomi-sources-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

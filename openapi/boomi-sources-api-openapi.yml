@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Boomi DataHub Atoms Sources API
+  title: Boomi DataHub Sources API
   description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
   version: '1.0'
   contact:
@@ -68,7 +68,44 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
     SourceInput:
       type: object
       description: Input for creating a data source.
@@ -98,43 +135,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the source was created.
-    ErrorResponse:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Numeric error code.
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    RepositoryId:
-      name: repositoryId
-      in: path
-      required: true
-      description: Unique identifier of the DataHub repository.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

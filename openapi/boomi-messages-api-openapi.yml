@@ -1,17 +1,20 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Boomi DataHub Atoms Messages API
-  description: 'The Boomi DataHub REST API provides programmatic access to master data management operations. It consists of two layers: the Platform API for managing repositories, models, sources, and domains; and the Repository API for querying and manipulating golden records and staged entities. The Platform API uses Basic Authentication while the Repository API supports JWT authentication. Requests are subject to usage limits based on licensed connectors (1,000 times the number of connectors per 24 hours).'
+  title: Boomi Event Streams REST Messages API
+  description: 'The Boomi Event Streams REST API enables HTTP-based applications to produce messages to event topics. It supports two operational modes: multiple messages in a predefined JSON format, and single messages in their original format without transformation. The API accommodates messages up to 5 MB and enforces a rate limit of 60,000 requests per IP per 5-minute window. Each topic has a unique REST API URL available in the Event Streams UI. Authentication uses an Environment Token as a Bearer token.'
   version: '1.0'
   contact:
     name: Boomi Support
     url: https://community.boomi.com/s/support
   termsOfService: https://boomi.com/legal/service/
 servers:
-- url: https://mdh.boomi.com/mdh
-  description: Boomi DataHub Platform API
+- url: https://{topicEndpoint}
+  description: Topic-specific endpoint URL. Each event topic has a unique REST API URL obtained from the Event Streams UI in the Boomi platform.
+  variables:
+    topicEndpoint:
+      description: The unique hostname for this event topic's REST endpoint.
+      default: your-topic-endpoint.boomi.com
 security:
-- basicAuth: []
 - bearerAuth: []
 tags:
 - name: Messages
@@ -56,36 +59,20 @@ paths:
         '429':
           description: Rate limit exceeded. Maximum 60,000 requests per IP per 5-minute window.
 components:
+  responses:
+    BadRequest:
+      description: The request payload is invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    MultiMessageRequest:
-      type: object
-      description: Request body for publishing multiple messages in the predefined JSON format. Each message contains a payload and optional properties.
-      required:
-      - messages
-      properties:
-        messages:
-          type: array
-          description: Array of messages to publish to the topic.
-          items:
-            $ref: '#/components/schemas/MessageItem'
-    MessageItem:
-      type: object
-      description: A single message in multi-message mode.
-      required:
-      - payload
-      properties:
-        payload:
-          type: string
-          description: The message content. May be plain text, JSON, or XML encoded as a string.
-        properties:
-          type: object
-          description: Optional custom metadata key-value pairs associated with this message.
-          additionalProperties:
-            type: string
-    SingleMessageRequest:
-      type: object
-      description: Request body for publishing a single message in its original format. Properties are sent via request headers prefixed with x-msg-props-.
-      additionalProperties: true
     ErrorResponse:
       type: object
       description: Standard error response.
@@ -104,28 +91,40 @@ components:
         messageIds:
           type: string
           description: Comma-separated list of message IDs assigned to the published messages.
-  responses:
-    Unauthorized:
-      description: Authentication token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request payload is invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    MultiMessageRequest:
+      type: object
+      description: Request body for publishing multiple messages in the predefined JSON format. Each message contains a payload and optional properties.
+      required:
+      - messages
+      properties:
+        messages:
+          type: array
+          description: Array of messages to publish to the topic.
+          items:
+            $ref: '#/components/schemas/MessageItem'
+    SingleMessageRequest:
+      type: object
+      description: Request body for publishing a single message in its original format. Properties are sent via request headers prefixed with x-msg-props-.
+      additionalProperties: true
+    MessageItem:
+      type: object
+      description: A single message in multi-message mode.
+      required:
+      - payload
+      properties:
+        payload:
+          type: string
+          description: The message content. May be plain text, JSON, or XML encoded as a string.
+        properties:
+          type: object
+          description: Optional custom metadata key-value pairs associated with this message.
+          additionalProperties:
+            type: string
   securitySchemes:
-    basicAuth:
-      type: http
-      scheme: basic
-      description: Basic Authentication for the DataHub Platform API. Users with two-factor authentication must include an X-Boomi-OTP header.
     bearerAuth:
       type: http
       scheme: bearer
-      description: JWT Bearer token for the Repository API.
+      description: 'Environment Token obtained from the Boomi Event Streams UI. Include as Authorization: Bearer {environment_token}.'
 externalDocs:
-  description: Boomi DataHub REST API Documentation
-  url: https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f
+  description: Boomi Event Streams REST API Documentation
+  url: https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API
