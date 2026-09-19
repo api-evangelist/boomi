@@ -267,6 +267,8 @@ apis:
     Manage runtime environments where Boomi Atoms and Molecules are deployed to run integration processes.
   humanURL: https://boomi.com/platform/api-management/
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
