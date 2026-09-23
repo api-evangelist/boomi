@@ -107,26 +107,41 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    Atom:
+      type: object
+      description: A Boomi Atom — the lightweight runtime engine that executes integration processes.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the Atom.
+        name:
+          type: string
+          description: Display name of the Atom.
+        status:
+          type: string
+          description: Current online/offline status of the Atom.
+          enum:
+          - ONLINE
+          - OFFLINE
+          - UNKNOWN
+        type:
+          type: string
+          description: Atom type.
+          enum:
+          - ATOM
+          - MOLECULE
+          - CLOUD
+        hostName:
+          type: string
+          description: Hostname of the machine running the Atom.
+        currentVersion:
+          type: string
+          description: Current Boomi runtime version installed on the Atom.
+        dateInstalled:
+          type: string
+          format: date-time
+          description: Timestamp when the Atom was installed.
     AtomInput:
       type: object
       description: Input for updating an Atom.
@@ -147,6 +162,20 @@ components:
         code:
           type: integer
           description: Numeric error code.
+    AtomQueryResult:
+      type: object
+      description: Paginated query results for Atoms.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Atom'
     QueryRequest:
       type: object
       description: Request body for querying platform objects with filter criteria.
@@ -187,54 +216,25 @@ components:
                       property:
                         type: string
                         description: Object property to filter on.
-    AtomQueryResult:
-      type: object
-      description: Paginated query results for Atoms.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Atom'
-    Atom:
-      type: object
-      description: A Boomi Atom — the lightweight runtime engine that executes integration processes.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the Atom.
-        name:
-          type: string
-          description: Display name of the Atom.
-        status:
-          type: string
-          description: Current online/offline status of the Atom.
-          enum:
-          - ONLINE
-          - OFFLINE
-          - UNKNOWN
-        type:
-          type: string
-          description: Atom type.
-          enum:
-          - ATOM
-          - MOLECULE
-          - CLOUD
-        hostName:
-          type: string
-          description: Hostname of the machine running the Atom.
-        currentVersion:
-          type: string
-          description: Current Boomi runtime version installed on the Atom.
-        dateInstalled:
-          type: string
-          format: date-time
-          description: Timestamp when the Atom was installed.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ObjectId:
       name: id

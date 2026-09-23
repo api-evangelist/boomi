@@ -69,6 +69,12 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request body is invalid or missing required fields.
       content:
@@ -81,43 +87,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    RepositoryId:
-      name: repositoryId
-      in: path
-      required: true
-      description: Unique identifier of the DataHub repository.
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Numeric error code.
-    SourceInput:
-      type: object
-      description: Input for creating a data source.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name for the source.
-        description:
-          type: string
-          description: Optional description of the source system.
     Source:
       type: object
       description: A data source that contributes records to the master data hub.
@@ -135,6 +105,36 @@ components:
           type: string
           format: date-time
           description: Timestamp when the source was created.
+    SourceInput:
+      type: object
+      description: Input for creating a data source.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name for the source.
+        description:
+          type: string
+          description: Optional description of the source system.
+    ErrorResponse:
+      type: object
+      description: Standard error response.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  parameters:
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

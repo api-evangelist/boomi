@@ -127,6 +127,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request body is invalid or missing required fields.
       content:
@@ -139,13 +145,48 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ModelField:
+      type: object
+      description: A field definition within a data model schema.
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Field name used as the identifier.
+        type:
+          type: string
+          description: Data type of the field.
+          enum:
+          - STRING
+          - INTEGER
+          - FLOAT
+          - BOOLEAN
+          - DATE
+          - DATETIME
+          - REFERENCE
+        required:
+          type: boolean
+          description: Whether this field is required.
+        unique:
+          type: boolean
+          description: Whether this field must be unique across records.
+    ModelInput:
+      type: object
+      description: Input for creating or updating a data model.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name for the model.
+        fields:
+          type: array
+          description: Field definitions for the model schema.
+          items:
+            $ref: '#/components/schemas/ModelField'
     Model:
       type: object
       description: A data model defining the schema and matching rules for a master data domain.
@@ -183,47 +224,6 @@ components:
         code:
           type: integer
           description: Numeric error code.
-    ModelInput:
-      type: object
-      description: Input for creating or updating a data model.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name for the model.
-        fields:
-          type: array
-          description: Field definitions for the model schema.
-          items:
-            $ref: '#/components/schemas/ModelField'
-    ModelField:
-      type: object
-      description: A field definition within a data model schema.
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-          description: Field name used as the identifier.
-        type:
-          type: string
-          description: Data type of the field.
-          enum:
-          - STRING
-          - INTEGER
-          - FLOAT
-          - BOOLEAN
-          - DATE
-          - DATETIME
-          - REFERENCE
-        required:
-          type: boolean
-          description: Whether this field is required.
-        unique:
-          type: boolean
-          description: Whether this field must be unique across records.
   parameters:
     RepositoryId:
       name: repositoryId

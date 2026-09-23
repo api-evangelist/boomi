@@ -66,6 +66,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: The request body is invalid or missing required fields.
       content:
@@ -78,13 +84,25 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
     PackagedComponentInput:
       type: object
       description: Input for creating a packaged component.
@@ -104,16 +122,6 @@ components:
         notes:
           type: string
           description: Optional notes about this package version.
-    ErrorResponse:
-      type: object
-      description: Standard error response from the Boomi Platform API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Numeric error code.
     PackagedComponent:
       type: object
       description: A versioned, deployable package of a Boomi component.
@@ -137,14 +145,6 @@ components:
           type: string
           format: date-time
           description: Timestamp when the package was created.
-  parameters:
-    ObjectId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the platform object.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

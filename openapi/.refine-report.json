@@ -26,7 +26,8 @@
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "boomi-datahub-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "boomi-event-streams-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "boomi-platform-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "boomi-platform-rest-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "boomi-atoms-api-openapi.yml: previously refined output, superseded by openapi/_original/",

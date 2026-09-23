@@ -104,36 +104,21 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
+    EnvironmentQueryResult:
       type: object
-      description: Standard error response from the Boomi Platform API.
+      description: Paginated query results for environments.
       properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
+        numberOfResults:
           type: integer
-          description: Numeric error code.
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
     EnvironmentInput:
       type: object
       description: Input for creating a runtime environment.
@@ -150,6 +135,36 @@ components:
           enum:
           - PRODUCTION
           - TEST
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+    Environment:
+      type: object
+      description: A Boomi runtime environment where Atoms are assigned and processes are deployed.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the environment.
+        name:
+          type: string
+          description: Display name of the environment.
+        classification:
+          type: string
+          description: Environment classification.
+          enum:
+          - PRODUCTION
+          - TEST
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the environment was created.
     QueryRequest:
       type: object
       description: Request body for querying platform objects with filter criteria.
@@ -190,40 +205,25 @@ components:
                       property:
                         type: string
                         description: Object property to filter on.
-    EnvironmentQueryResult:
-      type: object
-      description: Paginated query results for environments.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Environment'
-    Environment:
-      type: object
-      description: A Boomi runtime environment where Atoms are assigned and processes are deployed.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the environment.
-        name:
-          type: string
-          description: Display name of the environment.
-        classification:
-          type: string
-          description: Environment classification.
-          enum:
-          - PRODUCTION
-          - TEST
-        createdDate:
-          type: string
-          format: date-time
-          description: Timestamp when the environment was created.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ObjectId:
       name: id
