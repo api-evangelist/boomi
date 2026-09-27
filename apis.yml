@@ -613,10 +613,12 @@ tags:
 - Data Integration
 - EDI
 - Integration
+- iPaaS
 - Management
 - MFT
 - Platform
 - Workflows
+- Workflow Automation
 tags_raw:
 - AI Agents
 - Automation
@@ -624,23 +626,28 @@ tags_raw:
 - Data Integration
 - EDI
 - Integrations
+- iPaaS
 - Management
 - MFT
 - Platform
 - Workflows
+- Workflow-Automation
 kind: contract
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - manywho/docs-api
   open_source: unknown
   commercial: true
-  callable_host: false
-  label: Delivery model not determined — needs a product licence on record
+  callable_host: true
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -736,6 +743,9 @@ common:
   name: Boomi Free Trial | Boomi
   type: Trial
   description: 'null'
+- url: https://boomi.com/form/trial/
+  name: Boomi Free Trial Sign Up
+  type: SignUp
 - url: https://boomi.com/custom-demo-request/
   name: Custom Demo Request | Boomi
   type: RequestDemo

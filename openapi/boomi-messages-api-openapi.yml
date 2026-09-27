@@ -59,7 +59,31 @@ paths:
         '429':
           description: Rate limit exceeded. Maximum 60,000 requests per IP per 5-minute window.
 components:
+  responses:
+    Unauthorized:
+      description: Authentication token is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request payload is invalid or malformed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    PublishResponse:
+      type: object
+      description: Response returned after successfully publishing messages.
+      properties:
+        status:
+          type: string
+          description: Status of the publish operation.
+          example: success
+        messageIds:
+          type: string
+          description: Comma-separated list of message IDs assigned to the published messages.
     MessageItem:
       type: object
       description: A single message in multi-message mode.
@@ -74,17 +98,6 @@ components:
           description: Optional custom metadata key-value pairs associated with this message.
           additionalProperties:
             type: string
-    PublishResponse:
-      type: object
-      description: Response returned after successfully publishing messages.
-      properties:
-        status:
-          type: string
-          description: Status of the publish operation.
-          example: success
-        messageIds:
-          type: string
-          description: Comma-separated list of message IDs assigned to the published messages.
     MultiMessageRequest:
       type: object
       description: Request body for publishing multiple messages in the predefined JSON format. Each message contains a payload and optional properties.
@@ -107,19 +120,6 @@ components:
         message:
           type: string
           description: Human-readable error message.
-  responses:
-    Unauthorized:
-      description: Authentication token is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request payload is invalid or malformed.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

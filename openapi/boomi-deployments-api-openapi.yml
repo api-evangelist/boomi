@@ -104,73 +104,26 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    DeployedPackage:
-      type: object
-      description: A packaged component deployed to a specific runtime environment.
-      properties:
-        deploymentId:
-          type: string
-          description: Unique identifier of the deployment.
-        environmentId:
-          type: string
-          description: ID of the environment to which the package is deployed.
-        packageId:
-          type: string
-          description: ID of the deployed packaged component.
-        componentId:
-          type: string
-          description: ID of the underlying component.
-        componentType:
-          type: string
-          description: Type of the deployed component.
-        deployedDate:
-          type: string
-          format: date-time
-          description: Timestamp when the package was deployed.
-        active:
-          type: boolean
-          description: Whether this deployment is currently active.
-    DeployedPackageInput:
-      type: object
-      description: Input for deploying a packaged component to an environment.
-      required:
-      - environmentId
-      - packageId
-      properties:
-        environmentId:
-          type: string
-          description: ID of the target environment.
-        packageId:
-          type: string
-          description: ID of the packaged component to deploy.
-        notes:
-          type: string
-          description: Optional deployment notes.
-    DeployedPackageQueryResult:
-      type: object
-      description: Paginated query results for deployed packages.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeployedPackage'
-    ErrorResponse:
-      type: object
-      description: Standard error response from the Boomi Platform API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Numeric error code.
     QueryRequest:
       type: object
       description: Request body for querying platform objects with filter criteria.
@@ -211,25 +164,72 @@ components:
                       property:
                         type: string
                         description: Object property to filter on.
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    DeployedPackageInput:
+      type: object
+      description: Input for deploying a packaged component to an environment.
+      required:
+      - environmentId
+      - packageId
+      properties:
+        environmentId:
+          type: string
+          description: ID of the target environment.
+        packageId:
+          type: string
+          description: ID of the packaged component to deploy.
+        notes:
+          type: string
+          description: Optional deployment notes.
+    DeployedPackageQueryResult:
+      type: object
+      description: Paginated query results for deployed packages.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeployedPackage'
+    DeployedPackage:
+      type: object
+      description: A packaged component deployed to a specific runtime environment.
+      properties:
+        deploymentId:
+          type: string
+          description: Unique identifier of the deployment.
+        environmentId:
+          type: string
+          description: ID of the environment to which the package is deployed.
+        packageId:
+          type: string
+          description: ID of the deployed packaged component.
+        componentId:
+          type: string
+          description: ID of the underlying component.
+        componentType:
+          type: string
+          description: Type of the deployed component.
+        deployedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the package was deployed.
+        active:
+          type: boolean
+          description: Whether this deployment is currently active.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
   parameters:
     ObjectId:
       name: id

@@ -84,44 +84,7 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    ObjectId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the platform object.
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response from the Boomi Platform API.
-      properties:
-        message:
-          type: string
-          description: Human-readable error message.
-        code:
-          type: integer
-          description: Numeric error code.
-    PackagedComponentInput:
-      type: object
-      description: Input for creating a packaged component.
-      required:
-      - componentId
-      - componentVersion
-      properties:
-        componentId:
-          type: string
-          description: ID of the component to package.
-        componentVersion:
-          type: string
-          description: Version of the component to include in the package.
-        packageVersion:
-          type: string
-          description: Optional version label for the package.
-        notes:
-          type: string
-          description: Optional notes about this package version.
     PackagedComponent:
       type: object
       description: A versioned, deployable package of a Boomi component.
@@ -145,6 +108,43 @@ components:
           type: string
           format: date-time
           description: Timestamp when the package was created.
+    PackagedComponentInput:
+      type: object
+      description: Input for creating a packaged component.
+      required:
+      - componentId
+      - componentVersion
+      properties:
+        componentId:
+          type: string
+          description: ID of the component to package.
+        componentVersion:
+          type: string
+          description: Version of the component to include in the package.
+        packageVersion:
+          type: string
+          description: Optional version label for the package.
+        notes:
+          type: string
+          description: Optional notes about this package version.
+    ErrorResponse:
+      type: object
+      description: Standard error response from the Boomi Platform API.
+      properties:
+        message:
+          type: string
+          description: Human-readable error message.
+        code:
+          type: integer
+          description: Numeric error code.
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -127,14 +127,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
+    BadRequest:
+      description: The request body is invalid or missing required fields.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
       content:
         application/json:
           schema:
@@ -146,6 +146,20 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ModelInput:
+      type: object
+      description: Input for creating or updating a data model.
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Display name for the model.
+        fields:
+          type: array
+          description: Field definitions for the model schema.
+          items:
+            $ref: '#/components/schemas/ModelField'
     ModelField:
       type: object
       description: A field definition within a data model schema.
@@ -173,20 +187,6 @@ components:
         unique:
           type: boolean
           description: Whether this field must be unique across records.
-    ModelInput:
-      type: object
-      description: Input for creating or updating a data model.
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Display name for the model.
-        fields:
-          type: array
-          description: Field definitions for the model schema.
-          items:
-            $ref: '#/components/schemas/ModelField'
     Model:
       type: object
       description: A data model defining the schema and matching rules for a master data domain.
@@ -225,18 +225,18 @@ components:
           type: integer
           description: Numeric error code.
   parameters:
-    RepositoryId:
-      name: repositoryId
-      in: path
-      required: true
-      description: Unique identifier of the DataHub repository.
-      schema:
-        type: string
     ModelId:
       name: modelId
       in: path
       required: true
       description: Unique identifier of the data model.
+      schema:
+        type: string
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
       schema:
         type: string
   securitySchemes:
