@@ -126,26 +126,49 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
+    ModelId:
+      name: modelId
+      in: path
+      required: true
+      description: Unique identifier of the data model.
+      schema:
+        type: string
   schemas:
+    Model:
+      type: object
+      description: A data model defining the schema and matching rules for a master data domain.
+      properties:
+        id:
+          type: string
+          description: Unique identifier of the model.
+        name:
+          type: string
+          description: Display name of the model.
+        version:
+          type: integer
+          description: Current version number of the model.
+        publishedVersion:
+          type: integer
+          description: Version number of the last published model.
+        status:
+          type: string
+          description: Publication status of the model.
+          enum:
+          - DRAFT
+          - PUBLISHED
+        fields:
+          type: array
+          description: Field definitions for this model's schema.
+          items:
+            $ref: '#/components/schemas/ModelField'
     ModelInput:
       type: object
       description: Input for creating or updating a data model.
@@ -187,33 +210,6 @@ components:
         unique:
           type: boolean
           description: Whether this field must be unique across records.
-    Model:
-      type: object
-      description: A data model defining the schema and matching rules for a master data domain.
-      properties:
-        id:
-          type: string
-          description: Unique identifier of the model.
-        name:
-          type: string
-          description: Display name of the model.
-        version:
-          type: integer
-          description: Current version number of the model.
-        publishedVersion:
-          type: integer
-          description: Version number of the last published model.
-        status:
-          type: string
-          description: Publication status of the model.
-          enum:
-          - DRAFT
-          - PUBLISHED
-        fields:
-          type: array
-          description: Field definitions for this model's schema.
-          items:
-            $ref: '#/components/schemas/ModelField'
     ErrorResponse:
       type: object
       description: Standard error response.
@@ -224,21 +220,25 @@ components:
         code:
           type: integer
           description: Numeric error code.
-  parameters:
-    ModelId:
-      name: modelId
-      in: path
-      required: true
-      description: Unique identifier of the data model.
-      schema:
-        type: string
-    RepositoryId:
-      name: repositoryId
-      in: path
-      required: true
-      description: Unique identifier of the DataHub repository.
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     basicAuth:
       type: http

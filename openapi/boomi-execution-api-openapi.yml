@@ -69,30 +69,78 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ExecutionRequestResult:
+    ExecutionRecord:
       type: object
-      description: Result of an execution request submission.
+      description: A record of an integration process execution (job run).
       properties:
-        requestId:
+        executionId:
           type: string
-          description: Unique identifier for tracking this execution request.
+          description: Unique identifier of the execution.
+        processId:
+          type: string
+          description: ID of the process that was executed.
+        atomId:
+          type: string
+          description: ID of the Atom that ran the process.
         status:
           type: string
-          description: Current status of the execution request.
+          description: Final status of the execution.
+          enum:
+          - COMPLETE
+          - ERROR
+          - INPROCESS
+          - ABORTED
+          - DISCARDED
+        executionTime:
+          type: string
+          format: date-time
+          description: Timestamp when the execution started.
+        duration:
+          type: integer
+          description: Execution duration in milliseconds.
+        message:
+          type: string
+          description: Status message or error details.
+    ExecutionRecordQueryResult:
+      type: object
+      description: Paginated query results for execution records.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExecutionRecord'
+    ExecutionRequest:
+      type: object
+      description: Request to execute an integration process on a specific Atom.
+      required:
+      - atomId
+      - processId
+      properties:
+        atomId:
+          type: string
+          description: ID of the Atom on which to run the process.
+        processId:
+          type: string
+          description: ID of the process to execute.
+        processProperties:
+          type: array
+          description: Optional runtime properties to pass to the process.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Property name.
+              value:
+                type: string
+                description: Property value.
     QueryRequest:
       type: object
       description: Request body for querying platform objects with filter criteria.
@@ -133,45 +181,6 @@ components:
                       property:
                         type: string
                         description: Object property to filter on.
-    ExecutionRecordQueryResult:
-      type: object
-      description: Paginated query results for execution records.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExecutionRecord'
-    ExecutionRequest:
-      type: object
-      description: Request to execute an integration process on a specific Atom.
-      required:
-      - atomId
-      - processId
-      properties:
-        atomId:
-          type: string
-          description: ID of the Atom on which to run the process.
-        processId:
-          type: string
-          description: ID of the process to execute.
-        processProperties:
-          type: array
-          description: Optional runtime properties to pass to the process.
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Property name.
-              value:
-                type: string
-                description: Property value.
     ErrorResponse:
       type: object
       description: Standard error response from the Boomi Platform API.
@@ -182,38 +191,29 @@ components:
         code:
           type: integer
           description: Numeric error code.
-    ExecutionRecord:
+    ExecutionRequestResult:
       type: object
-      description: A record of an integration process execution (job run).
+      description: Result of an execution request submission.
       properties:
-        executionId:
+        requestId:
           type: string
-          description: Unique identifier of the execution.
-        processId:
-          type: string
-          description: ID of the process that was executed.
-        atomId:
-          type: string
-          description: ID of the Atom that ran the process.
+          description: Unique identifier for tracking this execution request.
         status:
           type: string
-          description: Final status of the execution.
-          enum:
-          - COMPLETE
-          - ERROR
-          - INPROCESS
-          - ABORTED
-          - DISCARDED
-        executionTime:
-          type: string
-          format: date-time
-          description: Timestamp when the execution started.
-        duration:
-          type: integer
-          description: Execution duration in milliseconds.
-        message:
-          type: string
-          description: Status message or error details.
+          description: Current status of the execution request.
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     basicAuth:
       type: http

@@ -60,6 +60,21 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    UniverseId:
+      name: universeId
+      in: path
+      required: true
+      description: Unique identifier of the master data domain (universe).
+      schema:
+        type: string
+    RepositoryId:
+      name: repositoryId
+      in: path
+      required: true
+      description: Unique identifier of the DataHub repository.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Authentication credentials are missing or invalid.
@@ -115,21 +130,6 @@ components:
         code:
           type: integer
           description: Numeric error code.
-  parameters:
-    UniverseId:
-      name: universeId
-      in: path
-      required: true
-      description: Unique identifier of the master data domain (universe).
-      schema:
-        type: string
-    RepositoryId:
-      name: repositoryId
-      in: path
-      required: true
-      description: Unique identifier of the DataHub repository.
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http
