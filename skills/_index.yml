@@ -1,0 +1,18 @@
+generated: '2026-10-03'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/boomi-processes-api-openapi.yml
+skills:
+- file: skills/boomi-execute-and-query.md
+  name: boomi-execute-and-query
+  api: openapi/boomi-execution-api-openapi.yml
+  operations:
+  - executeProcess
+  - queryExecutionRecords
+- file: skills/boomi-create-repository.md
+  name: boomi-create-repository
+  api: openapi/boomi-repositories-api-openapi.yml
+  operations:
+  - createRepository
+  - getRepository
+  - listRepositories

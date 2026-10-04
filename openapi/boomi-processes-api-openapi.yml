@@ -179,30 +179,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ProcessQueryResult:
-      type: object
-      description: Paginated query results for processes.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-    ProcessInput:
-      type: object
-      description: Input for creating or updating an integration process.
-      properties:
-        name:
-          type: string
-          description: Display name for the process.
-        folderId:
-          type: string
-          description: ID of the folder to place the process in.
     ProcessSchedules:
       type: object
       description: Schedule configuration for an integration process.
@@ -220,6 +196,20 @@ components:
           type: object
           description: Scheduling parameters including frequency and timing.
           additionalProperties: true
+    ProcessQueryResult:
+      type: object
+      description: Paginated query results for processes.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
     Process:
       type: object
       description: A Boomi integration process that defines automated data flows between systems.
@@ -250,6 +240,16 @@ components:
           type: string
           format: date-time
           description: Timestamp when the process was last modified.
+    ProcessInput:
+      type: object
+      description: Input for creating or updating an integration process.
+      properties:
+        name:
+          type: string
+          description: Display name for the process.
+        folderId:
+          type: string
+          description: ID of the folder to place the process in.
     QueryRequest:
       type: object
       description: Request body for querying platform objects with filter criteria.
@@ -315,14 +315,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request body is invalid or missing required fields.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:

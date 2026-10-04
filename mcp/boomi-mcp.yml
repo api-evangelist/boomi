@@ -1,0 +1,210 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/boomi-atoms-api-openapi.yml
+- openapi/boomi-components-api-openapi.yml
+- openapi/boomi-deployments-api-openapi.yml
+- openapi/boomi-environments-api-openapi.yml
+- openapi/boomi-execution-api-openapi.yml
+- openapi/boomi-golden-records-api-openapi.yml
+- openapi/boomi-messages-api-openapi.yml
+- openapi/boomi-models-api-openapi.yml
+- openapi/boomi-processes-api-openapi.yml
+- openapi/boomi-quarantine-api-openapi.yml
+- openapi/boomi-repositories-api-openapi.yml
+- openapi/boomi-sources-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: No MCP server was found. The pre-flight posted tools/list to /mcp on mdh.boomi.com, api.apiida.com, boomi.com, help.boomi.com; verdict absent.
+  Candidate tools below are derived from the 37 operation(s) in the provider's own OpenAPI (37 listed); they describe what a server WOULD expose,
+  not one that exists.
+tools:
+- name: get_atom
+  operationId: getAtom
+  method: GET
+  path: /Atom/{id}
+  description: Boomi Get an Atom
+- name: create_packaged_component
+  operationId: createPackagedComponent
+  method: POST
+  path: /PackagedComponent
+  description: Boomi Create a packaged component
+- name: create_deployed_package
+  operationId: createDeployedPackage
+  method: POST
+  path: /DeployedPackage
+  description: Boomi Deploy a package
+- name: create_environment
+  operationId: createEnvironment
+  method: POST
+  path: /Environment
+  description: Boomi Create an environment
+- name: execute_process
+  operationId: executeProcess
+  method: POST
+  path: /ExecutionRequest
+  description: Boomi Execute a process
+- name: list_golden_records
+  operationId: listGoldenRecords
+  method: GET
+  path: /repositories/{repositoryId}/universes/{universeId}/records
+  description: Boomi List golden records
+- name: publish_messages
+  operationId: publishMessages
+  method: POST
+  path: /
+  description: Boomi Publish messages to a topic
+- name: list_models
+  operationId: listModels
+  method: GET
+  path: /repositories/{repositoryId}/models
+  description: Boomi List models
+- name: create_process
+  operationId: createProcess
+  method: POST
+  path: /Process
+  description: Boomi Create a process
+- name: list_quarantine_entries
+  operationId: listQuarantineEntries
+  method: GET
+  path: /repositories/{repositoryId}/universes/{universeId}/quarantine
+  description: Boomi List quarantine entries
+- name: list_repositories
+  operationId: listRepositories
+  method: GET
+  path: /repositories
+  description: Boomi List repositories
+- name: list_sources
+  operationId: listSources
+  method: GET
+  path: /repositories/{repositoryId}/sources
+  description: Boomi List sources
+- name: update_atom
+  operationId: updateAtom
+  method: POST
+  path: /Atom/{id}
+  description: Boomi Update an Atom
+- name: get_packaged_component
+  operationId: getPackagedComponent
+  method: GET
+  path: /PackagedComponent/{id}
+  description: Boomi Get a packaged component
+- name: get_deployed_package
+  operationId: getDeployedPackage
+  method: GET
+  path: /DeployedPackage/{id}
+  description: Boomi Get a deployed package
+- name: get_environment
+  operationId: getEnvironment
+  method: GET
+  path: /Environment/{id}
+  description: Boomi Get an environment
+- name: query_execution_records
+  operationId: queryExecutionRecords
+  method: POST
+  path: /ExecutionRecord/query
+  description: Boomi Query execution records
+- name: create_model
+  operationId: createModel
+  method: POST
+  path: /repositories/{repositoryId}/models
+  description: Boomi Create a model
+- name: get_process
+  operationId: getProcess
+  method: GET
+  path: /Process/{id}
+  description: Boomi Get a process
+- name: create_repository
+  operationId: createRepository
+  method: POST
+  path: /repositories
+  description: Boomi Create a repository
+- name: create_source
+  operationId: createSource
+  method: POST
+  path: /repositories/{repositoryId}/sources
+  description: Boomi Create a source
+- name: delete_atom
+  operationId: deleteAtom
+  method: DELETE
+  path: /Atom/{id}
+  description: Boomi Delete an Atom
+- name: delete_deployed_package
+  operationId: deleteDeployedPackage
+  method: DELETE
+  path: /DeployedPackage/{id}
+  description: Boomi Undeploy a package
+- name: delete_environment
+  operationId: deleteEnvironment
+  method: DELETE
+  path: /Environment/{id}
+  description: Boomi Delete an environment
+- name: get_model
+  operationId: getModel
+  method: GET
+  path: /repositories/{repositoryId}/models/{modelId}
+  description: Boomi Get a model
+- name: update_process
+  operationId: updateProcess
+  method: POST
+  path: /Process/{id}
+  description: Boomi Update a process
+- name: get_repository
+  operationId: getRepository
+  method: GET
+  path: /repositories/{repositoryId}
+  description: Boomi Get a repository
+- name: query_atoms
+  operationId: queryAtoms
+  method: POST
+  path: /Atom/query
+  description: Boomi Query Atoms
+- name: query_deployed_packages
+  operationId: queryDeployedPackages
+  method: POST
+  path: /DeployedPackage/query
+  description: Boomi Query deployed packages
+- name: query_environments
+  operationId: queryEnvironments
+  method: POST
+  path: /Environment/query
+  description: Boomi Query environments
+- name: delete_model
+  operationId: deleteModel
+  method: DELETE
+  path: /repositories/{repositoryId}/models/{modelId}
+  description: Boomi Delete a model
+- name: delete_process
+  operationId: deleteProcess
+  method: DELETE
+  path: /Process/{id}
+  description: Boomi Delete a process
+- name: delete_repository
+  operationId: deleteRepository
+  method: DELETE
+  path: /repositories/{repositoryId}
+  description: Boomi Delete a repository
+- name: publish_model
+  operationId: publishModel
+  method: POST
+  path: /repositories/{repositoryId}/models/{modelId}/publish
+  description: Boomi Publish a model
+- name: query_processes
+  operationId: queryProcesses
+  method: POST
+  path: /Process/query
+  description: Boomi Query processes
+- name: get_process_schedules
+  operationId: getProcessSchedules
+  method: GET
+  path: /ProcessSchedules/{id}
+  description: Boomi Get process schedules
+- name: update_process_schedules
+  operationId: updateProcessSchedules
+  method: POST
+  path: /ProcessSchedules/{id}
+  description: Boomi Update process schedules

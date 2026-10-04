@@ -1,0 +1,43 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.boomi.com/md/docs/Changelog/llms.txt
+sources:
+- https://developer.boomi.com/md/docs/Changelog/llms.txt
+- https://help.boomi.com/docs/Atomsphere/Release_Notes/MFT?year=2026&month=October#__docusaurus_skipToContent_fallback
+- https://help.boomi.com/docs/Atomsphere/Release_Notes/summary?year=2026&month=September
+- https://help.boomi.com/docs/Atomsphere/Release_Notes/AI?year=2026&month=September
+entries:
+- breaking: false
+  highlights:
+  - Automated File Transfer 6.15.0.0
+  - Introduced native log export for Managed File Transfer, which captures File Activity, Schedule Activity, and Audit events as immutable records
+    and delivers them to your AWS account through S3 cross‑account replication.
+  - Improved folder creation for SFTP and FTPS transfers to check only the folders needed within your configured server path.
+  - Added an optional Account field to the External FTPS endpoint form.
+  date: '2026-10-03'
+- breaking: false
+  highlights:
+  - Providers like Langchain, CrewAI, and LangGraph now appear as their own provider tiles instead of being grouped under Custom Accounts.
+  - The renamed Provider Accounts page offers a clearer accounts list side drawer with a Close button, an info tooltip, and direct navigation
+    to a provider's accounts list.
+  - You can now add provider agents directly at the account level, not just within individual environments.
+  - Provider agent screens use Deployment instead of Alias across all labels, buttons, and headings.
+  date: '2026-09-26'
+- breaking: false
+  highlights:
+  - Introduced a Create New Tool drop‑down in the Available Tools drawer in Agent Designer.
+  - Added conversation starters to the Test Panel as clickable prompt pills.
+  - Agentstudio now supports connecting to a specific remote when an MCP server offers multiple remote options.
+  - Administrators can now view session logs for conversational agents from all users in Agent Control Tower.
+  date: '2026-09-12'
+- breaking: false
+  highlights:
+  - AI Agent Management release adds API policy templates, allowing you to group API policy configurations under a single template.
+  - Adds new OpenAPI deployment controls and outbound mutual TLS support for on‑premises gateways.
+  - Introduces JMS as a new Trading Partner communication method, supporting inbound and outbound messaging.
+  date: '2026-09-01'
+current_version: 6.15.0.0
+note: Versioning scheme follows a dotted numeric format (e.g., 6.15.0.0). Only entries explicitly listed on the provided pages are included, up
+  to the most recent 12.
+docs: https://developer.boomi.com/md/docs/Changelog/llms.txt

@@ -1,0 +1,57 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/boomi-atoms-api-openapi.yml
+- openapi/boomi-components-api-openapi.yml
+- openapi/boomi-deployments-api-openapi.yml
+- openapi/boomi-environments-api-openapi.yml
+- openapi/boomi-execution-api-openapi.yml
+- openapi/boomi-golden-records-api-openapi.yml
+- openapi/boomi-messages-api-openapi.yml
+- openapi/boomi-models-api-openapi.yml
+- openapi/boomi-processes-api-openapi.yml
+- openapi/boomi-quarantine-api-openapi.yml
+- openapi/boomi-repositories-api-openapi.yml
+- openapi/boomi-sources-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 37
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: The request body is invalid or missing required fields.
+  operations: 17
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Authentication credentials are missing or invalid.
+  operations: 37
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: The requested resource was not found.
+  operations: 22
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 413
+  title: Content Too Large
+  description: Payload too large. Maximum message size is 5 MB.
+  operations: 1
+  media_types: []
+  schema: null
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded. Maximum 60,000 requests per IP per 5-minute window.
+  operations: 1
+  media_types: []
+  schema: null
