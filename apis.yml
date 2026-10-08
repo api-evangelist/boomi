@@ -665,6 +665,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/boomi.png
 access: 3rd-Party
 common:
+- type: Plans
+  url: plans/boomi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/boomi-rate-limits.yml
+- type: FinOps
+  url: finops/boomi-finops.yml
 - type: CapabilityMap
   url: capabilities/boomi-capability-edges.yml
   name: Boomi Business Capability Map
