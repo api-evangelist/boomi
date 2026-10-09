@@ -1,0 +1,25 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://help.boomi.com/docs/Atomsphere/Platform/c-atm-Data_Security_91b29cdc-bc30-4236-930b-3a6edc54eb29
+sources:
+- https://help.boomi.com/docs/Atomsphere/Platform/c-atm-Data_Security_91b29cdc-bc30-4236-930b-3a6edc54eb29
+- https://developer.boomi.com/blog/boomi-companion-security-ai-agent-skill
+standards:
+- id: scim
+  conforms: true
+  evidence: Additionally, the Boomi infrastructure is deemed SSAE 18 compliant as per the audit requirements of the American Institute of Certified
+    Public Accountants' Service Organization Control (SOC) reporting framework.
+- id: openapi-3.2
+  conforms: true
+  evidence: the document declares 3.2.0
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: basicAuth (http), bearerAuth (http)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+docs: https://help.boomi.com/docs/Atomsphere/Platform/c-atm-Data_Security_91b29cdc-bc30-4236-930b-3a6edc54eb29

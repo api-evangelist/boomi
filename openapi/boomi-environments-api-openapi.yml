@@ -104,7 +104,48 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    ObjectId:
+      name: id
+      in: path
+      required: true
+      description: Unique identifier of the platform object.
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    EnvironmentQueryResult:
+      type: object
+      description: Paginated query results for environments.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Environment'
     EnvironmentInput:
       type: object
       description: Input for creating a runtime environment.
@@ -121,20 +162,6 @@ components:
           enum:
           - PRODUCTION
           - TEST
-    EnvironmentQueryResult:
-      type: object
-      description: Paginated query results for environments.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Environment'
     Environment:
       type: object
       description: A Boomi runtime environment where Atoms are assigned and processes are deployed.
@@ -205,33 +232,6 @@ components:
         code:
           type: integer
           description: Numeric error code.
-  parameters:
-    ObjectId:
-      name: id
-      in: path
-      required: true
-      description: Unique identifier of the platform object.
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     basicAuth:
       type: http

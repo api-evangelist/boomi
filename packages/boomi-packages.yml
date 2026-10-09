@@ -1,0 +1,29 @@
+generated: '2026-10-03'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io)
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (agentic-access/boomi-agentic-access.yml,
+  apiida.com, arazzo/boomi-audit-environment-deployments-workflow.yml, arazzo/boomi-create-and-verify-process-workflow.yml, arazzo/boomi-datahub-onboard-source-workflow.yml,
+  arazzo/boomi-datahub-provision-model-workflow.yml, arazzo/boomi-datahub-publish-draft-model-workflow.yml, arazzo/boomi-datahub-review-data-quality-workflow.yml,
+  arazzo/boomi-decommission-process-workflow.yml, arazzo/boomi-deploy-process-workflow.yml, arazzo/boomi-execute-and-monitor-process-workflow.yml,
+  arazzo/boomi-execute-process-and-publish-result-workflow.yml, arazzo/boomi-package-and-inspect-component-workflow.yml, arazzo/boomi-provision-environment-with-atom-workflow.yml,
+  arazzo/boomi-redeploy-package-to-environment-workflow.yml, arazzo/boomi-schedule-process-workflow.yml, authentication/boomi-authentication.yml,
+  boomi.com, capabilities/boomi-capability-edges.yml, json-ld/boomi-context.jsonld, json-schema/boomi-ai-agent-schema.json, json-schema/boomi-process-schema.json,
+  linkedin.com, postman.com, security/boomi-domain-security.yml, twitter.com) or its accepted GitHub org.'
+packages:
+- name: boomi
+  registry: pypi
+  url: https://pypi.org/project/boomi/
+  language: Python
+  official: true
+  version: 3.0.1
+  published: '2026-06-18'
+  evidence: metadata names boomi.com
+- name: boomi
+  registry: npm
+  url: https://www.npmjs.com/package/boomi
+  language: JavaScript
+  official: false
+  version: 0.0.30
+  published: '2023-01-01'
+  evidence: 'name match only: the metadata names neither the provider''s domain nor its GitHub org'

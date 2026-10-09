@@ -1,0 +1,38 @@
+generated: '2026-10-03'
+method: probed
+source: https://boomi.com/privacy/
+http_status: 200
+fetched: /tmp/boomi_privacy.html
+signals:
+  data_subject_request:
+    url: https://boomi.com/privacy/
+    note: Provides data subject rights under GDPR/UK/EU.
+    evidence:
+      - source: https://boomi.com/privacy/
+        http_status: 200
+        fetched: /tmp/boomi_privacy.html
+        quote: "Where the processing of your Personal Information is subject to EU, Swiss or UK data protection laws, you have the following data subject rights. Please note that these rights are not absolute and in certain cases are subject to conditions as specified in applicable law."
+  subprocessors:
+    url: https://boomi.com/privacy/
+    note: Discloses use of subprocessors and cross‑border transfers.
+    evidence:
+      - source: https://boomi.com/privacy/
+        http_status: 200
+        fetched: /tmp/boomi_privacy.html
+        quote: "Boomi may transfer your Personal Information to other companies within the group and/or to our Business Partners, including onward transfers (subject to the Onward Principle), if required for the purposes described in this Privacy Statement. This may involve the transfer of your Personal Information to countries outside your home country or region, including outside the European Economic Area..."
+  incident_notification:
+    url: https://boomi.com/privacy/
+    note: References FTC oversight, implying incident handling obligations.
+    evidence:
+      - source: https://boomi.com/privacy/
+        http_status: 200
+        fetched: /tmp/boomi_privacy.html
+        quote: "In compliance with the DPF and in order to safeguard your personal data, Boomi, LP is subject to the investigatory and enforcement powers of the US Federal Trade Commission."
+  data_residency:
+    url: https://boomi.com/privacy/
+    note: Indicates data may be stored/transferred internationally.
+    evidence:
+      - source: https://boomi.com/privacy/
+        http_status: 200
+        fetched: /tmp/boomi_privacy.html
+        quote: "This may involve the transfer of your Personal Information to countries outside your home country or region, including outside the European Economic Area if that region..."

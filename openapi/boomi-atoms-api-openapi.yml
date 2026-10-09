@@ -107,6 +107,25 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication credentials are missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request body is invalid or missing required fields.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     ObjectId:
       name: id
@@ -126,6 +145,20 @@ components:
         purgeHistoryDays:
           type: integer
           description: Number of days to retain execution history before purging.
+    AtomQueryResult:
+      type: object
+      description: Paginated query results for Atoms.
+      properties:
+        numberOfResults:
+          type: integer
+          description: Total number of matching records.
+        queryToken:
+          type: string
+          description: Token for retrieving the next page of results.
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Atom'
     Atom:
       type: object
       description: A Boomi Atom — the lightweight runtime engine that executes integration processes.
@@ -210,39 +243,6 @@ components:
         code:
           type: integer
           description: Numeric error code.
-    AtomQueryResult:
-      type: object
-      description: Paginated query results for Atoms.
-      properties:
-        numberOfResults:
-          type: integer
-          description: Total number of matching records.
-        queryToken:
-          type: string
-          description: Token for retrieving the next page of results.
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Atom'
-  responses:
-    Unauthorized:
-      description: Authentication credentials are missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request body is invalid or missing required fields.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     basicAuth:
       type: http
