@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- procore/integrations/procore-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -39,3 +40,22 @@ edges:
   seller_name: Boomi, LP
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: Procore (own)
+  partner: procore
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.procore.com/apps/boomi-connector-by-rutterkey
+  mirror_of: procore/integrations/procore-integration-edges.yml
+  apps:
+  - Boomi Connector by RutterKey
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: IT; Other
+source:
+- procore/integrations/procore-integration-edges.yml

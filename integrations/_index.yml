@@ -27,3 +27,16 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: boomi-procore-own
+  label: Procore (own)
+  partner: procore
+  partner_name: Procore (own)
+  category: IT; Other
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.procore.com/apps/boomi-connector-by-rutterkey
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
