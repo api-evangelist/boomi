@@ -4,6 +4,7 @@ checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
 - procore/integrations/procore-integration-edges.yml
+- stripe/integrations/stripe-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -57,5 +58,24 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: IT; Other
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/connect-netsuite-to-stripe-by-boomi
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - NetSuite Solutions by Boomi
+  - Salesforce Solutions by Boomi
+  - Snowflake Solutions by Boomi
+  listing_count: 3
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: billing
 source:
 - procore/integrations/procore-integration-edges.yml
