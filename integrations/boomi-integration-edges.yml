@@ -19,6 +19,7 @@ checked:
 - https://monid.ai/tools/boomi
 - https://n8n.io/integrations/boomi/
 - https://zapier.com/apps/boomi/integrations
+- hubspot/integrations/hubspot-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -129,25 +130,6 @@ edges:
       latest_authorization: '2023-12-04'
   detected_by: sweep-gov-cloud.py
   first_seen: '2026-10-15'
-- partner_name: Stripe (own)
-  partner: stripe
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.stripe.com/apps/connect-netsuite-to-stripe-by-boomi
-  mirror_of: stripe/integrations/stripe-integration-edges.yml
-  apps:
-  - NetSuite Solutions by Boomi
-  - Salesforce Solutions by Boomi
-  - Snowflake Solutions by Boomi
-  listing_count: 3
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: billing
 - partner_name: Cloud Security Alliance STAR Registry
   partner: null
   partner_match: register
@@ -184,4 +166,40 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/connect-netsuite-to-stripe-by-boomi
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - NetSuite Solutions by Boomi
+  - Salesforce Solutions by Boomi
+  - Snowflake Solutions by Boomi
+  listing_count: 3
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: billing
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/boomi-1158954
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Boomi
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: CONNECTOR
 templates: []
