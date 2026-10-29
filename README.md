@@ -1,4 +1,4 @@
-# Boomi (boomi)
+# Boomi
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,378 +66,262 @@
 
 Boomi is a leading integration platform that allows organizations to connect applications, data, and people across cloud and on-premise environments. By leveraging Boomi's intuitive visual interface and pre-built connectors, businesses can quickly and easily create integrations that streamline processes, improve productivity, and enhance the overall customer experience.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/boomi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/boomi/refs/heads/main/apis.yml)
+**Areas:** AI Agents · Automation · B2B · Data Integration · EDI · Integration · iPaaS · Management · MFT · Platform · Workflows · Workflow Automation
 
-## Scope
+## Boomi on APIs.io
 
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for Boomi is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/boomi/](https://apis.io/providers/boomi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (20)
 
-- AI Agents
-- Automation
-- B2B
-- Data Integration
-- EDI
-- Integrations
-- Management
-- MFT
-- Platform
-- Workflows
+- [Boomi](https://apis.io/apis/boomi/boomi/) — Boomi API Management supports the full lifecycle of APIs in any environment. Configure APIs and expose real-time integrations effortlessly.
+- [Boomi API Management API](https://apis.io/apis/boomi/api-management-api/) — The Boomi API Management API provides programmatic access to API Management service functionality through REST, SOAP, and GraphQL implementations. It…
+- [Boomi Flow API](https://apis.io/apis/boomi/flow-api/) — The Boomi Flow API provides REST endpoints for programmatic access to Boomi Flow functionality. Built on an API-first architecture, many operations…
+- [Boomi Connector Deployment API](https://apis.io/apis/boomi/connector-deployment-api/) — The Boomi Connector Deployment API provides programmatic access to deploy connectors created using the Boomi Connector SDK. It enables integration with…
+- [Boomi Platform SOAP API](https://apis.io/apis/boomi/platform-soap-api/) — The Boomi Platform SOAP API provides the same programmatic access to the Boomi Enterprise Platform as the REST API but through a SOAP interface. The WSDL is…
+- [Boomi MFT API](https://apis.io/apis/boomi/mft-api/) — The Boomi Managed File Transfer (MFT) API provides two main types of APIs for interacting with MFT services: REST APIs and SOAP APIs. REST APIs are designed…
+- [Boomi API Gateway GraphQL API](https://apis.io/apis/boomi/api-gateway-graphql-api/) — The Boomi API Gateway GraphQL API enables developers to retrieve and modify data related to API Gateway management through GraphQL. It supports queries and…
+- [Boomi Agent Control Tower GraphQL API](https://apis.io/apis/boomi/agent-control-tower-graphql-api/) — The Boomi Agent Control Tower GraphQL API provides programmatic access to AI agent management capabilities within Boomi Agentstudio. It enables listing…
+- [Boomi Atoms API](https://apis.io/apis/boomi/boomi-atoms-api/) — Manage Boomi Atoms — the lightweight runtime engines that execute integration processes.
+- [Boomi Components API](https://apis.io/apis/boomi/boomi-components-api/) — Manage packaged components and integration pack attachments.
+- [Boomi Deployments API](https://apis.io/apis/boomi/boomi-deployments-api/) — Manage deployed packages and the deployment of integration components to environments.
+- [Boomi Environments API](https://apis.io/apis/boomi/boomi-environments-api/) — Manage runtime environments where Boomi Atoms and Molecules are deployed to run integration processes.
+- [Boomi Execution API](https://apis.io/apis/boomi/boomi-execution-api/) — Execute integration processes and retrieve execution statistics and job results.
+- [Boomi Golden Records API](https://apis.io/apis/boomi/boomi-golden-records-api/) — Query and manage the authoritative master records that result from matching and merging source records.
+- [Boomi Messages API](https://apis.io/apis/boomi/boomi-messages-api/) — Endpoints for producing messages to Boomi Event Streams topics via HTTP REST calls.
+- [Boomi Models API](https://apis.io/apis/boomi/boomi-models-api/) — Manage data models that define the schema and rules for master data domains.
+- [Boomi Processes API](https://apis.io/apis/boomi/boomi-processes-api/) — Manage integration processes (recipes) within the Boomi platform.
+- [Boomi Quarantine API](https://apis.io/apis/boomi/boomi-quarantine-api/) — Manage quarantined records that could not be automatically processed due to data quality issues.
+- [Boomi Repositories API](https://apis.io/apis/boomi/boomi-repositories-api/) — Manage DataHub repositories that contain master data domains.
+- [Boomi Sources API](https://apis.io/apis/boomi/boomi-sources-api/) — Manage data sources that contribute records to the master data hub for matching and merging.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-08
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Arazzo workflows (14)
 
-### Boomi
+Multi-step workflows that chain operations into a business task.
 
-Boomi API Management supports the full lifecycle of APIs in any environment. Configure APIs and expose real-time integrations effortlessly.
+- [Boomi Audit Environment Deployments](https://apis.io/arazzos/boomi/boomi-audit-environment-deployments-workflow/)
+- [Boomi Create and Verify a Process](https://apis.io/arazzos/boomi/boomi-create-and-verify-process-workflow/)
+- [Boomi DataHub Onboard a Source](https://apis.io/arazzos/boomi/boomi-datahub-onboard-source-workflow/)
+- [Boomi DataHub Provision a Model](https://apis.io/arazzos/boomi/boomi-datahub-provision-model-workflow/)
+- [Boomi DataHub Publish a Draft Model](https://apis.io/arazzos/boomi/boomi-datahub-publish-draft-model-workflow/)
+- [Boomi DataHub Review Data Quality](https://apis.io/arazzos/boomi/boomi-datahub-review-data-quality-workflow/)
+- [Boomi Decommission a Process](https://apis.io/arazzos/boomi/boomi-decommission-process-workflow/)
+- [Boomi Deploy a Process](https://apis.io/arazzos/boomi/boomi-deploy-process-workflow/)
+- [Boomi Execute and Monitor a Process](https://apis.io/arazzos/boomi/boomi-execute-and-monitor-process-workflow/)
+- [Boomi Execute a Process and Publish the Result](https://apis.io/arazzos/boomi/boomi-execute-process-and-publish-result-workflow/)
+- [Boomi Package and Inspect a Component](https://apis.io/arazzos/boomi/boomi-package-and-inspect-component-workflow/)
+- [Boomi Provision Environment With Atom](https://apis.io/arazzos/boomi/boomi-provision-environment-with-atom-workflow/)
+- [Boomi Redeploy a Package to a New Environment](https://apis.io/arazzos/boomi/boomi-redeploy-package-to-environment-workflow/)
+- [Boomi Schedule a Process](https://apis.io/arazzos/boomi/boomi-schedule-process-workflow/)
 
-- **Human URL:** [https://boomi.com/platform/api-management/](https://boomi.com/platform/api-management/)
+#### AsyncAPI (1)
 
-#### Properties
+Event-driven and webhook contracts.
 
-- [Documentation](https://boomi.com/platform/api-management/)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Boomi Event Streams](https://apis.io/asyncapis/boomi/boomi-event-streams-asyncapi/)
 
-### Boomi Platform REST API
+#### Event channels (1)
 
-The Boomi Platform REST API provides programmatic access to the Boomi Enterprise Platform functionality. It allows for control of many objects associated with your account including account administration, cloud management, component management, deployment, environment management, execution statistics, integration packs, process execution, and runtime management.
+Individual events and webhooks the provider emits.
 
-- **Human URL:** [https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API](https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API)
+- [/](https://apis.io/channels/boomi/untitled/)
 
-#### Tags
+#### GraphQL (1)
 
-- Integration
-- Platform
-- REST
+GraphQL schemas.
 
-#### Properties
+- [Boomi GraphQL API](https://apis.io/graphqls/boomi/boomi-graphql/)
 
-- [Documentation](https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API)
-- [API Reference](https://developer.boomi.com/docs/APIs/PlatformAPI/APIReference/Platform_APIs_Overview)
-- [API Reference](https://developer.boomi.com/docs/category/platform-rest-api-reference)
-- [OpenAPI](https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Getting Started](https://developer.boomi.com/docs/category/introduction-to-boomi-platform-apis)
-- [OpenAPI](openapi/boomi-platform-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/boomi-process-schema.json) — [JSON Schema](https://json-schema.org/specification)
+#### MCP servers (1)
 
-### Boomi Platform Partner API
+Model Context Protocol servers that expose the API to agents.
 
-The Boomi Platform Partner API provides partners with programmatic access to the secondary accounts that they manage. It builds upon the standard Boomi Enterprise Platform API with additional capabilities including account CREATE and DELETE operations and account provisioning.
+- [Moved to /providers/boomi/](https://apis.io/servers/boomi/boomi/)
 
-- **Human URL:** [https://developer.boomi.com/api/platformpartnerapi](https://developer.boomi.com/api/platformpartnerapi)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Partners
-- Platform
-- REST
+- [Boomi Agentic Access](https://apis.io/agentic-access/boomi/boomi-agentic-access/)
 
-#### Properties
+#### JSON Schema (35)
 
-- [Documentation](https://developer.boomi.com/api/platformpartnerapi)
-- [API Reference](https://developer.boomi.com/docs/APIs/PlatformPartnerAPI/APIReference/Platform_Partner_APIs_Overview)
-- [OpenAPI](https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/OpenAPI_3_0) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-### Boomi API Management API
+- [Boomi AI Agent](https://apis.io/schemas/boomi/boomi-ai-agent/)
+- [Atom](https://apis.io/schemas/boomi/boomi-atom/)
+- [AtomInput](https://apis.io/schemas/boomi/boomi-atominput/)
+- [AtomQueryResult](https://apis.io/schemas/boomi/boomi-atomqueryresult/)
+- [DeployedPackage](https://apis.io/schemas/boomi/boomi-deployedpackage/)
+- [DeployedPackageInput](https://apis.io/schemas/boomi/boomi-deployedpackageinput/)
+- [DeployedPackageQueryResult](https://apis.io/schemas/boomi/boomi-deployedpackagequeryresult/)
+- [Environment](https://apis.io/schemas/boomi/boomi-environment/)
+- [EnvironmentInput](https://apis.io/schemas/boomi/boomi-environmentinput/)
+- [EnvironmentQueryResult](https://apis.io/schemas/boomi/boomi-environmentqueryresult/)
+- [ErrorResponse](https://apis.io/schemas/boomi/boomi-errorresponse/)
+- [ExecutionRecord](https://apis.io/schemas/boomi/boomi-executionrecord/)
+- [ExecutionRecordQueryResult](https://apis.io/schemas/boomi/boomi-executionrecordqueryresult/)
+- [ExecutionRequest](https://apis.io/schemas/boomi/boomi-executionrequest/)
+- [ExecutionRequestResult](https://apis.io/schemas/boomi/boomi-executionrequestresult/)
+- [GoldenRecord](https://apis.io/schemas/boomi/boomi-goldenrecord/)
+- [MessageItem](https://apis.io/schemas/boomi/boomi-messageitem/)
+- [Model](https://apis.io/schemas/boomi/boomi-model/)
+- [ModelField](https://apis.io/schemas/boomi/boomi-modelfield/)
+- [ModelInput](https://apis.io/schemas/boomi/boomi-modelinput/)
+- [MultiMessageRequest](https://apis.io/schemas/boomi/boomi-multimessagerequest/)
+- [PackagedComponent](https://apis.io/schemas/boomi/boomi-packagedcomponent/)
+- [PackagedComponentInput](https://apis.io/schemas/boomi/boomi-packagedcomponentinput/)
+- [Boomi Integration Process](https://apis.io/schemas/boomi/boomi-process/)
+- [ProcessInput](https://apis.io/schemas/boomi/boomi-processinput/)
+- …and 10 more published on APIs.io
 
-The Boomi API Management API provides programmatic access to API Management service functionality through REST, SOAP, and GraphQL implementations. It supports API objects and object-based operations, API actions, and audit log query types. The API enforces a rate limit of 10 requests per second.
+#### JSON Structure (1)
 
-- **Human URL:** [https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340](https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340)
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Boomi Structure](https://apis.io/json-structure/boomi/boomi-structure/)
 
-- API Management
-- GraphQL
-- REST
-- SOAP
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/r-api-API_Management_APIs_4307dcc3-1662-4e2a-9a82-d03ca043f340)
-- [Getting Started](https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Getting_Started_f06ad982-c0d9-4c67-ab0f-7a19db534868)
-- [Authentication](https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Boomi Context](https://apis.io/jsonld/boomi/boomi-context/)
 
-### Boomi DataHub API
+#### Vocabulary (1)
 
-The Boomi DataHub REST APIs enable programmatic access to the master data management system through the DataHub Platform API and Repository API. The Platform API enables platform-level operations on master data domains, while the Repository API supports data repository operations with JWT authentication.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f](https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f)
+- [Boomi Domain Vocabulary](https://apis.io/vocabularies/boomi/boomi-vocabulary/)
 
-#### Tags
+#### Collections (18)
 
-- Data Hub
-- Master Data
-- REST
+Postman and Open Collection request collections.
 
-#### Properties
+- [Boomi DataHub Atoms API](https://apis.io/collections/boomi/open-boomi-atoms-api/)
+- [Boomi DataHub Atoms Components API](https://apis.io/collections/boomi/open-boomi-components-api/)
+- [Boomi DataHub API](https://apis.io/collections/boomi/open-boomi-datahub-api/)
+- [Boomi DataHub Atoms Deployments API](https://apis.io/collections/boomi/open-boomi-deployments-api/)
+- [Boomi DataHub Atoms Environments API](https://apis.io/collections/boomi/open-boomi-environments-api/)
+- [Boomi Event Streams REST API](https://apis.io/collections/boomi/open-boomi-event-streams/)
+- [Boomi DataHub Atoms Execution API](https://apis.io/collections/boomi/open-boomi-execution-api/)
+- [Boomi DataHub Atoms Golden Records API](https://apis.io/collections/boomi/open-boomi-golden-records-api/)
+- [Boomi DataHub Atoms Messages API](https://apis.io/collections/boomi/open-boomi-messages-api/)
+- [Boomi DataHub Atoms Models API](https://apis.io/collections/boomi/open-boomi-models-api/)
+- [Boomi Platform REST API](https://apis.io/collections/boomi/open-boomi-platform-rest-api/)
+- [Boomi DataHub Atoms Processes API](https://apis.io/collections/boomi/open-boomi-processes-api/)
+- [Boomi DataHub Atoms Quarantine API](https://apis.io/collections/boomi/open-boomi-quarantine-api/)
+- [Boomi DataHub Atoms Repositories API](https://apis.io/collections/boomi/open-boomi-repositories-api/)
+- [Boomi DataHub Atoms Sources API](https://apis.io/collections/boomi/open-boomi-sources-api/)
+- [Boomi DataHub API](https://apis.io/collections/boomi/postman-boomi-datahub-api/)
+- [Boomi Event Streams REST API](https://apis.io/collections/boomi/postman-boomi-event-streams/)
+- [Boomi Platform REST API](https://apis.io/collections/boomi/postman-boomi-platform-rest-api/)
 
-- [Documentation](https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-REST_APIs_f43499a6-3d1c-4102-bf13-94b02659dd9f)
-- [API Reference](https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Platform_API_368dc28d-455d-4aa2-970e-d2332c7ada83)
-- [API Reference](https://help.boomi.com/docs/Atomsphere/Master%20Data%20Hub/REST%20APIs/r-mdm-Repository_API_659e32f2-99ce-444e-8201-8a9ae1d92c9b)
-- [OpenAPI](openapi/boomi-datahub-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (3)
 
-### Boomi Event Streams REST API
+Spectral rulesets for the provider's contracts.
 
-The Boomi Event Streams REST API enables HTTP-based applications to produce messages to topics. It supports multiple message modes including multiple messages in predefined JSON format and single messages in their original format without transformation. The API accommodates messages up to 5MB and uses Bearer token authentication.
+- [Boomi — asyncapi rules](https://apis.io/rules/boomi/boomi-asyncapi-spectral-rules/)
+- [Boomi — jsonschema rules](https://apis.io/rules/boomi/boomi-jsonschema-spectral-rules/)
+- [Boomi API Rules](https://apis.io/rules/boomi/boomi-rules/)
 
-- **Human URL:** [https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API](https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API)
+#### Security (2)
 
-#### Tags
+Authentication, trust centre, and vulnerability disclosure.
 
-- Events
-- Messaging
-- REST
-- Streaming
+- [Boomi Authentication](https://apis.io/security/boomi/boomi-authentication/)
+- [Boomi Domain Security](https://apis.io/security/boomi/boomi-domain-security/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [Documentation](https://help.boomi.com/docs/Atomsphere/Event%20Streams/es-REST_API)
-- [OpenAPI](openapi/boomi-event-streams-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/boomi-event-streams-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+Published plans, tiers and prices.
 
-### Boomi Flow API
+- [Boomi Plans Pricing](https://apis.io/plans/boomi/boomi-plans-pricing/)
 
-The Boomi Flow API provides REST endpoints for programmatic access to Boomi Flow functionality. Built on an API-first architecture, many operations performed within Boomi Flow can be accessed through this API. The API supports authorization using tenant-specific API keys.
+#### Rate limits (1)
 
-- **Human URL:** [https://manywho.github.io/docs-api/](https://manywho.github.io/docs-api/)
+Published request limits.
 
-#### Tags
+- [Boomi Rate Limits](https://apis.io/rate-limits/boomi/boomi-rate-limits/)
 
-- Automation
-- Low-Code
-- REST
-- Workflows
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [Documentation](https://manywho.github.io/docs-api/)
-- [GitHub Repository](https://github.com/manywho/docs-api)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Boomi Finops](https://apis.io/finops/boomi/boomi-finops/)
 
-### Boomi Connector Deployment API
+## Where to find this API
 
-The Boomi Connector Deployment API provides programmatic access to deploy connectors created using the Boomi Connector SDK. It enables integration with CI/CD pipelines for automated connector deployment to the Boomi Enterprise Platform.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview](https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview)
-
-#### Tags
-
-- Connectors
-- Deployment
-- REST
-- SDK
-
-#### Properties
-
-- [Documentation](https://developer.boomi.com/docs/APIs/Connectors/APIReference/Connectors_API_Overview)
-- [Getting Started](https://developer.boomi.com/docs/Connectors/ConnectorSDK/Connector_sdk_overview)
-- [Getting Started](https://developer.boomi.com/docs/category/deploying-connector-to-the-boomi-enterprise-platform)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boomi Platform SOAP API
-
-The Boomi Platform SOAP API provides the same programmatic access to the Boomi Enterprise Platform as the REST API but through a SOAP interface. The WSDL is available at api.boomi.com and the API uses WS-Security with UsernameToken for authentication. It supports GET, QUERY, CREATE, UPDATE, EXECUTE, and DELETE operations on platform objects.
-
-- **Human URL:** [https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations](https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations)
-
-#### Tags
-
-- Integration
-- Platform
-- SOAP
-
-#### Properties
-
-- [Documentation](https://developer.boomi.com/docs/APIs/PlatformSOAPAPI/APIObjects/API_objects_and_object-based_operations)
-- [Getting Started](https://developer.boomi.com/docs/APIs/PlatformAPI/Introduction/Platform_API)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boomi MFT API
-
-The Boomi Managed File Transfer (MFT) API provides two main types of APIs for interacting with MFT services: REST APIs and SOAP APIs. REST APIs are designed around a resource-oriented model using standard HTTP methods, while SOAP APIs offer a structured, protocol-driven alternative. The API covers AFT Management, AuditLog, Content Upload and Download, Health Check, and File Sharing operations.
-
-- **Human URL:** [https://developer.boomi.com/docs/APIs/MFT/overview](https://developer.boomi.com/docs/APIs/MFT/overview)
-
-#### Tags
-
-- Managed File Transfer
-- MFT
-- REST
-- SOAP
-
-#### Properties
-
-- [Documentation](https://developer.boomi.com/docs/APIs/MFT/overview)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boomi API Gateway GraphQL API
-
-The Boomi API Gateway GraphQL API enables developers to retrieve and modify data related to API Gateway management through GraphQL. It supports queries and mutations across authentication sources, deployed APIs and applications, API plans, environments and gateway configuration, metrics, and runtime operations. The API implements rate limiting and returns HTTP 429 when exceeded.
-
-- **Human URL:** [https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview](https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview)
-
-#### Tags
-
-- API Gateway
-- API Management
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://developer.boomi.com/docs/APIs/GraphQL/APIM_GraphQL_apis_overview)
-- [Getting Started](https://developer.boomi.com/docs/APIs/GraphQL)
-- [Documentation](https://developer.boomi.com/docs/APIs/GraphQL/GraphQL_api_explorer)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Boomi Agent Control Tower GraphQL API
-
-The Boomi Agent Control Tower GraphQL API provides programmatic access to AI agent management capabilities within Boomi Agentstudio. It enables listing accounts and agents, including those from external providers, through Custom Account APIs. Authentication uses JWT tokens obtained via Basic Authentication against the Boomi platform.
-
-- **Human URL:** [https://developer.boomi.com/docs/APIs/GraphQL/ACT-Custom_API](https://developer.boomi.com/docs/APIs/GraphQL/ACT-Custom_API)
-
-#### Tags
-
-- AI Agents
-- Governance
-- GraphQL
-
-#### Properties
-
-- [Documentation](https://developer.boomi.com/docs/APIs/GraphQL/ACT-Custom_API)
-- [API Reference](https://developer.boomi.com/docs/APIs/ACT/Agent_Control_Tower)
-- [Documentation](https://help.boomi.com/docs/Atomsphere/Platform/Agent_Control_Tower)
-- [JSON Schema](json-schema/boomi-ai-agent-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/boomi-datahub-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-datahub-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-event-streams.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-event-streams.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/boomi-platform-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/boomi-platform-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/company/boomi-inc/)
-- [Git Hub](https://github.com/OfficialBoomi)
 - [Website](https://boomi.com/)
-- [Pricing](https://boomi.com/pricing/)
-- [Compliance](https://boomi.com/compliance/)
-- [Trial](https://boomi.com/form/trial/)
-- [Request Demo](https://boomi.com/custom-demo-request/)
-- [Marketplace](https://discover.boomi.com/)
-- [Case Studies](https://boomi.com/customers/)
-- [Events](https://boomi.com/company/events/?event_style=upcoming)
-- [Webinars](https://boomi.com/company/events/?event_style=upcoming)
-- [Blog](https://boomi.com/blog/)
-- [e Books](https://boomi.com/resources/?content_type=ebook)
-- [Training](https://boomi.com/services/training/)
 - [Documentation](https://help.boomi.com/)
+- [Getting started](https://help.boomi.com/docs/Atomsphere/Platform/quickstart_guides)
+- [API reference](https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs)
+- [Pricing](https://boomi.com/pricing/)
+- [Sign up](https://boomi.com/form/trial/)
 - [Support](https://community.boomi.com/s/support)
-- [Whats New](https://boomi.com/product-updates/)
-- [Partners](https://boomi.com/partners/)
-- [Privacy Policy](https://boomi.com/privacy/)
-- [Terms of Service](https://boomi.com/legal/service/)
-- [Trust](https://boomi.com/compliance/)
-- [Developer Portal](https://developer.boomi.com/)
-- [Community](https://community.boomi.com/s/)
-- [Forums](https://community.boomi.com/s/forums)
-- [Status Page](https://status.boomi.com/)
-- [Release Notes](https://help.boomi.com/docs/category/release-notes)
-- [About](https://boomi.com/company/)
-- [Contact](https://boomi.com/company/contact/)
-- [X (Twitter)](https://twitter.com/boomi)
-- [Sign In](https://platform.boomi.com/)
-- [Connectors](https://boomi.com/connectors/)
-- [Data Hub](https://boomi.com/platform/master-data-hub/)
-- [Products](https://boomi.com/platform/api-products/)
-- [Postman Workspace](https://www.postman.com/boomi-lp/boomi/overview)
-- [Careers](https://boomi.com/company/careers/)
-- [Authentication](https://help.boomi.com/docs/Atomsphere/API%20Management/Topics/c-api-Authentication_3baf0ddd-3532-403f-b66b-4800c1e19098)
-- [Agentstudio](https://boomi.com/platform/agentstudio/)
-- [M C P](https://boomi.com/model-context-protocol/)
-- [API Reference](https://help.boomi.com/docs/Atomsphere/Integration/int-Boomi_Platform_APIs)
-- [Integration](https://boomi.com/platform/integration/)
-- [Agent Management](https://boomi.com/platform/ai/)
-- [Platform Agents](https://boomi.com/platform/ai-agents/)
-- [Agent Connectivity](https://boomi.com/agent-connectivity/)
-- [Responsible A I](https://boomi.com/responsible-ai/)
-- [Flow](https://boomi.com/platform/flow/)
-- [Event Streams](https://boomi.com/platform/event-streams/)
-- [B2 B Management](https://boomi.com/platform/b2b-management/)
-- [Task Automation](https://boomi.com/platform/task-automation/)
-- [Managed File Transfer](https://boomi.com/platform/managed-file-transfer/)
-- [A P I Management](https://boomi.com/platform/api-management/)
-- [A P I Governance](https://boomi.com/platform/api-governance/)
-- [A P I Security](https://boomi.com/platform/api-security/)
-- [Data Management](https://boomi.com/platform/data-management/)
-- [Data Hub](https://boomi.com/platform/datahub/)
-- [Data Integration](https://boomi.com/platform/boomi-data-integration/)
-- [Meta Hub](https://boomi.com/platform/metahub/)
-- [Boomi Embedded](https://boomi.com/platform/embedded/)
-- [Solutions](https://boomi.com/solutions/)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Features](undefined)
-- [JSON-LD](json-ld/boomi-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/boomi-process-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/boomi-ai-agent-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [L L Ms Txt](https://developer.boomi.com/llms.txt)
+- [Blog](https://boomi.com/blog/)
+- [Security](https://boomi.com/platform/api-security/)
+- [Compliance](https://boomi.com/compliance/)
+- [Terms of service](https://boomi.com/legal/service/)
+- [Privacy policy](https://boomi.com/privacy/)
+- [Status](https://status.boomi.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 62.7** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 68.2 |
+| Contract governance | 31.8 |
+| Operational transparency | 55.3 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 68.4 |
+
+**Agent readiness 34.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/boomi/](https://apis.io/providers/boomi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Boomi: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/boomi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
